@@ -1,2 +1,2 @@
-# aiviq-labs.github.io
+# aiviq-labs
 AI that works - for you.
