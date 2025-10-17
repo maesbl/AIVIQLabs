@@ -11,7 +11,7 @@
       Practical AI, elegant execution.
     </p>
     <div class="btns">
-      <a class="btn" href="https://calendly.com/aiviqlabs/diagnostic" target="_blank" rel="noopener">Book a free consultation</a>
+      <a class="btn" href="https://calendly.com/aiviqlabs/30min" target="_blank" rel="noopener">Book a free consultation</a>
       <a class="btn secondary" href="#services">See what we build</a>
     </div>
   </section>
