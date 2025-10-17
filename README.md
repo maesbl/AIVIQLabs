@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="style.css">
 # 🧠 AIVIQ Labs  
 ### *Where automation meets intelligence.*
 
