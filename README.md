@@ -43,7 +43,7 @@ Founded by two innovators passionate about technology and impact, AIVIQ Labs bui
 ## 🧩 How It Works  
 
 1. **Book a Free AI Consultation**  
-   → [Schedule a call](https://calendly.com/aiviqlabs/diagnostic)  
+   → [Schedule a call](https://calendly.com/aiviqlabs/30min)  
 
 2. **We Analyze Your Workflow**  
    We identify repetitive tasks and automation opportunities.  
@@ -67,10 +67,10 @@ Founded by two innovators passionate about technology and impact, AIVIQ Labs bui
 
 ## 👥 Founders  
 
-### **Mario Escudero – Founder & Lead AI Consultant**  
+### **Mario Escudero Blanco  – Founder & Lead AI Consultant**  
 Cybersecurity and AI specialist focused on designing intelligent automation systems that transform businesses.
 
-### **[Your Partner’s Name] – Co-Founder & AI Systems Architect**  
+### **Marcos Gonzales Lazaro – Co-Founder & Automation Developer**  
 Expert in automation frameworks, integrations, and AI agents that make companies more efficient.
 
 ---
@@ -78,9 +78,9 @@ Expert in automation frameworks, integrations, and AI agents that make companies
 ## 📈 Let’s Build the Future Together  
 
 🚀 *Ready to bring AI to your business?*  
-👉 [Book your free consultation](https://calendly.com/aiviqlabs/diagnostic)  
-📧 Contact: **hello@aiviqlabs.com**  
-🌐 Website: [aiviqlabs.github.io](https://aiviqlabs.github.io)  
+👉 [Book your free consultation](https://calendly.com/aiviqlabs/30min)  
+📧 Contact: **mario.escudero.blanco@gmail.com**   (Working on company personalized email)
+🌐 Website: [maesbl.github.io/aiviq-labs](https://maesbl.github.io/aiviq-labs/)  
 
 ---
 
