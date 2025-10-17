@@ -1,4 +1,23 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<div class="container">
+  <section class="hero">
+    <span class="badge">AIVIQ Labs</span>
+    <h1>AI that works – for you.</h1>
+    <p>
+      We design intelligent automation systems and AI agents that save time, cut costs, and scale with your business.
+      Practical AI, elegant execution.
+    </p>
+    <div class="btns">
+      <a class="btn" href="https://calendly.com/aiviqlabs/diagnostic" target="_blank" rel="noopener">Book a free consultation</a>
+      <a class="btn secondary" href="#services">See what we build</a>
+    </div>
+  </section>
+</div>
+
+<div class="container">
+
 # 🧠 AIVIQ Labs  
 ### *Where automation meets intelligence.*
 
@@ -16,7 +35,7 @@ Founded by two innovators passionate about technology and impact, AIVIQ Labs bui
 
 ---
 
-## ⚙️ What We Do  
+## ⚙️ What We Do {#services}
 
 | **Category** | **Service** | **Description** |
 |---------------|--------------|------------------|
@@ -79,12 +98,13 @@ Expert in automation frameworks, integrations, and AI agents that make companies
 
 🚀 *Ready to bring AI to your business?*  
 👉 [Book your free consultation](https://calendly.com/aiviqlabs/30min)  
-📧 Contact: **mario.escudero.blanco@gmail.com**   (Working on company personalized email)
+📧 Contact: **mario.escudero.blanco@gmail.com**   (Working on company personalized email)  
 🌐 Website: [maesbl.github.io/aiviq-labs](https://maesbl.github.io/aiviq-labs/)  
 
 ---
 
-### 🖤 Built by AIVIQ Labs  
-*AI that works – for you.*  
+</div>
 
----
+<footer>
+  Built by AIVIQ Labs — AI that works – for you.
+</footer>
