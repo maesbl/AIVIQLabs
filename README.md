@@ -68,7 +68,7 @@ Founded by two innovators passionate about technology and impact, AIVIQ Labs bui
 ## 👥 Founders  
 
 ### **Mario Escudero Blanco  – Founder & Lead AI Consultant**  
-Cybersecurity and AI specialist focused on designing intelligent automation systems that transform businesses.
+AI Science student focused on designing intelligent automation systems that transform businesses.
 
 ### **Marcos Gonzales Lazaro – Co-Founder & Automation Developer**  
 Expert in automation frameworks, integrations, and AI agents that make companies more efficient.
