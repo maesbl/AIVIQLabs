@@ -11,7 +11,7 @@
       Practical AI, elegant execution.
     </p>
     <div class="btns">
-      <a class="btn" href="https://calendly.com/aiviqlabs/30min" target="_blank" rel="noopener">Book a free consultation</a>
+      <a class="btn" href="https://zcal.co/maesbl/30min" target="_blank" rel="noopener">Book a free consultation</a>
       <a class="btn secondary" href="#services">See what we build</a>
     </div>
   </section>
@@ -63,7 +63,7 @@ Founded by two innovators passionate about technology and impact, AIVIQ Labs bui
 ## 🧩 How It Works
 
 1. **Book a Free AI Consultation**  
-   → [Schedule a call](https://calendly.com/aiviqlabs/30min)
+   → [Schedule a call](https://zcal.co/maesbl/30min)
 2. **We Analyze Your Workflow**  
    We identify repetitive tasks and automation opportunities.
 3. **We Build and Integrate AI Systems**  
@@ -95,7 +95,7 @@ Expert in automation frameworks, integrations, and AI agents that make companies
 ## 📈 Let’s Build the Future Together
 
 🚀 *Ready to bring AI to your business?*  
-👉 [Book your free consultation](https://calendly.com/aiviqlabs/30min)  
+👉 [Book your free consultation](https://zcal.co/maesbl/30min)  
 📧 Contact: **mario.escudero.blanco@gmail.com** *(Working on company personalized email)*  
 🌐 Website: [maesbl.github.io/aiviq-labs](https://maesbl.github.io/aiviq-labs/)
 
