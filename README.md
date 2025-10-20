@@ -48,6 +48,47 @@ We help businesses **automate, optimize, and evolve** through practical AI — t
 
 ---
 
+---
+
+# 🛡️ **AIVIQ Defense**
+### *Autonomous Cyber Defense for Modern Businesses*
+
+> **AIVIQ Defense** is our exclusive AI-powered cybersecurity suite —  
+> designed for organizations that demand speed, precision, and resilience.  
+>  
+> Detect. Predict. Respond. — before threats even happen.
+
+---
+
+## 💼 **Our Exclusive Plans**
+
+| **Plan** | **Includes** | **Setup Fee (€)** | **Monthly (€)** |
+|-----------|--------------|------------------|----------------|
+| **Defense Core** | AI-driven anomaly detection • Real-time alerts • Central dashboard | 8,000 – 12,000 | 1,200 – 1,800 |
+| **Defense Advanced** | Predictive AI • Automated response (SOAR) • Custom dashboards | 15,000 – 25,000 | 2,000 – 3,000 |
+| **Defense Elite** | Threat Intelligence • 24/7 Analyst • Compliance automation | 35,000 – 60,000 | 3,500 – 6,000 |
+
+---
+
+## ⚙️ **Key Features**
+- 🔍 AI-powered detection and alert correlation  
+- 🤖 Automated threat response and containment  
+- 🧠 Predictive analytics for proactive defense  
+- 📊 Executive insights & compliance-ready reports  
+- 🛡️ Continuous optimization powered by AIVIQ Intelligence  
+
+---
+
+## 💬 **Ideal For**
+High-end automotive, finance, healthcare, and enterprise clients  
+seeking elite protection with next-generation AI.
+
+> *This is not traditional security — this is AIVIQ Defense.*
+
+---
+
+### 🔐 **AIVIQ Labs — AI that works, for your security.**
+
 ## ⚙️ What We Do {#services}
 
 <!-- Cards en HTML (sin Markdown dentro) -->
@@ -72,7 +113,7 @@ We help businesses **automate, optimize, and evolve** through practical AI — t
 
 ## 👥 Founders
 **Mario Escudero Blanco – Founder & Lead AI Consultant**  
-AI & Cybersecurity, focused on intelligent automation systems.
+AI  , focused on intelligent automation systems.
 
 **Marcos Gonzales Lázaro – Co-Founder & Automation Developer**  
 Integrations, orchestration, and agentic workflows that drive efficiency.
