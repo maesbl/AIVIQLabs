@@ -60,16 +60,6 @@ We help businesses **automate, optimize, and evolve** through practical AI — t
 
 ---
 
-## 💼 **Our Exclusive Plans**
-
-| **Plan** | **Includes** | **Setup Fee (€)** | **Monthly (€)** |
-|-----------|--------------|------------------|----------------|
-| **Defense Core** | AI-driven anomaly detection • Real-time alerts • Central dashboard | 8,000 – 12,000 | 1,200 – 1,800 |
-| **Defense Advanced** | Predictive AI • Automated response (SOAR) • Custom dashboards | 15,000 – 25,000 | 2,000 – 3,000 |
-| **Defense Elite** | Threat Intelligence • 24/7 Analyst • Compliance automation | 35,000 – 60,000 | 3,500 – 6,000 |
-
----
-
 ## ⚙️ **Key Features**
 - 🔍 AI-powered detection and alert correlation  
 - 🤖 Automated threat response and containment  
