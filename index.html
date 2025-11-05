@@ -4,57 +4,193 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIVIQ Labs – AI that works for you</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <span class="brand">AIVIQ Labs</span>
-      <nav>
+      <a href="#top" class="brand">AIVIQ Labs</a>
+      <nav class="nav-links">
         <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact" class="btn">Get in Touch</a>
+        <a href="#services">Solutions</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1><span>AI that works</span> – for you.</h1>
-      <p>We create intelligent automation systems that scale with your business — designed with precision, executed with elegance.</p>
-      <div class="btns">
-        <a href="https://zcal.co/maesbl/30min" class="btn">Book a Call</a>
-        <a href="#services" class="btn secondary">Discover More</a>
+  <main id="top">
+    <section class="hero">
+      <canvas id="particles" aria-hidden="true"></canvas>
+      <div class="hero-gradient" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-copy" data-animate>
+          <span class="eyebrow">Automation. Intelligence. Momentum.</span>
+          <h1>We design <span>futuristic AI experiences</span> that scale trust and revenue.</h1>
+          <p>
+            AIVIQ Labs blends strategy, automation and conversational AI to craft digital companions
+            that are as intuitive as they are powerful. We help ambitious teams move faster — with elegance built in.
+          </p>
+          <div class="hero-actions">
+            <a href="https://zcal.co/maesbl/30min" class="btn">Book a discovery call</a>
+            <a href="#services" class="btn btn-ghost">Explore solutions</a>
+          </div>
+        </div>
+        <div class="hero-showcase" data-animate>
+          <div class="showcase-card">
+            <span>90% less manual work</span>
+            <p>Automate onboarding, support &amp; operations with human-grade AI workflows.</p>
+          </div>
+          <div class="showcase-grid">
+            <article class="metric" data-tilt>
+              <h3>24/7</h3>
+              <p>Autonomous agents on duty</p>
+            </article>
+            <article class="metric" data-tilt>
+              <h3>4x</h3>
+              <p>Faster launch cycles</p>
+            </article>
+            <article class="metric" data-tilt>
+              <h3>98%</h3>
+              <p>Client satisfaction</p>
+            </article>
+            <article class="metric" data-tilt>
+              <h3>&infin;</h3>
+              <p>Scalable workflows</p>
+            </article>
+          </div>
+        </div>
       </div>
-    </div>
-    <canvas id="particles"></canvas>
-  </section>
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+      </div>
+    </section>
 
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p><strong>AIVIQ Labs</strong> empowers companies to automate and evolve using cutting-edge AI technology — transforming repetitive workflows into streamlined, intelligent systems.</p>
-  </section>
+    <section class="marquee" aria-label="Trusted by forward-first teams">
+      <div class="marquee-track">
+        <span>Automation Architects</span>
+        <span>AI-Native Operations</span>
+        <span>Voice &amp; Chat Agents</span>
+        <span>Predictive Analytics</span>
+        <span>Strategic Integrations</span>
+      </div>
+      <div class="marquee-track" aria-hidden="true">
+        <span>Automation Architects</span>
+        <span>AI-Native Operations</span>
+        <span>Voice &amp; Chat Agents</span>
+        <span>Predictive Analytics</span>
+        <span>Strategic Integrations</span>
+      </div>
+    </section>
 
-  <section id="services" class="section">
-    <h2>What We Do</h2>
-    <div class="grid">
-      <div class="card"><h3>Automation Systems</h3><p>AI-powered workflows that save time and reduce costs.</p></div>
-      <div class="card"><h3>Conversational Agents</h3><p>Voice &amp; chat agents that handle clients naturally, 24/7.</p></div>
-      <div class="card"><h3>Analytics &amp; Insights</h3><p>Dashboards that learn from your data and act on it.</p></div>
-      <div class="card"><h3>AI Consulting</h3><p>Strategy and integration to make AI work for you.</p></div>
-    </div>
-  </section>
+    <section id="about" class="section about" data-animate>
+      <div class="section-intro">
+        <h2>Intelligent systems engineered for momentum</h2>
+        <p>
+          From workflow orchestration to customer experience, we connect the dots between your data, your teams and the platforms
+          that matter. Our studio blends deep technical expertise with product sense to unlock the next version of your business.
+        </p>
+      </div>
+      <div class="pillars">
+        <div class="pillar" data-tilt>
+          <h3>Co-pilot your growth</h3>
+          <p>Partner with specialists who translate your goals into launch-ready automation roadmaps.</p>
+        </div>
+        <div class="pillar" data-tilt>
+          <h3>Design for delight</h3>
+          <p>We prototype, iterate and polish every touchpoint to feel intentionally crafted and on-brand.</p>
+        </div>
+        <div class="pillar" data-tilt>
+          <h3>Ship with confidence</h3>
+          <p>Our delivery combines observability, governance and performance to keep your AI reliable.</p>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact" class="cta">
-    <h2>Ready to Automate?</h2>
-    <p>Let’s craft the intelligent layer your business deserves.</p>
-    <a href="mailto:mescuderob@icloud.com" class="btn">Contact Us</a>
-  </section>
+    <section id="services" class="section features" data-animate>
+      <h2>Signature solutions</h2>
+      <div class="grid">
+        <article class="card" data-tilt>
+          <span class="tag">Automation Systems</span>
+          <h3>Composable AI workflows</h3>
+          <p>Orchestrate sales, support and operations with modular automations that learn from every interaction.</p>
+        </article>
+        <article class="card" data-tilt>
+          <span class="tag">Conversational Agents</span>
+          <h3>Human-grade voice &amp; chat</h3>
+          <p>Launch multichannel agents that understand nuance, speak with your tone and handoff flawlessly.</p>
+        </article>
+        <article class="card" data-tilt>
+          <span class="tag">Analytics &amp; Insights</span>
+          <h3>Predictive intelligence</h3>
+          <p>Activate dashboards that surface anomalies, forecast demand and recommend next-best actions.</p>
+        </article>
+        <article class="card" data-tilt>
+          <span class="tag">AI Consulting</span>
+          <h3>Strategy &amp; enablement</h3>
+          <p>Align teams, infrastructure and governance for sustainable, scalable AI advantage.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section process" data-animate>
+      <div class="section-header">
+        <h2>The AIVIQ launch cycle</h2>
+        <p>End-to-end partnership designed to ship meaningful automation in weeks, not months.</p>
+      </div>
+      <div class="timeline">
+        <div class="step" data-tilt>
+          <span class="step-index">01</span>
+          <h3>Discover &amp; Architect</h3>
+          <p>Deep dive workshops surface opportunities, map integrations and define success metrics.</p>
+        </div>
+        <div class="step" data-tilt>
+          <span class="step-index">02</span>
+          <h3>Prototype &amp; Validate</h3>
+          <p>Rapid, design-led prototypes bring your vision to life with user testing and measurable feedback.</p>
+        </div>
+        <div class="step" data-tilt>
+          <span class="step-index">03</span>
+          <h3>Deploy &amp; Scale</h3>
+          <p>Launch-ready solutions with monitoring, optimization loops and enablement baked in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" data-animate>
+      <h2>What partners say</h2>
+      <div class="testimonials-grid">
+        <blockquote class="quote" data-tilt>
+          <p>“Our AI concierge launched in three weeks and now resolves 82% of support before it reaches a human.”</p>
+          <cite>COO, SaaS Scale-up</cite>
+        </blockquote>
+        <blockquote class="quote" data-tilt>
+          <p>“AIVIQ Labs translated our brand into an AI experience that actually feels alive. Customers love it.”</p>
+          <cite>Head of CX, Consumer Marketplace</cite>
+        </blockquote>
+        <blockquote class="quote" data-tilt>
+          <p>“The automation dashboard gives leadership real-time clarity and freed our team to focus on innovation.”</p>
+          <cite>VP Operations, Fintech</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="cta" data-animate>
+      <div class="cta-inner">
+        <div>
+          <h2>Ready to craft the intelligent layer your business deserves?</h2>
+          <p>Let’s map the opportunity, ship your first automation sprint and unlock compounding value.</p>
+        </div>
+        <a href="mailto:mescuderob@icloud.com" class="btn btn-light">Contact us</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 AIVIQ Labs  |  AI that works – for you</p>
+    <p>© 2025 AIVIQ Labs · AI that works – for you</p>
   </footer>
 
   <script src="script.js"></script>
