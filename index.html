@@ -1,198 +1,782 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIVIQ Labs – AI that works for you</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIVIQ Labs — Sistemas Inteligentes para el Impulso</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #03030a;
+  --surface: #0a0a18;
+  --cyan: #00f0ff;
+  --violet: #7b2fff;
+  --pink: #ff2d9b;
+  --white: #f0f4ff;
+  --muted: #5a6485;
+  --card-bg: rgba(255,255,255,0.025);
+  --card-border: rgba(255,255,255,0.07);
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  line-height:1.7;
+  cursor:none;
+}
+
+/* ─── CURSOR ─── */
+#cur-dot, #cur-ring {
+  position:fixed; border-radius:50%;
+  pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cur-dot{width:5px;height:5px;background:var(--cyan);transition:transform .1s;}
+#cur-ring{
+  width:38px;height:38px;
+  border:1.5px solid rgba(0,240,255,.35);
+  transition:width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1), border-color .35s, background .35s;
+}
+body.hov #cur-ring{width:70px;height:70px;background:rgba(0,240,255,.06);border-color:rgba(0,240,255,.12);}
+
+/* ─── AMBIENT ─── */
+.ambient{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(130px);animation:drift 30s infinite alternate;}
+.o1{width:700px;height:700px;background:radial-gradient(circle,rgba(0,240,255,.13),transparent 70%);top:-200px;left:-150px;animation-delay:0s;}
+.o2{width:600px;height:600px;background:radial-gradient(circle,rgba(123,47,255,.15),transparent 70%);bottom:-100px;right:-100px;animation-delay:-8s;}
+.o3{width:400px;height:400px;background:radial-gradient(circle,rgba(255,45,155,.08),transparent 70%);top:40%;left:40%;animation-delay:-16s;}
+.orb-parallax {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Para que el ratón los ignore */
+  will-change: transform; /* Optimización para que vaya súper fluido */
+}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,60px) scale(1.05);}100%{transform:translate(-30px,20px) scale(.97);}}
+
+/* grid overlay */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);
+  width:clamp(320px,92%,1100px);
+  padding:14px 32px;
+  background:rgba(3,3,10,.7);
+  backdrop-filter:blur(24px);
+  border:1px solid var(--card-border);
+  border-radius:100px;
+  display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:.78rem;font-weight:500;
+  margin-left:32px;
+  transition:color .3s;letter-spacing:.03em;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{
+  font-size:.78rem;font-weight:600;
+  background:rgba(0,240,255,.08);
+  border:1px solid rgba(0,240,255,.2);
+  color:var(--cyan);
+  padding:8px 22px;border-radius:100px;
+  text-decoration:none;
+  transition:all .3s;
+}
+.nav-cta:hover{background:rgba(0,240,255,.15);}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{
+  width:100%;padding:22px 0;overflow:hidden;
+  border-top:1px solid var(--card-border);
+  border-bottom:1px solid var(--card-border);
+  background:rgba(255,255,255,.01);
+}
+.marquee-track{display:inline-flex;white-space:nowrap;animation:marquee 55s linear infinite;}
+.marquee-track:hover{animation-play-state:paused;}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:18px;
+  font-size:.72rem;font-weight:600;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--muted);
+  padding:0 48px;
+}
+.marquee-item::before{content:'◆';color:var(--cyan);font-size:.5rem;opacity:.7;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  padding:130px 24px 80px;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,240,255,.05);
+  border:1px solid rgba(0,240,255,.15);
+  padding:7px 18px;border-radius:100px;
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cyan);
+  margin-bottom:40px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,240,255,.6);}50%{box-shadow:0 0 0 6px rgba(0,240,255,0);}}
+h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.2rem,7vw,5rem);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.03em;
+  margin-bottom:28px;
+}
+.grad{
+  background: linear-gradient(
+    120deg,
+    var(--cyan),
+    var(--violet),
+    var(--pink),
+    var(--cyan)
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.hero p{
+  max-width:680px;
+  color:var(--muted);font-size:1.05rem;font-weight:400;
+  margin-bottom:50px;line-height:1.8;
+}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btn-main{
+  padding:18px 44px;border-radius:100px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  color:#000;font-weight:700;font-size:.92rem;
+  text-decoration:none;
+  letter-spacing:.02em;
+  position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+  box-shadow:0 0 40px rgba(0,240,255,.2);
+}
+.btn-main::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.15);
+  transform:translateX(-100%);
+  transition:transform .5s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(0,240,255,.35);}
+.btn-main:hover::before{transform:translateX(100%);}
+.btn-ghost{
+  padding:17px 40px;border-radius:100px;
+  background:transparent;
+  border:1px solid var(--card-border);
+  color:var(--white);font-weight:600;font-size:.92rem;
+  text-decoration:none;letter-spacing:.02em;
+  transition:all .3s;
+}
+.btn-ghost:hover{border-color:rgba(0,240,255,.3);background:rgba(0,240,255,.04);}
+
+/* ─── STATS ─── */
+.stats{
+  display:flex;gap:0;
+  max-width:700px;margin:64px auto 0;
+  border:1px solid var(--card-border);
+  border-radius:20px;overflow:hidden;
+  background:var(--card-bg);
+  backdrop-filter:blur(12px);
+}
+.stat{
+  flex:1;padding:28px 20px;text-align:center;
+  border-right:1px solid var(--card-border);
+  position:relative;
+}
+.stat:last-child{border-right:none;}
+.stat-num{
+  font-family:var(--font-display);
+  font-size:1.8rem;font-weight:900;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;
+}
+.stat-label{font-size:.72rem;color:var(--muted);letter-spacing:.05em;margin-top:4px;}
+
+/* ─── SECTIONS ─── */
+section.main-sec{
+  padding:120px 24px;
+  max-width:1200px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.sec-eyebrow{
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.25em;
+  color:var(--cyan);margin-bottom:16px;display:block;
+}
+.sec-title{
+  font-family:var(--font-display);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:700;letter-spacing:-.02em;
+  line-height:1.2;
+}
+.sec-sub{
+  color:var(--muted);font-size:1rem;max-width:550px;margin-top:16px;line-height:1.8;
+}
+
+/* ─── CARDS GRID Y EFECTO 3D ─── */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:20px;margin-top:60px;
+}
+
+/* Base de las tarjetas 3D */
+.card, .t-card, .cta-box {
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:24px;
+  position:relative;
+  overflow:hidden;
+  /* Espacio 3D y transiciones base */
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.1s ease-out;
+  transform-style: preserve-3d; 
+  will-change: transform;
+}
+
+/* Padding específico para cada tipo de tarjeta */
+.card { padding:44px 40px; }
+.t-card { padding:44px; }
+.cta-box {
+  max-width:860px; margin:0 auto;
+  border-radius:40px; padding:90px 60px;
+}
+/* ─── LA LUZ A MÁXIMA POTENCIA ─── */
+.card::after, .t-card::after, .cta-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  
+  /* Gradiente mucho más opaco y brillante */
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(255, 255, 255, 0.35),       /* Núcleo muy blanco */
+    rgba(0, 240, 255, 0.25) 20%,     /* Cyan potente */
+    transparent 60%
+  );
+  
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+  
+  /* Screen fuerza a que la luz aclare el fondo negro sí o sí */
+  mix-blend-mode: screen; 
+}
+
+/* ─── TEXTO QUE SALE VOLANDO EN 3D ─── */
+.card > *, .t-card > *, .cta-box > * {
+  /* Antes estaba en 30px, ahora 60px. ¡Va a flotar el doble! */
+  transform: translateZ(60px); 
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 4;
+}
+
+/* Línea superior brillante de las tarjetas (estilo original) */
+.card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  opacity:0;transition:opacity .4s;
+  z-index: 3;
+}
+
+/* Estados Hover para las tarjetas */
+.card:hover, .t-card:hover, .cta-box:hover {
+  border-color: rgba(0,240,255,.3);
+  box-shadow: 0 20px 60px rgba(0,240,255,.05);
+}
+.card:hover::after, .t-card:hover::after, .cta-box:hover::after {
+  opacity: 1; /* Activa el brillo */
+}
+.card:hover::before{
+  opacity:.5; /* Activa la línea superior */
+}
+
+/* Efecto Pop-out para el contenido interno (Texto flota en 3D) */
+.card > *, .t-card > *, .cta-box > * {
+  transform: translateZ(30px);
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 4;
+}
+
+.card-icon{
+  font-size:1.6rem;margin-bottom:20px;
+  display:block;filter:grayscale(0);
+}
+.card h3{
+  font-family:var(--font-display);
+  font-size:1.05rem;font-weight:700;
+  margin-bottom:12px;letter-spacing:-.01em;
+}
+.card p{color:var(--muted);font-size:.88rem;line-height:1.75;}
+
+/* ─── PROCESS ─── */
+.process{display:flex;flex-direction:column;gap:0;margin-top:60px;}
+.p-step{
+  display:flex;gap:40px;
+  padding:48px 0;
+  border-bottom:1px solid var(--card-border);
+  position:relative;
+}
+.p-step:last-child{border-bottom:none;}
+.p-num{
+  font-family:var(--font-display);
+  font-size:.72rem;font-weight:900;
+  color:var(--cyan);
+  background:rgba(0,240,255,.08);
+  border:1px solid rgba(0,240,255,.2);
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;letter-spacing:.05em;
+}
+.p-step-content h3{
+  font-family:var(--font-display);
+  font-size:1.25rem;font-weight:700;
+  margin-bottom:10px;letter-spacing:-.01em;
+}
+.p-step-content p{color:var(--muted);font-size:.9rem;max-width:600px;line-height:1.8;}
+.p-step-tag{
+  display:inline-flex;margin-top:14px;
+  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--violet);background:rgba(123,47,255,.08);
+  border:1px solid rgba(123,47,255,.2);
+  padding:5px 14px;border-radius:100px;
+}
+
+/* ─── TESTIMONIALS ─── */
+.t-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;margin-top:60px;
+}
+.t-card::before{
+  content:'"';
+  position:absolute;top:32px;right:40px;
+  font-family:var(--font-display);
+  font-size:4rem;font-weight:900;line-height:1;
+  color:rgba(0,240,255,.07);
+  z-index: 0;
+  transform: translateZ(10px); /* Ajuste 3D para la comilla */
+}
+.t-stars{color:var(--cyan);font-size:.7rem;letter-spacing:2px;margin-bottom:20px;}
+.t-card blockquote{
+  font-size:1rem;line-height:1.8;
+  color:rgba(240,244,255,.85);
+  font-style:normal;margin-bottom:28px;
+  font-weight:400;
+}
+.t-author strong{display:block;font-weight:600;font-size:.88rem;}
+.t-author span{color:var(--muted);font-size:.78rem;}
+
+/* ─── CTA FINAL ─── */
+.cta-section{
+  position:relative;z-index:1;
+  padding:80px 24px 140px;
+  text-align:center;
+}
+/* La gradiente interna original del CTA adaptada al nuevo sistema */
+.cta-box .cta-bg-effect {
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(0,240,255,.06),transparent);
+  pointer-events:none;
+  z-index: 1;
+}
+.cta-box .cta-line-effect {
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,240,255,.4),transparent);
+  z-index: 3;
+}
+.cta-box h2{
+  font-family:var(--font-display);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:900;letter-spacing:-.03em;
+  line-height:1.15;margin-bottom:20px;
+}
+.cta-box p{
+  color:var(--muted);font-size:1rem;
+  max-width:520px;margin:0 auto 44px;line-height:1.8;
+}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:22px 56px;border-radius:100px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  color:#000;font-weight:700;font-size:1rem;
+  text-decoration:none;letter-spacing:.02em;
+  box-shadow:0 0 60px rgba(0,240,255,.25);
+  transition:transform .3s,box-shadow .3s;
+}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 0 90px rgba(0,240,255,.4);}
+.btn-cta svg{transition:transform .3s;}
+.btn-cta:hover svg{transform:translateX(4px);}
+
+/* ─── FOOTER ─── */
+footer{
+  border-top:1px solid var(--card-border);
+  padding:40px 24px;
+  text-align:center;
+  color:var(--muted);font-size:.78rem;
+  position:relative;z-index:1;
+}
+footer strong{color:rgba(240,244,255,.5);}
+
+/* ─── REVEAL ─── */
+.rev{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.2,1,.3,1),transform .9s cubic-bezier(.2,1,.3,1);}
+.rev.on{opacity:1;transform:translateY(0);}
+.rev-d1{transition-delay:.1s;}
+.rev-d2{transition-delay:.2s;}
+.rev-d3{transition-delay:.3s;}
+.rev-d4{transition-delay:.4s;}
+
+@media(max-width:768px){
+  *{cursor:auto !important;}
+  #cur-dot,#cur-ring{display:none;}
+  .nav-links{display:none;}
+  .stats{flex-direction:column;max-width:300px;}
+  .stat{border-right:none;border-bottom:1px solid var(--card-border);}
+  .stat:last-child{border-bottom:none;}
+  .p-step{flex-direction:column;gap:16px;}
+  .cta-box{padding:60px 30px;}
+  
+  /* Desactivar 3D en móviles para mejor rendimiento y usabilidad */
+  .card, .t-card, .cta-box {
+    transform: none !important;
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+  .card > *, .t-card > *, .cta-box > * {
+    transform: none !important;
+  }
+}
+</style>
 </head>
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a href="#top" class="brand">AIVIQ Labs</a>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Solutions</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="btn btn-outline">Get in touch</a>
-      </nav>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<div class="ambient" id="scene">
+  <div class="orb-parallax" data-depth="0.05"><div class="orb o1"></div></div>
+  <div class="orb-parallax" data-depth="0.02"><div class="orb o2"></div></div>
+  <div class="orb-parallax" data-depth="0.08"><div class="orb o3"></div></div>
+</div>
+<div class="grid-bg"></div>
+
+<nav>
+  <a href="#" class="logo">
+  <img src="logo-aiviq.png" alt="AIVIQ Labs Logo">
+</a>
+  <div class="nav-links">
+    <a href="#soluciones">Soluciones</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#partners">Clientes</a>
+    <a href="#contacto" class="nav-cta">Comenzar →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge rev">
+    <span class="hero-badge-dot"></span>
+    Disponible para nuevos proyectos · 2026
+  </div>
+  <h1 class="rev rev-d1">
+    Inteligencia artificial<br>
+    <span class="grad">que mueve negocios.</span>
+  </h1>
+  <p class="rev rev-d2">
+    Construimos sistemas de IA que automatizan flujos de trabajo, potencian la experiencia del cliente y generan ventaja competitiva real — en semanas, no en meses.
+  </p>
+  <div class="hero-btns rev rev-d3">
+    <a href="https://zcal.co/maesbl/30min" class="btn-main">Iniciar Demo Gratuita</a>
+
+    <a href="#soluciones" class="btn-ghost">Ver Soluciones</a>
+  </div>
+  <div class="stats rev rev-d4">
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Soporte resuelto por IA los 365 días del año</span>
     </div>
-  </header>
+    <div class="stat">
+      <span class="stat-num">1 día</span>
+      <span class="stat-label">Tiempo a la primera demo para el cliente</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">40+</span>
+      <span class="stat-label">Integraciones nativas y actualizaciones</span>
+    </div>
+  </div>
+</section>
 
-  <main id="top">
-    <section class="hero">
-      <canvas id="particles" aria-hidden="true"></canvas>
-      <div class="hero-gradient" aria-hidden="true"></div>
-      <div class="hero-inner">
-        <div class="hero-copy" data-animate>
-          <span class="eyebrow">Automation. Intelligence. Momentum.</span>
-          <h1>We design <span>futuristic AI experiences</span> that scale trust and revenue.</h1>
-          <p>
-            AIVIQ Labs blends strategy, automation and conversational AI to craft digital companions
-            that are as intuitive as they are powerful. We help ambitious teams move faster — with elegance built in.
-          </p>
-          <div class="hero-actions">
-            <a href="https://zcal.co/maesbl/30min" class="btn">Book a discovery call</a>
-            <a href="#services" class="btn btn-ghost">Explore solutions</a>
-          </div>
-        </div>
-        <div class="hero-showcase" data-animate>
-          <div class="showcase-card">
-            <span>90% less manual work</span>
-            <p>Automate onboarding, support &amp; operations with human-grade AI workflows.</p>
-          </div>
-          <div class="showcase-grid">
-            <article class="metric" data-tilt>
-              <h3>24/7</h3>
-              <p>Autonomous agents on duty</p>
-            </article>
-            <article class="metric" data-tilt>
-              <h3>4x</h3>
-              <p>Faster launch cycles</p>
-            </article>
-            <article class="metric" data-tilt>
-              <h3>98%</h3>
-              <p>Client satisfaction</p>
-            </article>
-            <article class="metric" data-tilt>
-              <h3>&infin;</h3>
-              <p>Scalable workflows</p>
-            </article>
-          </div>
-        </div>
-      </div>
-      <div class="hero-orbs" aria-hidden="true">
-        <span class="orb orb-1"></span>
-        <span class="orb orb-2"></span>
-        <span class="orb orb-3"></span>
-      </div>
-    </section>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Automatización de Flujos</span>
+    <span class="marquee-item">Agentes de Voz </span>
+    <span class="marquee-item">Análisis Predictivo</span>
+    <span class="marquee-item">Operaciones Nativas de IA</span>
+    <span class="marquee-item">Integraciones Estratégicas</span>
+    <span class="marquee-item">Consultoría de Transformación</span>
+    <span class="marquee-item">Automatización de Flujos</span>
+    <span class="marquee-item">Agentes de Voz </span>
+    <span class="marquee-item">Análisis Predictivo</span>
+    <span class="marquee-item">Operaciones Nativas de IA</span>
+    <span class="marquee-item">Integraciones Estratégicas</span>
+    <span class="marquee-item">Consultoría de Transformación</span>
+  </div>
+</div>
 
-    <section class="marquee" aria-label="Trusted by forward-first teams">
-      <div class="marquee-track">
-        <span>Automation Architects</span>
-        <span>AI-Native Operations</span>
-        <span>Voice &amp; Chat Agents</span>
-        <span>Predictive Analytics</span>
-        <span>Strategic Integrations</span>
-      </div>
-      <div class="marquee-track" aria-hidden="true">
-        <span>Automation Architects</span>
-        <span>AI-Native Operations</span>
-        <span>Voice &amp; Chat Agents</span>
-        <span>Predictive Analytics</span>
-        <span>Strategic Integrations</span>
-      </div>
-    </section>
+<section class="main-sec" id="soluciones">
+  <div class="rev">
+    <span class="sec-eyebrow">Capacidades del Estudio</span>
+    <h2 class="sec-title">Todo lo que necesitas<br>para escalar con IA</h2>
+    <p class="sec-sub">Seis capacidades de firma que conectan tus datos, equipos y plataformas en un sistema inteligente que crece contigo.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card rev rev-d1">
+      <span class="card-icon">⚡</span>
+      <h3>Automatización de Operaciones</h3>
+      <p>Orquesta ventas, soporte y back-office con flujos de IA que aprenden de cada interacción y se optimizan solos.</p>
+    </div>
+    <div class="card rev rev-d2">
+      <span class="card-icon">💬</span>
+      <h3>Agentes Conversacionales</h3>
+      <p>Asistentes de voz y chat con inteligencia contextual: hablan con tu tono, resuelven sin fricciones y escalan sin límites.</p>
+    </div>
+    <div class="card rev rev-d3">
+      <span class="card-icon">📊</span>
+      <h3>Análisis e Inteligencia</h3>
+      <p>Detección de anomalías, predicción de demanda y recomendaciones accionables — antes de que los problemas ocurran.</p>
+    </div>
+    <div class="card rev rev-d1">
+      <span class="card-icon">🧭</span>
+      <h3>Estrategia de IA</h3>
+      <p>Alineamos tu equipo e infraestructura hacia una hoja de ruta de automatización que genera ventaja sostenible.</p>
+    </div>
+    <div class="card rev rev-d2">
+      <span class="card-icon">✦</span>
+      <h3>Experiencia de Marca</h3>
+      <p>Diseñamos cada punto de contacto para que la IA se sienta como una extensión natural y premium de tu marca.</p>
+    </div>
+    <div class="card rev rev-d3">
+      <span class="card-icon">🛡️</span>
+      <h3>Despliegue Confiable</h3>
+      <p>Entregamos con monitoreo continuo, observabilidad total y gobernanza de IA integrada desde el primer día.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="about" class="section about" data-animate>
-      <div class="section-intro">
-        <h2>Intelligent systems engineered for momentum</h2>
-        <p>
-          From workflow orchestration to customer experience, we connect the dots between your data, your teams and the platforms
-          that matter. Our studio blends deep technical expertise with product sense to unlock the next version of your business.
-        </p>
+<section class="main-sec" id="proceso">
+  <div class="rev">
+    <span class="sec-eyebrow">Metodología</span>
+    <h2 class="sec-title">El Ciclo de Lanzamiento AIVIQ</h2>
+    <p class="sec-sub">Automatización real en semanas, no en meses. Un proceso diseñado para reducir riesgo y maximizar impacto desde el primer sprint.</p>
+  </div>
+  <div class="process">
+    <div class="p-step rev">
+      <div class="p-num">01</div>
+      <div class="p-step-content">
+        <h3>Descubrir y Diseñar</h3>
+        <p>Talleres de diagnóstico para identificar oportunidades de alto impacto, mapear integraciones existentes y definir las métricas de éxito que importan.</p>
+        <span class="p-step-tag">Día 1</span>
       </div>
-      <div class="pillars">
-        <div class="pillar" data-tilt>
-          <h3>Co-pilot your growth</h3>
-          <p>Partner with specialists who translate your goals into launch-ready automation roadmaps.</p>
-        </div>
-        <div class="pillar" data-tilt>
-          <h3>Design for delight</h3>
-          <p>We prototype, iterate and polish every touchpoint to feel intentionally crafted and on-brand.</p>
-        </div>
-        <div class="pillar" data-tilt>
-          <h3>Ship with confidence</h3>
-          <p>Our delivery combines observability, governance and performance to keep your AI reliable.</p>
-        </div>
+    </div>
+    <div class="p-step rev rev-d1">
+      <div class="p-num">02</div>
+      <div class="p-step-content">
+        <h3>Prototipar y Validar</h3>
+        <p>Construimos prototipos funcionales en tiempo récord, con pruebas reales de usuario y métricas claras antes de invertir en producción.</p>
+        <span class="p-step-tag">Día 1-2</span>
       </div>
-    </section>
+    </div>
+    <div class="p-step rev rev-d2">
+      <div class="p-num">03</div>
+      <div class="p-step-content">
+        <h3>Implementar y Escalar</h3>
+        <p>Despliegue en producción con monitoreo en tiempo real, optimización continua y ciclos de mejora automatizados integrados desde el inicio.</p>
+        <span class="p-step-tag">Día 3</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="services" class="section features" data-animate>
-      <h2>Signature solutions</h2>
-      <div class="grid">
-        <article class="card" data-tilt>
-          <span class="tag">Automation Systems</span>
-          <h3>Composable AI workflows</h3>
-          <p>Orchestrate sales, support and operations with modular automations that learn from every interaction.</p>
-        </article>
-        <article class="card" data-tilt>
-          <span class="tag">Conversational Agents</span>
-          <h3>Human-grade voice &amp; chat</h3>
-          <p>Launch multichannel agents that understand nuance, speak with your tone and handoff flawlessly.</p>
-        </article>
-        <article class="card" data-tilt>
-          <span class="tag">Analytics &amp; Insights</span>
-          <h3>Predictive intelligence</h3>
-          <p>Activate dashboards that surface anomalies, forecast demand and recommend next-best actions.</p>
-        </article>
-        <article class="card" data-tilt>
-          <span class="tag">AI Consulting</span>
-          <h3>Strategy &amp; enablement</h3>
-          <p>Align teams, infrastructure and governance for sustainable, scalable AI advantage.</p>
-        </article>
+<section class="main-sec" id="partners">
+  <div class="rev">
+    <span class="sec-eyebrow">Clientes que confían</span>
+    <h2 class="sec-title">Lo que dicen<br>quienes ya lo viven</h2>
+  </div>
+  <div class="t-grid">
+    <div class="t-card rev rev-d1">
+      <div class="t-stars">★★★★★</div>
+      <blockquote>
+        Nuestro asistente de IA se lanzó en tres semanas. Hoy resuelve el 82% de las consultas de soporte antes de que lleguen a un humano — sin perder calidad.
+      </blockquote>
+      <div class="t-author">
+        <strong>Director de Operaciones</strong>
+        <span>SaaS Scale-up · Serie B</span>
       </div>
-    </section>
-
-    <section id="process" class="section process" data-animate>
-      <div class="section-header">
-        <h2>The AIVIQ launch cycle</h2>
-        <p>End-to-end partnership designed to ship meaningful automation in weeks, not months.</p>
+    </div>
+    <div class="t-card rev rev-d2">
+      <div class="t-stars">★★★★★</div>
+      <blockquote>
+        AIVIQ tradujo nuestra identidad de marca en una experiencia de IA que se siente genuinamente viva. Los clientes no lo ven como un bot — lo ven como parte de nosotros.
+      </blockquote>
+      <div class="t-author">
+        <strong>Head of Customer Experience</strong>
+        <span>Marketplace de Consumo · 1M+ usuarios</span>
       </div>
-      <div class="timeline">
-        <div class="step" data-tilt>
-          <span class="step-index">01</span>
-          <h3>Discover &amp; Architect</h3>
-          <p>Deep dive workshops surface opportunities, map integrations and define success metrics.</p>
-        </div>
-        <div class="step" data-tilt>
-          <span class="step-index">02</span>
-          <h3>Prototype &amp; Validate</h3>
-          <p>Rapid, design-led prototypes bring your vision to life with user testing and measurable feedback.</p>
-        </div>
-        <div class="step" data-tilt>
-          <span class="step-index">03</span>
-          <h3>Deploy &amp; Scale</h3>
-          <p>Launch-ready solutions with monitoring, optimization loops and enablement baked in.</p>
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section testimonials" data-animate>
-      <h2>What partners say</h2>
-      <div class="testimonials-grid">
-        <blockquote class="quote" data-tilt>
-          <p>“Our AI concierge launched in three weeks and now resolves 82% of support before it reaches a human.”</p>
-          <cite>COO, SaaS Scale-up</cite>
-        </blockquote>
-        <blockquote class="quote" data-tilt>
-          <p>“AIVIQ Labs translated our brand into an AI experience that actually feels alive. Customers love it.”</p>
-          <cite>Head of CX, Consumer Marketplace</cite>
-        </blockquote>
-        <blockquote class="quote" data-tilt>
-          <p>“The automation dashboard gives leadership real-time clarity and freed our team to focus on innovation.”</p>
-          <cite>VP Operations, Fintech</cite>
-        </blockquote>
-      </div>
-    </section>
+<section class="cta-section" id="contacto">
+  <div class="cta-box rev">
+    <div class="cta-bg-effect"></div>
+    <div class="cta-line-effect"></div>
+    
+    <h2>¿Listo para la capa inteligente<br>que tu negocio merece?</h2>
+    <p>Empecemos por mapear tu mayor oportunidad. Sin compromiso, sin burocracia — solo claridad y momentum desde el día uno.</p>
+   <a href="https://zcal.co/maesbl/30min" class="btn-cta" target="_blank" rel="noopener noreferrer">
+  Contactar a AIVIQ
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+    <polyline points="12 5 19 12 12 19"/>
+  </svg>
+</a>
 
-    <section id="contact" class="cta" data-animate>
-      <div class="cta-inner">
-        <div>
-          <h2>Ready to craft the intelligent layer your business deserves?</h2>
-          <p>Let’s map the opportunity, ship your first automation sprint and unlock compounding value.</p>
-        </div>
-        <a href="mailto:mescuderob@icloud.com" class="btn btn-light">Contact us</a>
-      </div>
-    </section>
-  </main>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2025 AIVIQ Labs · AI that works – for you</p>
-  </footer>
+<footer>
+  <p>© 2026 <strong>AIVIQ Labs</strong> · Operaciones Nativas de IA · <strong>aiviqlabs.me</strong></p>
+</footer>
 
-  <script src="script.js"></script>
+<script>
+// Cursor
+const dot = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+
+window.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+
+function animRing(){
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a,.card,.t-card,.btn-main,.btn-ghost,.btn-cta').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// Reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
+},{threshold:0.08});
+document.querySelectorAll('.rev').forEach(r=>obs.observe(r));
+
+// ─── EFECTO 3D TILT ULTRA MODERNO ───
+// Detectar si estamos en móvil para no ejecutar el script si no es necesario
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (!isMobile) {
+  const tiltElements = document.querySelectorAll('.card, .t-card, .cta-box');
+
+  tiltElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top;  
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Rotación más sutil y elegante (max 10 grados)
+      const rotateX = ((y - centerY) / centerY) * -25; 
+      const rotateY = ((x - centerX) / centerX) * 25;
+      
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      
+      // Brillo
+      el.style.setProperty('--mouse-x', `${x}px`);
+      el.style.setProperty('--mouse-y', `${y}px`);
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+      el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      
+      setTimeout(() => {
+        el.style.transition = 'border-color 0.4s, box-shadow 0.4s, transform 0.1s ease-out';
+      }, 500);
+    });
+  });
+}
+// ─── PARALLAX DE FONDO 3D REACTIVO ───
+// Solo lo activamos si no es móvil para ahorrar batería
+if (!isMobile) {
+  document.addEventListener('mousemove', (e) => {
+    // Calculamos la posición del ratón relativa al centro de la pantalla
+    const mouseX = window.innerWidth / 2 - e.clientX;
+    const mouseY = window.innerHeight / 2 - e.clientY;
+
+    // Movemos cada capa del fondo según su profundidad
+    document.querySelectorAll('.orb-parallax').forEach(layer => {
+      const depth = layer.getAttribute('data-depth');
+      // Usamos translate3d para activar la aceleración por hardware (GPU)
+      const movementX = mouseX * depth;
+      const movementY = mouseY * depth;
+      
+      layer.style.transform = `translate3d(${movementX}px, ${movementY}px, 0)`;
+    });
+  });
+}
+</script>
 </body>
 </html>
