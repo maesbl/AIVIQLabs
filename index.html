@@ -19,7 +19,7 @@
             background-color: var(--bg-dark);
             font-family: 'Inter', sans-serif;
             color: var(--text-main);
-            overflow: hidden; /* Evitamos scroll para una experiencia de app 3D pura */
+            overflow: hidden; 
         }
 
         /* --- 3D CANVAS --- */
@@ -36,7 +36,7 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 10;
-            pointer-events: none; /* Permite interactuar con el 3D del fondo */
+            pointer-events: none; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -63,7 +63,7 @@
         /* Contenido Central (A la izquierda) */
         .hero-content {
             max-width: 500px;
-            pointer-events: auto; /* Para que el texto y botones sean clickeables */
+            pointer-events: auto; 
         }
         h1 {
             font-size: 4.5rem; font-weight: 900; line-height: 1; margin: 0 0 20px 0; letter-spacing: -2px;
@@ -116,7 +116,7 @@
         <div class="hero-content">
             <h1>LA VOZ<br>DE TU<br>NEGOCIO.</h1>
             <p>Implementamos agentes telefónicos impulsados por Inteligencia Artificial. Responden al instante, cualifican leads y agendan citas 24/7 sin intervención humana.</p>
-            <button class="btn" onclick="alert('Sistema de agendado en desarrollo.')">Desplegar Agente</button>
+            <a href="https://zcal.co/mario/30min" target="_blank" class="btn">Automatizar Mis Llamadas</a>
         </div>
 
         <div class="interaction-hint">
@@ -133,7 +133,6 @@
         const scene = new THREE.Scene();
         
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        // Posicionamos la cámara a la derecha para dejar espacio al texto
         camera.position.set(3, 0, 10); 
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -141,14 +140,13 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // Controles para poder rotar el objeto con el ratón
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; // Movimiento suave
+        controls.enableDamping = true;
         controls.dampingFactor = 0.05;
-        controls.enableZoom = false; // Desactivar zoom para no romper el layout
+        controls.enableZoom = false; 
         controls.enablePan = false;
 
-        // 2. ILUMINACIÓN PREMIUM (Clave para que no parezca barato)
+        // 2. ILUMINACIÓN PREMIUM
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
         scene.add(ambientLight);
 
@@ -156,17 +154,15 @@
         dirLight.position.set(5, 5, 5);
         scene.add(dirLight);
 
-        const backLight = new THREE.DirectionalLight(0x4444ff, 2); // Un toque azulado por detrás
+        const backLight = new THREE.DirectionalLight(0x4444ff, 2); 
         backLight.position.set(-5, -5, -5);
         scene.add(backLight);
 
-        // 3. CONSTRUCCIÓN DEL OBJETO 3D (El "Agente")
+        // 3. CONSTRUCCIÓN DEL OBJETO 3D
         const coreGroup = new THREE.Group();
-        // Desplazamos el objeto a la derecha para encuadrar con el texto
         coreGroup.position.x = 2; 
         scene.add(coreGroup);
 
-        // Material Metálico Oscuro (Para los anillos exteriores)
         const metalMaterial = new THREE.MeshStandardMaterial({
             color: 0x111111,
             metalness: 0.9,
@@ -174,18 +170,15 @@
             wireframe: false
         });
 
-        // Anillo 1
         const ring1Geo = new THREE.TorusGeometry(2.5, 0.1, 16, 100);
         const ring1 = new THREE.Mesh(ring1Geo, metalMaterial);
         coreGroup.add(ring1);
 
-        // Anillo 2
         const ring2Geo = new THREE.TorusGeometry(2, 0.15, 16, 100);
         const ring2 = new THREE.Mesh(ring2Geo, metalMaterial);
         ring2.rotation.x = Math.PI / 2;
         coreGroup.add(ring2);
 
-        // Núcleo Interior (El "Cerebro")
         const coreGeo = new THREE.IcosahedronGeometry(1.2, 0);
         const coreMaterial = new THREE.MeshStandardMaterial({
             color: 0xffffff,
@@ -203,7 +196,6 @@
 
             const elapsedTime = clock.getElapsedTime();
 
-            // Rotación automática suave de los elementos
             ring1.rotation.y = elapsedTime * 0.2;
             ring1.rotation.x = elapsedTime * 0.1;
             
@@ -213,14 +205,13 @@
             core.rotation.y = elapsedTime * -0.5;
             core.rotation.x = elapsedTime * -0.2;
 
-            // Flotación sutil de todo el grupo
             coreGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.1;
 
-            controls.update(); // Necesario para la interacción con el ratón
+            controls.update(); 
             renderer.render(scene, camera);
         }
 
-        animate(); 
+        animate();
 
         // 5. RESPONSIVIDAD
         window.addEventListener('resize', () => {
@@ -228,7 +219,6 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             
-            // Ajustar posición del 3D en móviles
             if (window.innerWidth < 768) {
                 coreGroup.position.x = 0;
                 coreGroup.position.y = 2;
@@ -240,7 +230,6 @@
             }
         });
 
-        // Ejecutar trigger inicial de responsividad
         window.dispatchEvent(new Event('resize'));
 
     </script>
