@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seltr | Global Voice Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <title>Seltr | Enterprise Voice AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- RESET & VARIABLES MODO CLARO (SELTR) --- */
         :root {
-            --bg-dark: #020204;
-            --text-light: #ffffff;
-            --text-dim: #8a8a9b;
-            --accent-seltr: #004d40; /* Verde oscuro de Seltr */
-            --accent-seltr-light: #26a69a; /* Verde más claro para contrastes */
-            --border-color: rgba(255, 255, 255, 0.08);
+            --bg-light: #ffffff;
+            --bg-panel: #f8f9fa;
+            --text-dark: #0f172a;
+            --text-dim: #64748b;
+            --seltr-green: #0a4b33; /* Extraído del logo */
+            --border-light: rgba(0, 0, 0, 0.08);
         }
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--bg-dark); color: var(--text-light);
+            background-color: var(--bg-light); color: var(--text-dark);
             font-family: 'Inter', sans-serif;
             overflow: hidden; -webkit-font-smoothing: antialiased;
         }
@@ -31,29 +31,25 @@
         /* --- PANEL IZQUIERDO: VENTAS --- */
         .sales-panel {
             padding: 8vw 6vw; display: flex; flex-direction: column; justify-content: center;
-            position: relative; z-index: 10; border-right: 1px solid var(--border-color);
-            background: linear-gradient(to right, var(--bg-dark), #050508);
+            position: relative; z-index: 10; border-right: 1px solid var(--border-light);
+            background: var(--bg-light);
+            box-shadow: 20px 0 50px rgba(0,0,0,0.02);
         }
 
+        /* LOGO SELTR REPLICADO EN CSS */
         .brand-header {
             position: absolute; top: 50px; left: 6vw;
-            font-weight: 700; letter-spacing: 1px; font-size: 1rem;
-            display: flex; align-items: center; gap: 12px; text-transform: none; /* No uppercase */
-            font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; gap: 6px;
         }
-        .brand-logo-container {
-            display: flex;
-            align-items: center;
+        .seltr-mark {
+            width: 5px; height: 26px; background-color: var(--seltr-green);
+            border-radius: 4px 0 0 4px; /* Curva solo a la izquierda como en la imagen */
+            transform: skewX(-5deg); /* Ligera inclinación para dinamismo */
         }
-        .brand-bar {
-            width: 4px; height: 1.2em; background: var(--accent-seltr);
-            border-radius: 2px 0 0 2px; /* Esquina redondeada solo a la izquierda */
-            margin-right: 4px; /* Espacio entre la barra y el texto */
+        .seltr-text {
+            font-weight: 800; font-size: 1.8rem; letter-spacing: -1px;
+            color: var(--text-dark); line-height: 1;
         }
-        .brand-text {
-            color: var(--text-light);
-        }
-
 
         /* Animaciones de Entrada Escalonadas */
         .animate-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -64,102 +60,89 @@
 
         h1.hero-title {
             font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6.5rem);
-            font-weight: 900; line-height: 1; margin-bottom: 30px;
-            background: linear-gradient(to right, #fff, #a0a0a0);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 900; line-height: 0.95; margin-bottom: 25px;
+            color: var(--text-dark); letter-spacing: -2px;
         }
 
         p.hero-lead {
             font-size: 1.15rem; line-height: 1.7; color: var(--text-dim);
-            max-width: 500px; margin-bottom: 50px;
+            max-width: 500px; margin-bottom: 50px; font-weight: 400;
         }
 
-        /* Botón Magnético de Alta Conversión */
+        /* Botón de Alta Conversión (Seltr Theme) */
         .cta-button {
-            display: inline-flex; align-items: center; padding: 18px 36px;
-            background: var(--text-light); color: var(--bg-dark);
-            border-radius: 4px; font-weight: 600; text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 18px 40px; background: var(--seltr-green); color: #ffffff;
+            border-radius: 6px; font-weight: 600; text-decoration: none;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 5px 20px rgba(0, 77, 64, 0.2); /* Verde Seltr */
-            position: relative; overflow: hidden;
-            border: 2px solid transparent; /* Para el hover */
+            box-shadow: 0 10px 25px rgba(10, 75, 51, 0.25);
+            position: relative; overflow: hidden; border: 1px solid var(--seltr-green);
         }
         .cta-button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 77, 64, 0.4); /* Verde Seltr */
-            background: var(--bg-dark); color: var(--text-light);
-            border-color: var(--accent-seltr);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(10, 75, 51, 0.4);
+            background: #083b28; border-color: #083b28;
         }
-        .cta-button::after { /* Efecto de brillo al pasar el ratón */
+        .cta-button::after {
             content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
             transform: skewX(-20deg); transition: 0.5s; opacity: 0;
         }
-        .cta-button:hover::after { left: 100%; opacity: 1; transition: 0.7s ease-in-out; }
+        .cta-button:hover::after { left: 100%; opacity: 1; transition: 0.6s ease-in-out; }
 
         .data-metrics {
             margin-top: 80px; display: flex; gap: 50px; padding-top: 30px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-light);
         }
-        .metric-box h3 { font-size: 2rem; font-weight: 700; margin: 0 0 5px 0; color: var(--accent-seltr-light); }
-        .metric-box p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin: 0; }
+        .metric-box h3 { font-size: 2rem; font-weight: 800; margin: 0 0 5px 0; color: var(--text-dark); }
+        .metric-box p { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin: 0; }
 
-        /* --- PANEL DERECHO: VISUALIZACIÓN IA --- */
+        /* --- PANEL DERECHO: WEBGL & UI FLOTANTE --- */
         .visual-panel {
-            position: relative; background: radial-gradient(circle at center, #0a0a14, var(--bg-dark));
+            position: relative; background-color: #f0f4f8; /* Gris muy claro/azulado de fondo */
             overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
 
-        #canvas-container {
+        #webgl-canvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-            /* Fondo sutil de patrón geométrico */
-            background-image: 
-                linear-gradient(45deg, rgba(0, 77, 64, 0.05) 25%, transparent 25%), 
-                linear-gradient(-45deg, rgba(0, 77, 64, 0.05) 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, rgba(0, 77, 64, 0.05) 75%), 
-                linear-gradient(-45deg, transparent 75%, rgba(0, 77, 64, 0.05) 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         }
 
-        /* UI de Transcripción Dinámica */
+        /* UI de Transcripción (Glassmorphism Claro) */
         .ai-transcript-box {
             position: relative; z-index: 5;
-            background: rgba(10, 10, 20, 0.6);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 77, 64, 0.2); /* Verde Seltr */
-            padding: 30px; border-radius: 12px;
-            width: 80%; max-width: 450px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            transform: translateY(0); /* Posición centrada */
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 35px; border-radius: 16px;
+            width: 80%; max-width: 480px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255,255,255,0.8);
+            transform: translateY(0);
         }
         .transcript-header {
             display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-seltr-light); font-weight: 600;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; 
+            color: var(--seltr-green); font-weight: 700;
         }
         .typing-indicator span {
-            display: inline-block; width: 4px; height: 4px; background: var(--accent-seltr-light); border-radius: 50%;
+            display: inline-block; width: 5px; height: 5px; background: var(--seltr-green); border-radius: 50%;
             margin-right: 3px; animation: typing 1s infinite;
         }
         .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
         .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 
         #dynamic-text {
-            font-size: 1.1rem; line-height: 1.5; color: var(--text-light); font-weight: 400;
-            min-height: 4.5em; /* Altura fija para evitar saltos */
+            font-size: 1.15rem; line-height: 1.6; color: var(--text-dark); font-weight: 400;
+            min-height: 4.8em;
         }
 
-        /* Animaciones CSS */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes typing { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0); } }
+        @keyframes typing { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .split-layout { grid-template-columns: 1fr; grid-template-rows: auto 60vh; }
-            .sales-panel { padding: 120px 8vw 80px 8vw; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .sales-panel { padding: 100px 8vw 60px 8vw; border-right: none; }
             h1.hero-title { font-size: 3.5rem; }
             .visual-panel { order: 2; }
-            .ai-transcript-box { width: 90%; }
         }
     </style>
 </head>
@@ -169,11 +152,8 @@
         
         <div class="sales-panel">
             <div class="brand-header animate-in">
-                <div class="brand-logo-container">
-                    <div class="brand-bar"></div>
-                    <div class="brand-text">seltr</div>
-                </div>
-                | Enterprise AI
+                <div class="seltr-mark"></div>
+                <div class="seltr-text">seltr</div>
             </div>
             
             <div class="sales-content">
@@ -186,7 +166,7 @@
                 
                 <div class="animate-in delay-3">
                     <a href="https://zcal.co/mario/30min" target="_blank" class="cta-button">
-                        Desplegar Infraestructura
+                        Consigue el asistente
                     </a>
                 </div>
 
@@ -196,7 +176,7 @@
                         <p>Latencia Neuronal</p>
                     </div>
                     <div class="metric-box">
-                        <h3>24/7/365</h3>
+                        <h3>24/7</h3>
                         <p>Disponibilidad Total</p>
                     </div>
                 </div>
@@ -204,7 +184,7 @@
         </div>
 
         <div class="visual-panel">
-            <div id="canvas-container"></div>
+            <canvas id="webgl-canvas"></canvas>
             
             <div class="ai-transcript-box">
                 <div class="transcript-header">
@@ -216,46 +196,161 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // --- 1. SIN THREE.JS POR AHORA, SOLO FONDO CSS SUTIL ---
-        // El contenedor visual ahora usa un fondo geométrico CSS para un look más limpio y alineado con el nuevo logo.
+        // --- 1. MOTOR 3D: SEDA LÍQUIDA PARAMÉTRICA ---
+        const canvas = document.getElementById('webgl-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        
+        const scene = new THREE.Scene();
+        // Fondo integrado con CSS
+        
+        const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+        camera.position.set(0, -5, 12);
+        camera.lookAt(0, 0, 0);
 
-        // --- 2. UI: TRANSCRIPCIÓN DINÁMICA (TIPO MECANÓGRAFO) ---
+        // ILUMINACIÓN PREMIUM DE ESTUDIO
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Luz blanca base
+        scene.add(ambientLight);
+
+        // Foco principal: Verde Seltr emitiendo sobre la malla blanca
+        const dirLight = new THREE.DirectionalLight(0x0a4b33, 2.5); 
+        dirLight.position.set(5, 5, 5);
+        scene.add(dirLight);
+
+        // Foco secundario: Un toque de luz fría para contraste
+        const pointLight = new THREE.PointLight(0x26a69a, 1.5, 20);
+        pointLight.position.set(-5, -2, 5);
+        scene.add(pointLight);
+
+        // GEOMETRÍA: Malla de alta resolución
+        const geometry = new THREE.PlaneGeometry(30, 30, 128, 128);
+        
+        // MATERIAL FÍSICO (Simulando un polímero suave / seda)
+        const material = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,        // Base blanca pura
+            metalness: 0.1,         // Ligeramente metálico
+            roughness: 0.4,         // Suavidad difusa
+            clearcoat: 1.0,         // Brillo superior como cristal o agua
+            clearcoatRoughness: 0.2,
+            side: THREE.DoubleSide,
+            wireframe: false
+        });
+
+        const liquidPlane = new THREE.Mesh(geometry, material);
+        liquidPlane.rotation.x = -Math.PI / 2.5; // Inclinado hacia la cámara
+        scene.add(liquidPlane);
+
+        // Almacenar vértices originales para la animación
+        const positionAttribute = geometry.attributes.position;
+        const vertexCount = positionAttribute.count;
+        const originalZ = new Float32Array(vertexCount);
+        for(let i = 0; i < vertexCount; i++) {
+            originalZ[i] = positionAttribute.getZ(i);
+        }
+
+        // --- INTERACCIÓN CON EL RATÓN ---
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        const visualPanel = document.querySelector('.visual-panel');
+        visualPanel.addEventListener('mousemove', (e) => {
+            const rect = visualPanel.getBoundingClientRect();
+            targetX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            targetY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        });
+
+        // --- ANIMACIÓN ---
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            // Inercia del ratón
+            mouseX += (targetX - mouseX) * 0.05;
+            mouseY += (targetY - mouseY) * 0.05;
+
+            // Manipulación de vértices (Simulación de ondas matemáticas)
+            for (let i = 0; i < vertexCount; i++) {
+                const vx = positionAttribute.getX(i);
+                const vy = positionAttribute.getY(i);
+                
+                // Ondas base que fluyen con el tiempo
+                let wave1 = Math.sin(vx * 0.5 + time * 0.8) * 0.5;
+                let wave2 = Math.cos(vy * 0.3 - time * 0.5) * 0.5;
+                
+                // Repulsión magnética/líquida al pasar el ratón
+                // Mapeamos el ratón al espacio 3D de forma aproximada
+                const mouseWorldX = mouseX * 10;
+                const mouseWorldY = mouseY * 10;
+                
+                const distToMouse = Math.sqrt(Math.pow(vx - mouseWorldX, 2) + Math.pow(vy - mouseWorldY, 2));
+                let mouseRipple = 0;
+                if (distToMouse < 8) {
+                    // Crea un hundimiento suave donde está el ratón
+                    mouseRipple = Math.sin((distToMouse - time * 2) * 1.5) * (1 - distToMouse / 8) * 1.2;
+                }
+
+                positionAttribute.setZ(i, originalZ[i] + wave1 + wave2 + mouseRipple);
+            }
+            
+            positionAttribute.needsUpdate = true;
+            geometry.computeVertexNormals(); // Recalcula la luz en tiempo real sobre las ondas
+
+            // Ligero parallax de la cámara
+            camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+            camera.position.y += (-5 + mouseY * 2 - camera.position.y) * 0.05;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive local al panel
+        window.addEventListener('resize', () => {
+            const width = visualPanel.clientWidth;
+            const height = visualPanel.clientHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+
+        // --- 2. TRANSCRIPCIÓN DINÁMICA DE LA IA ---
         const transcriptElement = document.getElementById('dynamic-text');
         const phrases = [
-            "\"Hola, te llamo de Seltr. He visto tu solicitud y puedo agendarte una demo técnica para mañana a las 10:00. ¿Te encaja?\"",
-            "\"Entiendo. Nuestro sistema se integra vía API con tu CRM actual. ¿Prefieres que te envíe la documentación técnica primero?\"",
-            "\"Perfecto. He detectado una oportunidad de optimización en tu flujo de llamadas. Procedo a conectarte con un especialista.\"",
-            "\"...Procesando intención de compra. Cualificación positiva. Iniciando protocolo de agendado prioritario...\""
+            "\"Hola, soy el asistente de Seltr. He analizado la carga operativa de su empresa y he detectado un 40% de volumen de llamadas automatizable.\"",
+            "\"Entiendo perfectamente. Me integro directamente con su CRM actual vía API sin modificar sus procesos internos. ¿Comenzamos la prueba?\"",
+            "\"La intención de compra es positiva. Procedo a cualificar el lead, registrar los datos en el sistema y agendar la reunión prioritaria.\""
         ];
+        
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let typeSpeed = 50;
+        let typeSpeed = 40;
 
         function typeWriter() {
             const currentPhrase = phrases[phraseIndex];
             
             if (isDeleting) {
-                // Borrando
                 transcriptElement.innerHTML = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
-                typeSpeed = 30; // Borrar más rápido
+                typeSpeed = 20; 
             } else {
-                // Escribiendo
                 transcriptElement.innerHTML = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
-                typeSpeed = Math.random() * 50 + 30; // Velocidad de escritura humana variable
+                typeSpeed = Math.random() * 40 + 20; 
             }
 
-            // Lógica de cambio de frase
             if (!isDeleting && charIndex === currentPhrase.length) {
-                // Frase terminada, esperar antes de borrar
-                typeSpeed = 3000; 
+                typeSpeed = 4000; 
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
-                // Borrado terminado, pasar a la siguiente frase
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
                 typeSpeed = 500;
@@ -263,9 +358,7 @@
 
             setTimeout(typeWriter, typeSpeed);
         }
-
-        // Iniciar el efecto de escritura después de un breve retraso inicial
-        setTimeout(typeWriter, 1500);
+        setTimeout(typeWriter, 1000);
 
     </script>
 </body>
