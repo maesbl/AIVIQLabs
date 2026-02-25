@@ -1,223 +1,272 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIVIQ Labs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seltr | Global Voice Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-dark: #020204;
+            --text-light: #ffffff;
+            --text-dim: #8a8a9b;
+            --accent-seltr: #004d40; /* Verde oscuro de Seltr */
+            --accent-seltr-light: #26a69a; /* Verde más claro para contrastes */
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: var(--bg-dark); color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- ESTRUCTURA SPLIT SCREEN --- */
+        .split-layout {
+            display: grid; grid-template-columns: 1fr 1.2fr; height: 100vh; width: 100vw;
+        }
+
+        /* --- PANEL IZQUIERDO: VENTAS --- */
+        .sales-panel {
+            padding: 8vw 6vw; display: flex; flex-direction: column; justify-content: center;
+            position: relative; z-index: 10; border-right: 1px solid var(--border-color);
+            background: linear-gradient(to right, var(--bg-dark), #050508);
+        }
+
+        .brand-header {
+            position: absolute; top: 50px; left: 6vw;
+            font-weight: 700; letter-spacing: 1px; font-size: 1rem;
+            display: flex; align-items: center; gap: 12px; text-transform: none; /* No uppercase */
+            font-family: 'Inter', sans-serif;
+        }
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .brand-bar {
+            width: 4px; height: 1.2em; background: var(--accent-seltr);
+            border-radius: 2px 0 0 2px; /* Esquina redondeada solo a la izquierda */
+            margin-right: 4px; /* Espacio entre la barra y el texto */
+        }
+        .brand-text {
+            color: var(--text-light);
+        }
+
+
+        /* Animaciones de Entrada Escalonadas */
+        .animate-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        h1.hero-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6.5rem);
+            font-weight: 900; line-height: 1; margin-bottom: 30px;
+            background: linear-gradient(to right, #fff, #a0a0a0);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        p.hero-lead {
+            font-size: 1.15rem; line-height: 1.7; color: var(--text-dim);
+            max-width: 500px; margin-bottom: 50px;
+        }
+
+        /* Botón Magnético de Alta Conversión */
+        .cta-button {
+            display: inline-flex; align-items: center; padding: 18px 36px;
+            background: var(--text-light); color: var(--bg-dark);
+            border-radius: 4px; font-weight: 600; text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 5px 20px rgba(0, 77, 64, 0.2); /* Verde Seltr */
+            position: relative; overflow: hidden;
+            border: 2px solid transparent; /* Para el hover */
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 77, 64, 0.4); /* Verde Seltr */
+            background: var(--bg-dark); color: var(--text-light);
+            border-color: var(--accent-seltr);
+        }
+        .cta-button::after { /* Efecto de brillo al pasar el ratón */
+            content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-20deg); transition: 0.5s; opacity: 0;
+        }
+        .cta-button:hover::after { left: 100%; opacity: 1; transition: 0.7s ease-in-out; }
+
+        .data-metrics {
+            margin-top: 80px; display: flex; gap: 50px; padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        .metric-box h3 { font-size: 2rem; font-weight: 700; margin: 0 0 5px 0; color: var(--accent-seltr-light); }
+        .metric-box p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin: 0; }
+
+        /* --- PANEL DERECHO: VISUALIZACIÓN IA --- */
+        .visual-panel {
+            position: relative; background: radial-gradient(circle at center, #0a0a14, var(--bg-dark));
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+
+        #canvas-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+            /* Fondo sutil de patrón geométrico */
+            background-image: 
+                linear-gradient(45deg, rgba(0, 77, 64, 0.05) 25%, transparent 25%), 
+                linear-gradient(-45deg, rgba(0, 77, 64, 0.05) 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, rgba(0, 77, 64, 0.05) 75%), 
+                linear-gradient(-45deg, transparent 75%, rgba(0, 77, 64, 0.05) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        /* UI de Transcripción Dinámica */
+        .ai-transcript-box {
+            position: relative; z-index: 5;
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 77, 64, 0.2); /* Verde Seltr */
+            padding: 30px; border-radius: 12px;
+            width: 80%; max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(0); /* Posición centrada */
+        }
+        .transcript-header {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-seltr-light); font-weight: 600;
+        }
+        .typing-indicator span {
+            display: inline-block; width: 4px; height: 4px; background: var(--accent-seltr-light); border-radius: 50%;
+            margin-right: 3px; animation: typing 1s infinite;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        #dynamic-text {
+            font-size: 1.1rem; line-height: 1.5; color: var(--text-light); font-weight: 400;
+            min-height: 4.5em; /* Altura fija para evitar saltos */
+        }
+
+        /* Animaciones CSS */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes typing { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0); } }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-layout { grid-template-columns: 1fr; grid-template-rows: auto 60vh; }
+            .sales-panel { padding: 120px 8vw 80px 8vw; border-right: none; border-bottom: 1px solid var(--border-color); }
+            h1.hero-title { font-size: 3.5rem; }
+            .visual-panel { order: 2; }
+            .ai-transcript-box { width: 90%; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HERO / ARRIBA -->
-  <section class="hero-section" id="hero">
-    <div class="layout">
-
-      <!-- PANEL IZQUIERDO -->
-      <div class="ui-panel">
-        <header class="topbar">
-          <div class="brand">
-            <div class="logo">AIVIQ LABS</div>
-            <div class="brand-sub">Infraestructura de voz inteligente</div>
-          </div>
-
-          <div class="sys-status">
-            <div class="dot"></div>
-            Enrutamiento Activo
-          </div>
-        </header>
-
-        <div class="hero">
-          <div class="kpi-tag">Telecomunicaciones Neuronales</div>
-
-          <h1>Escala<br>Absoluta.</h1>
-
-          <p class="lead">
-            Cada llamada no atendida es una oportunidad perdida. Nuestra infraestructura despliega agentes autónomos
-            que responden, cualifican y agendan automáticamente 24/7 sin intervención humana.
-          </p>
-
-          <div class="pain-block">
-            <div class="pain-line">↳ Leads que no respondes en &lt;60s se enfrían.</div>
-            <div class="pain-line">↳ Equipos saturados pierden cierres invisibles.</div>
-            <div class="pain-line">↳ Competidores ya están automatizando.</div>
-          </div>
-
-          <a href="https://zcal.co/mario/30min" target="_blank" class="btn-global">
-            Consigue la tuya
-          </a>
-
-          <div class="cta-sub">
-            Implementación en 48h · Sin permanencia · ROI medible desde la semana 1
-          </div>
-        </div>
-
-        <div class="footer-metrics">
-          <div class="metric">
-            <span class="metric-val">24/7</span>
-            <span class="metric-label">Disponibilidad Operativa</span>
-          </div>
-          <div class="metric">
-            <span class="metric-val">&lt;1s</span>
-            <span class="metric-label">Tiempo de Respuesta</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANEL DERECHO (GLOBO) -->
-      <div id="globe-wrapper" aria-hidden="true"></div>
-
-    </div>
-  </section>
-
-  <!-- CONTENIDO / ABAJO -->
-  <main>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Qué resolvemos</span>
-          <h2>Transformamos llamadas en oportunidades reales</h2>
-          <p>Automatiza el primer contacto, aumenta la velocidad de respuesta y convierte más sin ampliar tu equipo.</p>
-        </div>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Nunca pierdas una llamada</h3>
-            <p>Atención 24/7 sin horarios, sin colas y sin saturar al equipo.</p>
-          </div>
-          <div class="card">
-            <h3>Cualificación inteligente</h3>
-            <p>Detecta intención real, filtra curiosos y prioriza los leads que convierten.</p>
-          </div>
-          <div class="card">
-            <h3>Agenda automática</h3>
-            <p>Propone huecos, confirma y realiza seguimiento sin intervención humana.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Casos de uso</span>
-          <h2>Ventas, soporte y cualificación</h2>
-          <p>Una infraestructura diseñada para escenarios de alto volumen y respuesta inmediata.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card card-soft">
-            <h3>Leads entrantes</h3>
-            <p>Responde al instante, valida presupuesto/interés y agenda con tu equipo comercial.</p>
-            <div class="chips">
-              <span class="chip">Cualificación</span>
-              <span class="chip">Agendado</span>
-              <span class="chip">Follow-ups</span>
+    <div class="split-layout">
+        
+        <div class="sales-panel">
+            <div class="brand-header animate-in">
+                <div class="brand-logo-container">
+                    <div class="brand-bar"></div>
+                    <div class="brand-text">seltr</div>
+                </div>
+                | Enterprise AI
             </div>
-          </div>
+            
+            <div class="sales-content">
+                <h1 class="hero-title animate-in delay-1">
+                    La voz que<br>escala tu negocio.
+                </h1>
+                <p class="hero-lead animate-in delay-2">
+                    Sustituye la fricción humana por inteligencia escalable. Despliega agentes de voz autónomos que gestionan miles de llamadas simultáneas, cualifican leads y agendan reuniones en tu calendario 24/7.
+                </p>
+                
+                <div class="animate-in delay-3">
+                    <a href="https://zcal.co/mario/30min" target="_blank" class="cta-button">
+                        Desplegar Infraestructura
+                    </a>
+                </div>
 
-          <div class="card card-soft">
-            <h3>Atención al cliente</h3>
-            <p>Reduce tiempos de espera, resuelve dudas frecuentes y deriva lo complejo.</p>
-            <div class="chips">
-              <span class="chip">24/7</span>
-              <span class="chip">Derivación</span>
-              <span class="chip">Reporting</span>
+                <div class="data-metrics animate-in delay-4">
+                    <div class="metric-box">
+                        <h3>< 500ms</h3>
+                        <p>Latencia Neuronal</p>
+                    </div>
+                    <div class="metric-box">
+                        <h3>24/7/365</h3>
+                        <p>Disponibilidad Total</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Cómo funciona</span>
-          <h2>Un proceso diseñado para generar más ventas</h2>
-          <p>Implementación rápida, medición real y optimización continua.</p>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <div>
-              <h3>Analizamos tu flujo</h3>
-              <p>Detectamos dónde se pierden leads y qué objeciones frenan cierres.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">02</div>
-            <div>
-              <h3>Entrenamos el agente</h3>
-              <p>Guiones, tono, reglas, preguntas clave y lógica de cualificación.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">03</div>
-            <div>
-              <h3>Desplegamos y medimos</h3>
-              <p>KPIs de respuesta, conversión, agendados y calidad de interacción.</p>
-            </div>
-          </div>
         </div>
 
-        <div class="cta-banner">
-          <div>
-            <h3>¿Cuántas oportunidades estás perdiendo hoy?</h3>
-            <p>Activa la infraestructura y mide ROI desde la primera semana.</p>
-          </div>
-          <a class="btn-global" href="https://zcal.co/mario/30min" target="_blank">Agendar llamada</a>
+        <div class="visual-panel">
+            <div id="canvas-container"></div>
+            
+            <div class="ai-transcript-box">
+                <div class="transcript-header">
+                    <div class="typing-indicator"><span></span><span></span><span></span></div>
+                    Núcleo de Procesamiento en Vivo
+                </div>
+                <div id="dynamic-text"></div>
+            </div>
         </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-logo">AIVIQ LABS</div>
-        <p class="footer-desc">
-          Infraestructura de voz inteligente para atención y ventas. Respuesta, cualificación y agenda 24/7.
-        </p>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-title">Producto</div>
-        <a href="#hero" class="footer-link">Inicio</a>
-        <a href="#" class="footer-link">Integraciones</a>
-        <a href="#" class="footer-link">Casos de uso</a>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-title">Compañía</div>
-        <a href="#" class="footer-link">Sobre nosotros</a>
-        <a href="https://zcal.co/mario/30min" target="_blank" class="footer-link">Contacto</a>
-        <a href="#" class="footer-link">Privacidad</a>
-      </div>
     </div>
 
-    <div class="container footer-bottom">
-      <span>© <span id="year"></span> AIVIQ Labs. Todos los derechos reservados.</span>
-      <span class="footer-mini">Enrutamiento Activo · IA · Voz</span>
-    </div>
-  </footer>
 
-  <!-- Librerías -->
-  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/globe.gl@2.28.1/dist/globe.gl.min.js"></script>
+    <script>
+        // --- 1. SIN THREE.JS POR AHORA, SOLO FONDO CSS SUTIL ---
+        // El contenedor visual ahora usa un fondo geométrico CSS para un look más limpio y alineado con el nuevo logo.
 
-  <!-- Tu JS -->
-  <script src="assets/js/globe.js"></script>
+        // --- 2. UI: TRANSCRIPCIÓN DINÁMICA (TIPO MECANÓGRAFO) ---
+        const transcriptElement = document.getElementById('dynamic-text');
+        const phrases = [
+            "\"Hola, te llamo de Seltr. He visto tu solicitud y puedo agendarte una demo técnica para mañana a las 10:00. ¿Te encaja?\"",
+            "\"Entiendo. Nuestro sistema se integra vía API con tu CRM actual. ¿Prefieres que te envíe la documentación técnica primero?\"",
+            "\"Perfecto. He detectado una oportunidad de optimización en tu flujo de llamadas. Procedo a conectarte con un especialista.\"",
+            "\"...Procesando intención de compra. Cualificación positiva. Iniciando protocolo de agendado prioritario...\""
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 50;
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                // Borrando
+                transcriptElement.innerHTML = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 30; // Borrar más rápido
+            } else {
+                // Escribiendo
+                transcriptElement.innerHTML = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = Math.random() * 50 + 30; // Velocidad de escritura humana variable
+            }
 
+            // Lógica de cambio de frase
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                // Frase terminada, esperar antes de borrar
+                typeSpeed = 3000; 
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Borrado terminado, pasar a la siguiente frase
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Iniciar el efecto de escritura después de un breve retraso inicial
+        setTimeout(typeWriter, 1500);
+
+    </script>
 </body>
 </html>
