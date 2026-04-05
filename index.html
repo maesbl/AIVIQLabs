@@ -5,42 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seltr | AI Receptionist for Home Service Businesses</title>
     <meta name="description" content="Never miss a customer call again. Seltr builds AI-powered phone agents that answer every call 24/7 for plumbers, HVAC, and electricians.">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --bg-card: #0c0c0c;
-            --text: #f0efe9;
-            --text-dim: #6b6b6b;
-            --accent: #c8ff3e;
-            --accent-dim: rgba(200,255,62,0.08);
-            --border: #1a1a1a;
+            --bg: #fafaf8;
+            --bg-card: #ffffff;
+            --bg-panel: #f0f2ed;
+            --text: #0f1a0f;
+            --text-dim: #5c6558;
+            --green: #0a4b33;
+            --green-light: #e8f0eb;
+            --green-accent: #14a065;
+            --border: rgba(10,75,51,0.1);
+            --border-strong: rgba(10,75,51,0.2);
             --radius: 14px;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; }
 
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'Instrument Sans', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
         }
 
-        ::selection { background: var(--accent); color: var(--bg); }
-
+        ::selection { background: var(--green); color: #fff; }
         a { color: inherit; text-decoration: none; }
-
         .container { width: min(1140px, 90vw); margin: 0 auto; }
 
         /* ─── NAV ─── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 20px 0;
-            background: rgba(5,5,5,0.7);
+            padding: 18px 0;
+            background: rgba(250,250,248,0.85);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
@@ -49,321 +49,393 @@
             width: min(1140px, 90vw); margin: 0 auto;
         }
         .nav-logo {
-            font-weight: 700; font-size: 1.4rem; letter-spacing: -1px;
-            display: flex; align-items: center; gap: 8px;
+            font-weight: 800; font-size: 1.5rem; letter-spacing: -1px;
+            color: var(--text);
+            display: flex; align-items: center; gap: 7px;
         }
         .nav-logo .mark {
-            width: 4px; height: 20px; background: #0a4b33;
+            width: 5px; height: 24px; background: var(--green);
             border-radius: 3px 0 0 3px;
         }
-        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
         .nav-links a {
             font-size: 0.85rem; color: var(--text-dim); font-weight: 500;
             transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--text); }
         .nav-cta {
-            background: var(--accent) !important; color: var(--bg) !important;
-            padding: 10px 22px !important; border-radius: 8px;
-            font-weight: 600 !important; font-size: 0.85rem !important;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--green) !important; color: #fff !important;
+            padding: 10px 24px !important; border-radius: 8px;
+            font-weight: 700 !important; font-size: 0.85rem !important;
+            transition: all 0.2s;
         }
         .nav-cta:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(200,255,62,0.25);
+            box-shadow: 0 6px 20px rgba(10,75,51,0.3);
         }
 
-        /* ─── HERO ─── */
+        /* ─── HERO SPLIT ─── */
         .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 140px 0 100px 0;
-            position: relative; overflow: hidden;
+            min-height: 100vh;
+            display: grid; grid-template-columns: 1fr 1.1fr;
+            padding-top: 72px;
         }
-        .hero::before {
-            content: '';
-            position: absolute; top: -200px; right: -200px;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(200,255,62,0.04) 0%, transparent 70%);
-            pointer-events: none;
+
+        .hero-content {
+            padding: 8vh 6vw;
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .hero-content { max-width: 720px; position: relative; z-index: 2; }
 
         .hero-tag {
             display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid var(--border); padding: 8px 18px;
-            border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+            border: 1px solid var(--border-strong); padding: 7px 16px;
+            border-radius: 100px; font-size: 0.72rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--accent); margin-bottom: 32px;
-            background: var(--accent-dim);
+            color: var(--green); margin-bottom: 28px;
+            background: var(--green-light); width: fit-content;
         }
         .hero-tag .pulse {
-            width: 6px; height: 6px; background: var(--accent);
-            border-radius: 50%; box-shadow: 0 0 12px rgba(200,255,62,0.6);
+            width: 6px; height: 6px; background: var(--green-accent);
+            border-radius: 50%; box-shadow: 0 0 10px rgba(20,160,101,0.5);
             animation: pulse 2s infinite;
         }
 
         h1 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.0; letter-spacing: -2px;
-            margin-bottom: 28px; font-weight: 400;
+            font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+            line-height: 1.05; letter-spacing: -2px;
+            margin-bottom: 24px; font-weight: 400;
+            color: var(--text);
         }
-        h1 .accent { color: var(--accent); }
+        h1 .accent { color: var(--green); }
 
         .hero-sub {
-            font-size: 1.15rem; color: var(--text-dim); max-width: 520px;
-            margin-bottom: 44px; line-height: 1.75;
+            font-size: 1.1rem; color: var(--text-dim); max-width: 480px;
+            margin-bottom: 36px; line-height: 1.75;
         }
 
-        .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+        .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 
         .btn-primary {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: var(--accent); color: var(--bg);
-            padding: 18px 36px; border-radius: 10px;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--green); color: #fff;
+            padding: 16px 32px; border-radius: 10px;
             font-weight: 700; font-size: 0.95rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(200,255,62,0.2);
+            box-shadow: 0 6px 24px rgba(10,75,51,0.2);
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 40px rgba(200,255,62,0.35);
+            box-shadow: 0 12px 32px rgba(10,75,51,0.35);
         }
-
         .btn-secondary {
             display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid var(--border); color: var(--text);
-            padding: 18px 36px; border-radius: 10px;
+            border: 1px solid var(--border-strong); color: var(--text);
+            padding: 16px 32px; border-radius: 10px;
             font-weight: 600; font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background: transparent;
+            transition: all 0.2s; background: transparent;
         }
         .btn-secondary:hover {
-            border-color: var(--text-dim);
-            background: rgba(255,255,255,0.03);
+            border-color: var(--green); background: var(--green-light);
         }
 
         .hero-proof {
-            margin-top: 64px; padding-top: 32px;
+            margin-top: 48px; padding-top: 28px;
             border-top: 1px solid var(--border);
-            display: flex; gap: 48px;
+            display: flex; gap: 40px;
         }
         .proof-item h3 {
-            font-size: 1.8rem; font-weight: 700; margin-bottom: 4px;
-            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem; font-weight: 800; margin-bottom: 2px;
+            color: var(--green);
         }
         .proof-item p {
-            font-size: 0.72rem; text-transform: uppercase;
+            font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 1.5px; color: var(--text-dim); font-weight: 600;
         }
 
-        /* ─── PROBLEM SECTION ─── */
-        .section { padding: 120px 0; border-top: 1px solid var(--border); }
+        /* ─── HERO RIGHT: LIVE SIMULATION ─── */
+        .hero-visual {
+            background: var(--bg-panel);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            border-left: 1px solid var(--border);
+        }
+
+        /* Subtle animated gradient background */
+        .hero-visual::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(10,75,51,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(20,160,101,0.04) 0%, transparent 50%);
+            animation: bgShift 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .ai-transcript-box {
+            position: relative; z-index: 5;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(10,75,51,0.12);
+            padding: 36px; border-radius: 18px;
+            width: 82%; max-width: 440px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .transcript-header {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--green); font-weight: 700;
+        }
+
+        .waveform {
+            display: flex; align-items: center; gap: 2px; height: 16px;
+        }
+        .waveform span {
+            display: block; width: 3px; background: var(--green-accent);
+            border-radius: 2px; animation: wave 1.2s ease-in-out infinite;
+        }
+        .waveform span:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .waveform span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+        .waveform span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+        .waveform span:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+        .waveform span:nth-child(5) { height: 6px; animation-delay: 0.6s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.4); }
+        }
+
+        .transcript-label {
+            font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-dim); font-weight: 700; margin-bottom: 8px;
+        }
+
+        #dynamic-text {
+            font-size: 1.05rem; line-height: 1.65; color: var(--text);
+            min-height: 5.5em; font-weight: 400;
+        }
+
+        .transcript-meta {
+            margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid var(--border);
+            display: flex; gap: 24px;
+        }
+        .meta-item {
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-dim); font-weight: 600;
+        }
+        .meta-item span { color: var(--green); font-weight: 800; }
+
+        /* ─── SECTIONS ─── */
+        .section { padding: 110px 0; border-top: 1px solid var(--border); }
 
         .section-label {
-            font-size: 0.72rem; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--accent); font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--green); font-weight: 700;
+            margin-bottom: 14px;
         }
-
         .section h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2rem, 3.5vw, 3rem);
-            letter-spacing: -1px; margin-bottom: 20px;
-            font-weight: 400; line-height: 1.15;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            letter-spacing: -1px; margin-bottom: 18px;
+            font-weight: 400; line-height: 1.15; color: var(--text);
         }
-
         .section-intro {
             color: var(--text-dim); font-size: 1.05rem;
-            max-width: 600px; margin-bottom: 56px; line-height: 1.75;
+            max-width: 560px; margin-bottom: 48px; line-height: 1.75;
         }
 
+        /* PAIN CARDS */
         .pain-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
         }
         .pain-card {
             border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 32px 28px; background: var(--bg-card);
-            transition: border-color 0.3s;
+            padding: 32px 26px; background: var(--bg-card);
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .pain-card:hover { border-color: #333; }
+        .pain-card:hover {
+            border-color: var(--border-strong);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
         .pain-number {
             font-family: 'DM Serif Display', serif;
-            font-size: 2.8rem; color: var(--accent);
-            line-height: 1; margin-bottom: 12px;
+            font-size: 2.6rem; color: var(--green);
+            line-height: 1; margin-bottom: 10px;
         }
         .pain-card h3 {
-            font-size: 1rem; font-weight: 700;
-            margin-bottom: 10px; letter-spacing: -0.3px;
+            font-size: 0.95rem; font-weight: 700;
+            margin-bottom: 8px; color: var(--text);
         }
-        .pain-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+        .pain-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* ─── HOW IT WORKS ─── */
+        /* STEPS */
         .steps-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
         }
         .step-card {
             border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 36px 28px; background: var(--bg-card);
+            padding: 32px 26px; background: var(--bg-card);
             position: relative; overflow: hidden;
         }
         .step-card::before {
             content: attr(data-step);
-            position: absolute; top: -10px; right: 16px;
+            position: absolute; top: -14px; right: 14px;
             font-family: 'DM Serif Display', serif;
-            font-size: 7rem; color: rgba(200,255,62,0.04);
+            font-size: 7rem; color: rgba(10,75,51,0.04);
             line-height: 1; pointer-events: none;
         }
         .step-icon {
-            font-size: 1.6rem; margin-bottom: 20px;
-            width: 48px; height: 48px; display: flex;
+            font-size: 1.4rem; margin-bottom: 18px;
+            width: 44px; height: 44px; display: flex;
             align-items: center; justify-content: center;
-            background: var(--accent-dim); border-radius: 12px;
+            background: var(--green-light); border-radius: 10px;
         }
         .step-card h3 {
-            font-size: 1.05rem; font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;
         }
-        .step-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+        .step-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* ─── DEMO SECTION ─── */
+        /* DEMO SECTION */
         .demo-section {
-            border-top: 1px solid var(--border);
-            padding: 120px 0;
-            background: radial-gradient(ellipse at 30% 50%, rgba(200,255,62,0.03) 0%, transparent 60%);
+            border-top: 1px solid var(--border); padding: 110px 0;
+            background: var(--green-light);
         }
         .demo-box {
-            border: 1px solid var(--border); border-radius: 20px;
-            padding: 56px; text-align: center;
+            border: 1px solid var(--border-strong); border-radius: 20px;
+            padding: 52px; text-align: center;
             background: var(--bg-card);
-            max-width: 700px; margin: 0 auto;
+            max-width: 640px; margin: 0 auto;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.04);
         }
         .demo-box h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: 2.2rem; margin-bottom: 16px;
-            font-weight: 400;
+            font-size: 2rem; margin-bottom: 14px; font-weight: 400;
         }
         .demo-box p {
-            color: var(--text-dim); margin-bottom: 36px;
-            font-size: 1.05rem;
+            color: var(--text-dim); margin-bottom: 32px; font-size: 1rem;
         }
-        .demo-phone {
-            display: inline-flex; align-items: center; gap: 12px;
-            background: var(--accent); color: var(--bg);
-            padding: 20px 40px; border-radius: 12px;
-            font-size: 1.3rem; font-weight: 700;
-            letter-spacing: -0.5px;
-            box-shadow: 0 12px 40px rgba(200,255,62,0.25);
+        .demo-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--green); color: #fff;
+            padding: 18px 40px; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 700;
+            box-shadow: 0 8px 28px rgba(10,75,51,0.25);
             transition: all 0.3s;
-            cursor: pointer;
         }
-        .demo-phone:hover {
+        .demo-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 18px 50px rgba(200,255,62,0.4);
+            box-shadow: 0 14px 40px rgba(10,75,51,0.35);
         }
         .demo-note {
-            margin-top: 20px; font-size: 0.78rem;
+            margin-top: 16px; font-size: 0.75rem;
             color: var(--text-dim); text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* ─── PRICING ─── */
+        /* PRICING */
         .pricing-grid {
             display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 16px; max-width: 800px;
+            gap: 16px; max-width: 760px;
         }
         .price-card {
             border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 40px 32px; background: var(--bg-card);
+            padding: 36px 28px; background: var(--bg-card);
         }
         .price-card.featured {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(200,255,62,0.04), transparent);
+            border-color: var(--green);
+            box-shadow: 0 0 0 1px var(--green), 0 8px 24px rgba(10,75,51,0.08);
         }
         .price-label {
-            font-size: 0.72rem; text-transform: uppercase;
+            font-size: 0.7rem; text-transform: uppercase;
             letter-spacing: 1.5px; color: var(--text-dim);
-            font-weight: 700; margin-bottom: 12px;
+            font-weight: 700; margin-bottom: 10px;
         }
         .price-amount {
             font-family: 'DM Serif Display', serif;
-            font-size: 2.8rem; margin-bottom: 4px;
+            font-size: 2.6rem; color: var(--text); margin-bottom: 2px;
         }
-        .price-period { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 24px; }
+        .price-period { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 22px; }
         .price-features {
             list-style: none; padding: 0;
-            border-top: 1px solid var(--border); padding-top: 20px;
+            border-top: 1px solid var(--border); padding-top: 18px;
         }
         .price-features li {
-            font-size: 0.9rem; color: var(--text-dim);
-            padding: 8px 0; display: flex; align-items: center; gap: 10px;
+            font-size: 0.88rem; color: var(--text-dim);
+            padding: 7px 0; display: flex; align-items: center; gap: 10px;
         }
         .price-features li::before {
-            content: '→'; color: var(--accent); font-weight: 700;
+            content: '→'; color: var(--green); font-weight: 700;
         }
 
-        /* ─── CTA FINAL ─── */
+        /* FINAL CTA */
         .final-cta {
-            padding: 120px 0; border-top: 1px solid var(--border);
+            padding: 110px 0; border-top: 1px solid var(--border);
             text-align: center;
         }
         .final-cta h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 20px; font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            margin-bottom: 16px; font-weight: 400;
         }
         .final-cta p {
-            color: var(--text-dim); max-width: 500px;
-            margin: 0 auto 40px auto; font-size: 1.05rem;
+            color: var(--text-dim); max-width: 460px;
+            margin: 0 auto 36px auto; font-size: 1rem;
         }
 
-        /* ─── FOOTER ─── */
+        /* FOOTER */
         footer {
             border-top: 1px solid var(--border);
-            padding: 48px 0 32px 0;
+            padding: 40px 0 28px 0; background: var(--bg);
         }
         .footer-inner {
-            display: flex; justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .footer-brand { font-weight: 700; letter-spacing: -1px; }
+        .footer-brand {
+            font-weight: 800; letter-spacing: -1px; font-size: 1.1rem;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .footer-brand .mark {
+            width: 4px; height: 18px; background: var(--green);
+            border-radius: 3px 0 0 3px;
+        }
         .footer-links { display: flex; gap: 24px; }
         .footer-links a { font-size: 0.85rem; color: var(--text-dim); }
         .footer-links a:hover { color: var(--text); }
         .footer-copy {
-            margin-top: 32px; padding-top: 20px;
+            margin-top: 28px; padding-top: 18px;
             border-top: 1px solid var(--border);
-            text-align: center; font-size: 0.8rem; color: var(--text-dim);
+            text-align: center; font-size: 0.78rem; color: var(--text-dim);
         }
 
         /* ─── ANIMATIONS ─── */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
         .fade-in {
-            opacity: 0; transform: translateY(24px);
+            opacity: 0; transform: translateY(20px);
             animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
         .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
-        .d5 { animation-delay: 0.5s; }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 768px) {
-            .nav-links a:not(.nav-cta) { display: none; }
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-content { padding: 120px 6vw 60px 6vw; }
+            .hero-visual { min-height: 50vh; border-left: none; border-top: 1px solid var(--border); }
             .pain-grid, .steps-grid { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
-            .hero-proof { flex-direction: column; gap: 24px; }
+            .hero-proof { flex-direction: column; gap: 20px; }
             .hero-ctas { flex-direction: column; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
             .demo-box { padding: 36px 24px; }
-            .demo-phone { font-size: 1.1rem; padding: 18px 28px; }
-            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
@@ -387,43 +459,62 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-tag fade-in">
-                    <span class="pulse"></span>
-                    Built for Home Service Businesses
+        <div class="hero-content">
+            <div class="hero-tag fade-in">
+                <span class="pulse"></span>
+                Built for Home Service Businesses
+            </div>
+
+            <h1 class="fade-in d1">
+                Stop losing jobs to <span class="accent">missed calls.</span>
+            </h1>
+
+            <p class="hero-sub fade-in d2">
+                Your AI receptionist answers every call in under 1 second — booking appointments, capturing customer info, and qualifying leads 24/7. Even when you're on a job.
+            </p>
+
+            <div class="hero-ctas fade-in d3">
+                <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
+                    Book Free Demo →
+                </a>
+                <a href="#how" class="btn-secondary">
+                    See How It Works ↓
+                </a>
+            </div>
+
+            <div class="hero-proof fade-in d4">
+                <div class="proof-item">
+                    <h3>&lt; 1s</h3>
+                    <p>Answer Time</p>
+                </div>
+                <div class="proof-item">
+                    <h3>24/7</h3>
+                    <p>Availability</p>
+                </div>
+                <div class="proof-item">
+                    <h3>96%</h3>
+                    <p>Cheaper Than a Receptionist</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: LIVE SIMULATION -->
+        <div class="hero-visual">
+            <div class="ai-transcript-box fade-in d2">
+                <div class="transcript-header">
+                    <div class="waveform">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    AI Agent — Live Call
                 </div>
 
-                <h1 class="fade-in d1">
-                    Stop losing jobs to <span class="accent">missed calls.</span>
-                </h1>
+                <div class="transcript-label">Caller → FastFlow Plumbing</div>
+                <div id="dynamic-text"></div>
 
-                <p class="hero-sub fade-in d2">
-                    Your AI receptionist answers every call in under 1 second — booking appointments, capturing customer info, and qualifying leads 24/7. Even when you're on a job.
-                </p>
-
-                <div class="hero-ctas fade-in d3">
-                    <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
-                        Book Free Demo →
-                    </a>
-                    <a href="#how" class="btn-secondary">
-                        See How It Works ↓
-                    </a>
-                </div>
-
-                <div class="hero-proof fade-in d4">
-                    <div class="proof-item">
-                        <h3>< 1s</h3>
-                        <p>Answer Time</p>
-                    </div>
-                    <div class="proof-item">
-                        <h3>24/7</h3>
-                        <p>Availability</p>
-                    </div>
-                    <div class="proof-item">
-                        <h3>96%</h3>
-                        <p>Cost Savings vs Receptionist</p>
-                    </div>
+                <div class="transcript-meta">
+                    <div class="meta-item"><span>●</span> Connected</div>
+                    <div class="meta-item">Latency: <span>340ms</span></div>
+                    <div class="meta-item">Lead: <span>Captured</span></div>
                 </div>
             </div>
         </div>
@@ -495,7 +586,7 @@
                 <h2>Book a free demo call.<br>Hear your AI receptionist live.</h2>
                 <p>We'll set up a custom AI agent for your business in 15 minutes — then you call it yourself and hear exactly how it handles your customers.</p>
 
-                <a href="https://zcal.co/mario/30min" target="_blank" class="demo-phone">
+                <a href="https://zcal.co/mario/30min" target="_blank" class="demo-btn">
                     Book Your Free Demo →
                 </a>
 
@@ -519,7 +610,7 @@
                 <div class="price-card">
                     <div class="price-label">Setup</div>
                     <div class="price-amount">$1,500</div>
-                    <div class="price-period">One-time configuration fee</div>
+                    <div class="price-period">One-time configuration</div>
                     <ul class="price-features">
                         <li>Custom AI agent trained on your business</li>
                         <li>Dedicated phone number</li>
@@ -528,7 +619,7 @@
                     </ul>
                 </div>
                 <div class="price-card featured">
-                    <div class="price-label" style="color: var(--accent);">Monthly</div>
+                    <div class="price-label" style="color: var(--green);">Monthly</div>
                     <div class="price-amount">$497<span style="font-size:1rem;color:var(--text-dim);">/mo</span></div>
                     <div class="price-period">Everything handled for you</div>
                     <ul class="price-features">
@@ -548,7 +639,7 @@
             <h2>Ready to answer every call?</h2>
             <p>Book a free 15-minute consultation. We'll show you exactly how many calls you're missing — and how to capture every one.</p>
             <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
-                Book Free Consultation →
+                Book Free Demo →
             </a>
         </div>
     </section>
@@ -557,11 +648,12 @@
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-brand">seltr</div>
+                <div class="footer-brand">
+                    <span class="mark"></span> seltr
+                </div>
                 <div class="footer-links">
                     <a href="mailto:mario@seltr.es">mario@seltr.es</a>
                     <a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
-                    <a href="https://linkedin.com/company/seltr" target="_blank">Company</a>
                 </div>
             </div>
             <div class="footer-copy">
@@ -569,6 +661,70 @@
             </div>
         </div>
     </footer>
+
+    <!-- TYPEWRITER SIMULATION -->
+    <script>
+        const el = document.getElementById('dynamic-text');
+        const conversation = [
+            { speaker: 'AI', text: '"Thanks for calling FastFlow Plumbing! How can I help you today?"' },
+            { speaker: 'Caller', text: '"Hi, I\'ve got a leak under my kitchen sink — it\'s been dripping all morning."' },
+            { speaker: 'AI', text: '"I\'m sorry to hear that. I\'d be happy to get a technician out to you. Is this an emergency, or can it wait for a scheduled appointment?"' },
+            { speaker: 'Caller', text: '"It\'s getting worse, I think I need someone today if possible."' },
+            { speaker: 'AI', text: '"Understood — I\'ll mark this as urgent. Can I get your name, please?"' },
+            { speaker: 'Caller', text: '"Sarah Mitchell."' },
+            { speaker: 'AI', text: '"And the best number to reach you, Sarah?"' },
+            { speaker: 'Caller', text: '"555-0142."' },
+            { speaker: 'AI', text: '"Perfect. What\'s the address where you need service?"' },
+            { speaker: 'Caller', text: '"4821 Maple Drive."' },
+            { speaker: 'AI', text: '"Got it — Sarah Mitchell, 555-0142, 4821 Maple Drive, urgent kitchen sink leak. A technician will call you within 30 minutes to confirm timing. Is there anything else I can help with?"' },
+            { speaker: 'Caller', text: '"No, that\'s great. Thanks!"' },
+            { speaker: 'AI', text: '"Thanks for calling FastFlow Plumbing, Sarah. We\'ll get this sorted for you. Have a great day!"' }
+        ];
+
+        let lineIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        let pauseAfterLine = false;
+
+        function getDisplayText() {
+            const item = conversation[lineIdx];
+            const label = item.speaker === 'AI' ? '🤖 AI: ' : '👤 Caller: ';
+            return label + item.text;
+        }
+
+        function type() {
+            const fullText = getDisplayText();
+
+            if (!isDeleting && !pauseAfterLine) {
+                charIdx++;
+                el.innerHTML = fullText.substring(0, charIdx);
+
+                if (charIdx >= fullText.length) {
+                    pauseAfterLine = true;
+                    setTimeout(() => {
+                        pauseAfterLine = false;
+                        isDeleting = true;
+                        type();
+                    }, 2200);
+                    return;
+                }
+                setTimeout(type, 18 + Math.random() * 25);
+            } else if (isDeleting) {
+                charIdx -= 3;
+                if (charIdx <= 0) {
+                    charIdx = 0;
+                    isDeleting = false;
+                    lineIdx = (lineIdx + 1) % conversation.length;
+                    setTimeout(type, 400);
+                    return;
+                }
+                el.innerHTML = fullText.substring(0, charIdx);
+                setTimeout(type, 8);
+            }
+        }
+
+        setTimeout(type, 1200);
+    </script>
 
 </body>
 </html>
