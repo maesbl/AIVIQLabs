@@ -1,365 +1,575 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seltr | Own the conversation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <title>Seltr | AI Receptionist for Home Service Businesses</title>
+    <meta name="description" content="Never miss a customer call again. Seltr builds AI-powered phone agents that answer every call 24/7 for plumbers, HVAC, and electricians.">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
-        /* --- RESET & VARIABLES MODO CLARO (SELTR) --- */
         :root {
-            --bg-light: #ffffff;
-            --bg-panel: #f8f9fa;
-            --text-dark: #0f172a;
-            --text-dim: #64748b;
-            --seltr-green: #0a4b33; /* Extraído del logo */
-            --border-light: rgba(0, 0, 0, 0.08);
+            --bg: #050505;
+            --bg-card: #0c0c0c;
+            --text: #f0efe9;
+            --text-dim: #6b6b6b;
+            --accent: #c8ff3e;
+            --accent-dim: rgba(200,255,62,0.08);
+            --border: #1a1a1a;
+            --radius: 14px;
         }
 
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--bg-light); color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; -webkit-font-smoothing: antialiased;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Instrument Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
-        /* --- ESTRUCTURA SPLIT SCREEN --- */
-        .split-layout {
-            display: grid; grid-template-columns: 1fr 1.2fr; height: 100vh; width: 100vw;
-        }
+        ::selection { background: var(--accent); color: var(--bg); }
 
-        /* --- PANEL IZQUIERDO: VENTAS --- */
-        .sales-panel {
-            padding: 8vw 6vw; display: flex; flex-direction: column; justify-content: center;
-            position: relative; z-index: 10; border-right: 1px solid var(--border-light);
-            background: var(--bg-light);
-            box-shadow: 20px 0 50px rgba(0,0,0,0.02);
-        }
+        a { color: inherit; text-decoration: none; }
 
-        /* LOGO SELTR REPLICADO EN CSS */
-        .brand-header {
-            position: absolute; top: 50px; left: 6vw;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .seltr-mark {
-            width: 5px; height: 26px; background-color: var(--seltr-green);
-            border-radius: 4px 0 0 4px; /* Curva solo a la izquierda como en la imagen */
-            transform: skewX(-5deg); /* Ligera inclinación para dinamismo */
-        }
-        .seltr-text {
-            font-weight: 800; font-size: 1.8rem; letter-spacing: -1px;
-            color: var(--text-dark); line-height: 1;
-        }
+        .container { width: min(1140px, 90vw); margin: 0 auto; }
 
-        /* Animaciones de Entrada Escalonadas */
-        .animate-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
-        h1.hero-title {
-            font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 6.5rem);
-            font-weight: 900; line-height: 0.95; margin-bottom: 25px;
-            color: var(--text-dark); letter-spacing: -2px;
-        }
-
-        p.hero-lead {
-            font-size: 1.15rem; line-height: 1.7; color: var(--text-dim);
-            max-width: 500px; margin-bottom: 50px; font-weight: 400;
-        }
-
-        /* Botón de Alta Conversión (Seltr Theme) */
-        .cta-button {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 18px 40px; background: var(--seltr-green); color: #ffffff;
-            border-radius: 6px; font-weight: 600; text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 25px rgba(10, 75, 51, 0.25);
-            position: relative; overflow: hidden; border: 1px solid var(--seltr-green);
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(10, 75, 51, 0.4);
-            background: #083b28; border-color: #083b28;
-        }
-        .cta-button::after {
-            content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-            transform: skewX(-20deg); transition: 0.5s; opacity: 0;
-        }
-        .cta-button:hover::after { left: 100%; opacity: 1; transition: 0.6s ease-in-out; }
-
-        .data-metrics {
-            margin-top: 80px; display: flex; gap: 50px; padding-top: 30px;
-            border-top: 1px solid var(--border-light);
-        }
-        .metric-box h3 { font-size: 2rem; font-weight: 800; margin: 0 0 5px 0; color: var(--text-dark); }
-        .metric-box p { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin: 0; }
-
-        /* --- PANEL DERECHO: WEBGL & UI FLOTANTE --- */
-        .visual-panel {
-            position: relative; background-color: #f0f4f8; /* Gris muy claro/azulado de fondo */
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
-        }
-
-        #webgl-canvas {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-        }
-
-        /* UI de Transcripción (Glassmorphism Claro) */
-        .ai-transcript-box {
-            position: relative; z-index: 5;
-            background: rgba(255, 255, 255, 0.7);
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 20px 0;
+            background: rgba(5,5,5,0.7);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 35px; border-radius: 16px;
-            width: 80%; max-width: 480px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255,255,255,0.8);
-            transform: translateY(0);
+            border-bottom: 1px solid var(--border);
         }
-        .transcript-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; 
-            color: var(--seltr-green); font-weight: 700;
+        .nav-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            width: min(1140px, 90vw); margin: 0 auto;
         }
-        .typing-indicator span {
-            display: inline-block; width: 5px; height: 5px; background: var(--seltr-green); border-radius: 50%;
-            margin-right: 3px; animation: typing 1s infinite;
+        .nav-logo {
+            font-weight: 700; font-size: 1.4rem; letter-spacing: -1px;
+            display: flex; align-items: center; gap: 8px;
         }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        .nav-logo .mark {
+            width: 4px; height: 20px; background: var(--accent);
+            border-radius: 2px;
+        }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            font-size: 0.85rem; color: var(--text-dim); font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta {
+            background: var(--accent) !important; color: var(--bg) !important;
+            padding: 10px 22px !important; border-radius: 8px;
+            font-weight: 600 !important; font-size: 0.85rem !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(200,255,62,0.25);
+        }
 
-        #dynamic-text {
-            font-size: 1.15rem; line-height: 1.6; color: var(--text-dark); font-weight: 400;
-            min-height: 4.8em;
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 140px 0 100px 0;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -200px; right: -200px;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(200,255,62,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content { max-width: 720px; position: relative; z-index: 2; }
+
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); padding: 8px 18px;
+            border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--accent); margin-bottom: 32px;
+            background: var(--accent-dim);
+        }
+        .hero-tag .pulse {
+            width: 6px; height: 6px; background: var(--accent);
+            border-radius: 50%; box-shadow: 0 0 12px rgba(200,255,62,0.6);
+            animation: pulse 2s infinite;
         }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes typing { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.0; letter-spacing: -2px;
+            margin-bottom: 28px; font-weight: 400;
+        }
+        h1 .accent { color: var(--accent); }
 
-        @media (max-width: 1024px) {
-            .split-layout { grid-template-columns: 1fr; grid-template-rows: auto 60vh; }
-            .sales-panel { padding: 100px 8vw 60px 8vw; border-right: none; }
-            h1.hero-title { font-size: 3.5rem; }
-            .visual-panel { order: 2; }
+        .hero-sub {
+            font-size: 1.15rem; color: var(--text-dim); max-width: 520px;
+            margin-bottom: 44px; line-height: 1.75;
+        }
+
+        .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--accent); color: var(--bg);
+            padding: 18px 36px; border-radius: 10px;
+            font-weight: 700; font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(200,255,62,0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(200,255,62,0.35);
+        }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); color: var(--text);
+            padding: 18px 36px; border-radius: 10px;
+            font-weight: 600; font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-secondary:hover {
+            border-color: var(--text-dim);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .hero-proof {
+            margin-top: 64px; padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex; gap: 48px;
+        }
+        .proof-item h3 {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 4px;
+            font-family: 'DM Serif Display', serif;
+        }
+        .proof-item p {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-dim); font-weight: 600;
+        }
+
+        /* ─── PROBLEM SECTION ─── */
+        .section { padding: 120px 0; border-top: 1px solid var(--border); }
+
+        .section-label {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--accent); font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            letter-spacing: -1px; margin-bottom: 20px;
+            font-weight: 400; line-height: 1.15;
+        }
+
+        .section-intro {
+            color: var(--text-dim); font-size: 1.05rem;
+            max-width: 600px; margin-bottom: 56px; line-height: 1.75;
+        }
+
+        .pain-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .pain-card {
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 32px 28px; background: var(--bg-card);
+            transition: border-color 0.3s;
+        }
+        .pain-card:hover { border-color: #333; }
+        .pain-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem; color: var(--accent);
+            line-height: 1; margin-bottom: 12px;
+        }
+        .pain-card h3 {
+            font-size: 1rem; font-weight: 700;
+            margin-bottom: 10px; letter-spacing: -0.3px;
+        }
+        .pain-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+
+        /* ─── HOW IT WORKS ─── */
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .step-card {
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 36px 28px; background: var(--bg-card);
+            position: relative; overflow: hidden;
+        }
+        .step-card::before {
+            content: attr(data-step);
+            position: absolute; top: -10px; right: 16px;
+            font-family: 'DM Serif Display', serif;
+            font-size: 7rem; color: rgba(200,255,62,0.04);
+            line-height: 1; pointer-events: none;
+        }
+        .step-icon {
+            font-size: 1.6rem; margin-bottom: 20px;
+            width: 48px; height: 48px; display: flex;
+            align-items: center; justify-content: center;
+            background: var(--accent-dim); border-radius: 12px;
+        }
+        .step-card h3 {
+            font-size: 1.05rem; font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .step-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+
+        /* ─── DEMO SECTION ─── */
+        .demo-section {
+            border-top: 1px solid var(--border);
+            padding: 120px 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(200,255,62,0.03) 0%, transparent 60%);
+        }
+        .demo-box {
+            border: 1px solid var(--border); border-radius: 20px;
+            padding: 56px; text-align: center;
+            background: var(--bg-card);
+            max-width: 700px; margin: 0 auto;
+        }
+        .demo-box h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem; margin-bottom: 16px;
+            font-weight: 400;
+        }
+        .demo-box p {
+            color: var(--text-dim); margin-bottom: 36px;
+            font-size: 1.05rem;
+        }
+        .demo-phone {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--accent); color: var(--bg);
+            padding: 20px 40px; border-radius: 12px;
+            font-size: 1.3rem; font-weight: 700;
+            letter-spacing: -0.5px;
+            box-shadow: 0 12px 40px rgba(200,255,62,0.25);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .demo-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 50px rgba(200,255,62,0.4);
+        }
+        .demo-note {
+            margin-top: 20px; font-size: 0.78rem;
+            color: var(--text-dim); text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ─── PRICING ─── */
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 16px; max-width: 800px;
+        }
+        .price-card {
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 40px 32px; background: var(--bg-card);
+        }
+        .price-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(200,255,62,0.04), transparent);
+        }
+        .price-label {
+            font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-dim);
+            font-weight: 700; margin-bottom: 12px;
+        }
+        .price-amount {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem; margin-bottom: 4px;
+        }
+        .price-period { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 24px; }
+        .price-features {
+            list-style: none; padding: 0;
+            border-top: 1px solid var(--border); padding-top: 20px;
+        }
+        .price-features li {
+            font-size: 0.9rem; color: var(--text-dim);
+            padding: 8px 0; display: flex; align-items: center; gap: 10px;
+        }
+        .price-features li::before {
+            content: '→'; color: var(--accent); font-weight: 700;
+        }
+
+        /* ─── CTA FINAL ─── */
+        .final-cta {
+            padding: 120px 0; border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .final-cta h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 20px; font-weight: 400;
+        }
+        .final-cta p {
+            color: var(--text-dim); max-width: 500px;
+            margin: 0 auto 40px auto; font-size: 1.05rem;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0 32px 0;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between;
+            align-items: center;
+        }
+        .footer-brand { font-weight: 700; letter-spacing: -1px; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.85rem; color: var(--text-dim); }
+        .footer-links a:hover { color: var(--text); }
+        .footer-copy {
+            margin-top: 32px; padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center; font-size: 0.8rem; color: var(--text-dim);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+        }
+        .fade-in {
+            opacity: 0; transform: translateY(24px);
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
+        .d5 { animation-delay: 0.5s; }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .nav-links a:not(.nav-cta) { display: none; }
+            .pain-grid, .steps-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .hero-proof { flex-direction: column; gap: 24px; }
+            .hero-ctas { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .demo-box { padding: 36px 24px; }
+            .demo-phone { font-size: 1.1rem; padding: 18px 28px; }
+            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="split-layout">
-        
-        <div class="sales-panel">
-            <div class="brand-header animate-in">
-                <div class="seltr-mark"></div>
-                <div class="seltr-text">seltr</div>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <span class="mark"></span> seltr
             </div>
-            
-            <div class="sales-content">
-                <h1 class="hero-title animate-in delay-1">
-                    La voz que<br>escala tu negocio.
+            <div class="nav-links">
+                <a href="#problem">Why Seltr</a>
+                <a href="#how">How It Works</a>
+                <a href="#demo">Live Demo</a>
+                <a href="#pricing">Pricing</a>
+                <a href="https://zcal.co/mario/30min" target="_blank" class="nav-cta">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag fade-in">
+                    <span class="pulse"></span>
+                    Built for Home Service Businesses
+                </div>
+
+                <h1 class="fade-in d1">
+                    Stop losing jobs to <span class="accent">missed calls.</span>
                 </h1>
-                <p class="hero-lead animate-in delay-2">
-                    Sustituye la fricción humana por inteligencia escalable. Despliega agentes de voz autónomos que gestionan miles de llamadas simultáneas, cualifican leads y agendan reuniones en tu calendario 24/7.
+
+                <p class="hero-sub fade-in d2">
+                    Your AI receptionist answers every call in under 1 second — booking appointments, capturing customer info, and qualifying leads 24/7. Even when you're on a job.
                 </p>
-                
-                <div class="animate-in delay-3">
-                    <a href="https://zcal.co/mario/30min" target="_blank" class="cta-button">
-                        Consigue el asistente
+
+                <div class="hero-ctas fade-in d3">
+                    <a href="#demo" class="btn-primary">
+                        <span>📞</span> Hear It Live
+                    </a>
+                    <a href="https://zcal.co/mario/30min" target="_blank" class="btn-secondary">
+                        Book Free Consultation →
                     </a>
                 </div>
 
-                <div class="data-metrics animate-in delay-4">
-                    <div class="metric-box">
-                        <h3>< 500ms</h3>
-                        <p>Latencia Neuronal</p>
+                <div class="hero-proof fade-in d4">
+                    <div class="proof-item">
+                        <h3>< 1s</h3>
+                        <p>Answer Time</p>
                     </div>
-                    <div class="metric-box">
+                    <div class="proof-item">
                         <h3>24/7</h3>
-                        <p>Disponibilidad Total</p>
+                        <p>Availability</p>
+                    </div>
+                    <div class="proof-item">
+                        <h3>96%</h3>
+                        <p>Cost Savings vs Receptionist</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="visual-panel">
-            <canvas id="webgl-canvas"></canvas>
-            
-            <div class="ai-transcript-box">
-                <div class="transcript-header">
-                    <div class="typing-indicator"><span></span><span></span><span></span></div>
-                    Núcleo de Procesamiento en Vivo
+    <!-- PROBLEM -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-label">The Problem</div>
+            <h2>Every missed call is a job that went<br>to your competitor.</h2>
+            <p class="section-intro">
+                You can't answer the phone when you're under a sink or on a roof. But your customers won't wait — they call the next company on the list.
+            </p>
+
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-number">62%</div>
+                    <h3>Calls Go Unanswered</h3>
+                    <p>The majority of calls to small service businesses are never picked up. Each one is a potential $500–$5,000 job lost.</p>
                 </div>
-                <div id="dynamic-text"></div>
+                <div class="pain-card">
+                    <div class="pain-number">78%</div>
+                    <h3>Call Your Competitor</h3>
+                    <p>Customers who can't reach you don't leave a voicemail — they immediately call someone else.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-number">$126K</div>
+                    <h3>Lost Per Year</h3>
+                    <p>The average small business loses over $126,000 annually in revenue from missed calls alone.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+        <div class="container">
+            <div class="section-label">How It Works</div>
+            <h2>Live in 48 hours. No hardware. No hassle.</h2>
+            <p class="section-intro">
+                We configure your AI receptionist to sound and act like your best employee — then connect it to your existing phone line.
+            </p>
 
-    <script>
-        // --- 1. MOTOR 3D: SEDA LÍQUIDA PARAMÉTRICA ---
-        const canvas = document.getElementById('webgl-canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        
-        const scene = new THREE.Scene();
-        // Fondo integrado con CSS
-        
-        const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-        camera.position.set(0, -5, 12);
-        camera.lookAt(0, 0, 0);
+            <div class="steps-grid">
+                <div class="step-card" data-step="1">
+                    <div class="step-icon">🎯</div>
+                    <h3>We Learn Your Business</h3>
+                    <p>15-minute call to understand your services, pricing, service area, and how you want calls handled. That's all we need.</p>
+                </div>
+                <div class="step-card" data-step="2">
+                    <div class="step-icon">🤖</div>
+                    <h3>We Build Your Agent</h3>
+                    <p>Within 24 hours, your custom AI receptionist is ready — trained on your business, your tone, your booking process.</p>
+                </div>
+                <div class="step-card" data-step="3">
+                    <div class="step-icon">📞</div>
+                    <h3>You Never Miss Again</h3>
+                    <p>Every call answered. Every lead captured. Every appointment booked. You focus on the work — your AI handles the phone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // ILUMINACIÓN PREMIUM DE ESTUDIO
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Luz blanca base
-        scene.add(ambientLight);
+    <!-- DEMO -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="demo-box">
+                <div class="section-label" style="text-align:center;">Live Demo</div>
+                <h2>Call our AI receptionist<br>right now.</h2>
+                <p>This is a real AI agent built for a plumbing company. Call the number below and experience it yourself — no signup needed.</p>
 
-        // Foco principal: Verde Seltr emitiendo sobre la malla blanca
-        const dirLight = new THREE.DirectionalLight(0x0a4b33, 2.5); 
-        dirLight.position.set(5, 5, 5);
-        scene.add(dirLight);
+                <a href="tel:+1XXXXXXXXXX" class="demo-phone">
+                    📞 +1 (XXX) XXX-XXXX
+                </a>
 
-        // Foco secundario: Un toque de luz fría para contraste
-        const pointLight = new THREE.PointLight(0x26a69a, 1.5, 20);
-        pointLight.position.set(-5, -2, 5);
-        scene.add(pointLight);
+                <div class="demo-note">
+                    Replace with your real Twilio number once configured
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // GEOMETRÍA: Malla de alta resolución
-        const geometry = new THREE.PlaneGeometry(30, 30, 128, 128);
-        
-        // MATERIAL FÍSICO (Simulando un polímero suave / seda)
-        const material = new THREE.MeshPhysicalMaterial({
-            color: 0xffffff,        // Base blanca pura
-            metalness: 0.1,         // Ligeramente metálico
-            roughness: 0.4,         // Suavidad difusa
-            clearcoat: 1.0,         // Brillo superior como cristal o agua
-            clearcoatRoughness: 0.2,
-            side: THREE.DoubleSide,
-            wireframe: false
-        });
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-label">Pricing</div>
+            <h2>Less than a part-time receptionist.<br>Better than a full-time one.</h2>
+            <p class="section-intro">
+                No contracts. Cancel anytime. Your AI receptionist pays for itself with the first job it books.
+            </p>
 
-        const liquidPlane = new THREE.Mesh(geometry, material);
-        liquidPlane.rotation.x = -Math.PI / 2.5; // Inclinado hacia la cámara
-        scene.add(liquidPlane);
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-label">Setup</div>
+                    <div class="price-amount">$1,500</div>
+                    <div class="price-period">One-time configuration fee</div>
+                    <ul class="price-features">
+                        <li>Custom AI agent trained on your business</li>
+                        <li>Dedicated phone number</li>
+                        <li>CRM & calendar integration</li>
+                        <li>Live in 48 hours</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <div class="price-label" style="color: var(--accent);">Monthly</div>
+                    <div class="price-amount">$497<span style="font-size:1rem;color:var(--text-dim);">/mo</span></div>
+                    <div class="price-period">Everything handled for you</div>
+                    <ul class="price-features">
+                        <li>Unlimited inbound calls answered</li>
+                        <li>Monthly optimization & reporting</li>
+                        <li>Script updates as needed</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Almacenar vértices originales para la animación
-        const positionAttribute = geometry.attributes.position;
-        const vertexCount = positionAttribute.count;
-        const originalZ = new Float32Array(vertexCount);
-        for(let i = 0; i < vertexCount; i++) {
-            originalZ[i] = positionAttribute.getZ(i);
-        }
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to answer every call?</h2>
+            <p>Book a free 15-minute consultation. We'll show you exactly how many calls you're missing — and how to capture every one.</p>
+            <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
+                Book Free Consultation →
+            </a>
+        </div>
+    </section>
 
-        // --- INTERACCIÓN CON EL RATÓN ---
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">seltr</div>
+                <div class="footer-links">
+                    <a href="mailto:mario@seltr.es">mario@seltr.es</a>
+                    <a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
+                    <a href="https://linkedin.com/company/seltr" target="_blank">Company</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Seltr. AI-powered receptionist for home service businesses.
+            </div>
+        </div>
+    </footer>
 
-        const visualPanel = document.querySelector('.visual-panel');
-        visualPanel.addEventListener('mousemove', (e) => {
-            const rect = visualPanel.getBoundingClientRect();
-            targetX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-            targetY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-        });
-
-        // --- ANIMACIÓN ---
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const time = clock.getElapsedTime();
-
-            // Inercia del ratón
-            mouseX += (targetX - mouseX) * 0.05;
-            mouseY += (targetY - mouseY) * 0.05;
-
-            // Manipulación de vértices (Simulación de ondas matemáticas)
-            for (let i = 0; i < vertexCount; i++) {
-                const vx = positionAttribute.getX(i);
-                const vy = positionAttribute.getY(i);
-                
-                // Ondas base que fluyen con el tiempo
-                let wave1 = Math.sin(vx * 0.5 + time * 0.8) * 0.5;
-                let wave2 = Math.cos(vy * 0.3 - time * 0.5) * 0.5;
-                
-                // Repulsión magnética/líquida al pasar el ratón
-                // Mapeamos el ratón al espacio 3D de forma aproximada
-                const mouseWorldX = mouseX * 10;
-                const mouseWorldY = mouseY * 10;
-                
-                const distToMouse = Math.sqrt(Math.pow(vx - mouseWorldX, 2) + Math.pow(vy - mouseWorldY, 2));
-                let mouseRipple = 0;
-                if (distToMouse < 8) {
-                    // Crea un hundimiento suave donde está el ratón
-                    mouseRipple = Math.sin((distToMouse - time * 2) * 1.5) * (1 - distToMouse / 8) * 1.2;
-                }
-
-                positionAttribute.setZ(i, originalZ[i] + wave1 + wave2 + mouseRipple);
-            }
-            
-            positionAttribute.needsUpdate = true;
-            geometry.computeVertexNormals(); // Recalcula la luz en tiempo real sobre las ondas
-
-            // Ligero parallax de la cámara
-            camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
-            camera.position.y += (-5 + mouseY * 2 - camera.position.y) * 0.05;
-            camera.lookAt(0, 0, 0);
-
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // Responsive local al panel
-        window.addEventListener('resize', () => {
-            const width = visualPanel.clientWidth;
-            const height = visualPanel.clientHeight;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
-        });
-
-        // --- 2. TRANSCRIPCIÓN DINÁMICA DE LA IA ---
-        const transcriptElement = document.getElementById('dynamic-text');
-        const phrases = [
-            "\"Hola, soy el asistente de Seltr. He analizado la carga operativa de su empresa y he detectado un 40% de volumen de llamadas automatizable.\"",
-            "\"Entiendo perfectamente. Me integro directamente con su CRM actual vía API sin modificar sus procesos internos. ¿Comenzamos la prueba?\"",
-            "\"La intención de compra es positiva. Procedo a cualificar el lead, registrar los datos en el sistema y agendar la reunión prioritaria.\""
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typeSpeed = 40;
-
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                transcriptElement.innerHTML = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                typeSpeed = 20; 
-            } else {
-                transcriptElement.innerHTML = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-                typeSpeed = Math.random() * 40 + 20; 
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 4000; 
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeWriter, typeSpeed);
-        }
-        setTimeout(typeWriter, 1000);
-
-    </script>
 </body>
 </html>
