@@ -1,730 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seltr | AI Receptionist for Home Service Businesses</title>
-    <meta name="description" content="Never miss a customer call again. Seltr builds AI-powered phone agents that answer every call 24/7 for plumbers, HVAC, and electricians.">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #fafaf8;
-            --bg-card: #ffffff;
-            --bg-panel: #f0f2ed;
-            --text: #0f1a0f;
-            --text-dim: #5c6558;
-            --green: #0a4b33;
-            --green-light: #e8f0eb;
-            --green-accent: #14a065;
-            --border: rgba(10,75,51,0.1);
-            --border-strong: rgba(10,75,51,0.2);
-            --radius: 14px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seltr — AI Phone Receptionist for Every Business</title>
+<meta name="description" content="Your AI receptionist answers every call 24/7. Books appointments, captures leads, and never misses a customer. For dental clinics, med spas, law firms, real estate, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#fafaf9;--fg:#1a1a19;--muted:#78776f;--accent:#2563eb;--accent2:#7c3aed;
+--card:#fff;--border:#e8e7e3;--radius:16px;
+--font:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth;font-family:var(--font);background:var(--bg);color:var(--fg)}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 0;backdrop-filter:blur(20px);background:rgba(250,250,249,.85);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:20px;letter-spacing:-.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:32px;font-size:14px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{background:var(--fg);color:var(--bg);padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.6;
-        }
+/* HERO */
+.hero{max-width:1100px;margin:0 auto;padding:160px 24px 100px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:24px;letter-spacing:.3px;text-transform:uppercase}
+.hero-badge .dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto 40px;line-height:1.6}
+.hero-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--fg);color:var(--bg);padding:14px 32px;border-radius:100px;font-size:15px;font-weight:600;transition:all .2s;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.btn-secondary{background:transparent;border:1.5px solid var(--border);color:var(--fg);padding:14px 32px;border-radius:100px;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{border-color:var(--fg);background:var(--fg);color:var(--bg)}
 
-        ::selection { background: var(--green); color: #fff; }
-        a { color: inherit; text-decoration: none; }
-        .container { width: min(1140px, 90vw); margin: 0 auto; }
+/* STATS ROW */
+.stats{display:flex;justify-content:center;gap:48px;margin-top:64px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
 
-        /* ─── NAV ─── */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 18px 0;
-            background: rgba(250,250,248,0.85);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-inner {
-            display: flex; justify-content: space-between; align-items: center;
-            width: min(1140px, 90vw); margin: 0 auto;
-        }
-        .nav-logo {
-            font-weight: 800; font-size: 1.5rem; letter-spacing: -1px;
-            color: var(--text);
-            display: flex; align-items: center; gap: 7px;
-        }
-        .nav-logo .mark {
-            width: 5px; height: 24px; background: var(--green);
-            border-radius: 3px 0 0 3px;
-        }
-        .nav-links { display: flex; gap: 28px; align-items: center; }
-        .nav-links a {
-            font-size: 0.85rem; color: var(--text-dim); font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--text); }
-        .nav-cta {
-            background: var(--green) !important; color: #fff !important;
-            padding: 10px 24px !important; border-radius: 8px;
-            font-weight: 700 !important; font-size: 0.85rem !important;
-            transition: all 0.2s;
-        }
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(10,75,51,0.3);
-        }
+/* INDUSTRIES */
+.industries{max-width:1100px;margin:0 auto;padding:80px 24px}
+.section-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px;text-align:center}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:700;text-align:center;letter-spacing:-1px;margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--muted);text-align:center;max-width:520px;margin:0 auto 48px;line-height:1.6}
+.industry-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.industry-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;transition:all .25s;cursor:default}
+.industry-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06);border-color:var(--accent)}
+.industry-icon{font-size:32px;margin-bottom:10px}
+.industry-name{font-weight:600;font-size:14px;margin-bottom:4px}
+.industry-value{font-size:11px;color:var(--muted)}
 
-        /* ─── HERO SPLIT ─── */
-        .hero {
-            min-height: 100vh;
-            display: grid; grid-template-columns: 1fr 1.1fr;
-            padding-top: 72px;
-        }
+/* HOW IT WORKS */
+.how{max-width:1100px;margin:0 auto;padding:100px 24px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative}
+.step-num{font-family:var(--mono);font-size:48px;font-weight:700;color:var(--border);position:absolute;top:20px;right:24px}
+.step-icon{font-size:28px;margin-bottom:16px}
+.step h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted);line-height:1.6}
 
-        .hero-content {
-            padding: 8vh 6vw;
-            display: flex; flex-direction: column; justify-content: center;
-        }
+/* PRICING */
+.pricing{max-width:1100px;margin:0 auto;padding:100px 24px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:48px}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
+.price-card.featured{border-color:var(--accent);box-shadow:0 8px 32px rgba(37,99,235,.1)}
+.price-card.featured::before{content:'MOST POPULAR';position:absolute;top:16px;right:-32px;background:var(--accent);color:white;font-size:10px;font-weight:700;padding:4px 40px;transform:rotate(45deg);letter-spacing:1px}
+.price-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px}
+.price-amount{font-size:48px;font-weight:700;letter-spacing:-2px}
+.price-amount span{font-size:16px;font-weight:500;color:var(--muted)}
+.price-desc{font-size:14px;color:var(--muted);margin:16px 0 24px;line-height:1.5}
+.price-features{list-style:none;margin-bottom:32px}
+.price-features li{font-size:14px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'✓';color:var(--accent);font-weight:700;font-size:14px}
+.price-btn{display:block;width:100%;text-align:center;padding:14px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;cursor:pointer;border:none}
+.price-btn-dark{background:var(--fg);color:var(--bg)}
+.price-btn-dark:hover{box-shadow:0 6px 20px rgba(0,0,0,.15);transform:translateY(-1px)}
+.price-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--fg)}
+.price-btn-outline:hover{border-color:var(--fg)}
 
-        .hero-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid var(--border-strong); padding: 7px 16px;
-            border-radius: 100px; font-size: 0.72rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--green); margin-bottom: 28px;
-            background: var(--green-light); width: fit-content;
-        }
-        .hero-tag .pulse {
-            width: 6px; height: 6px; background: var(--green-accent);
-            border-radius: 50%; box-shadow: 0 0 10px rgba(20,160,101,0.5);
-            animation: pulse 2s infinite;
-        }
+/* CTA */
+.cta{max-width:800px;margin:0 auto;padding:100px 24px;text-align:center}
+.cta-box{background:var(--fg);color:var(--bg);border-radius:24px;padding:64px 48px;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(37,99,235,.15) 0%,transparent 60%);pointer-events:none}
+.cta-box h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-1px;margin-bottom:16px;position:relative}
+.cta-box p{font-size:16px;color:rgba(255,255,255,.65);margin-bottom:32px;position:relative}
+.cta-btn{display:inline-block;background:white;color:var(--fg);padding:16px 40px;border-radius:100px;font-size:15px;font-weight:700;transition:all .2s;position:relative}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.2)}
+.cta-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:16px;position:relative}
 
-        h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.8rem, 4.5vw, 4.5rem);
-            line-height: 1.05; letter-spacing: -2px;
-            margin-bottom: 24px; font-weight: 400;
-            color: var(--text);
-        }
-        h1 .accent { color: var(--green); }
+/* FOOTER */
+footer{max-width:1100px;margin:0 auto;padding:48px 24px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.footer-left{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:24px;font-size:13px;color:var(--muted)}
+.footer-links a:hover{color:var(--fg)}
 
-        .hero-sub {
-            font-size: 1.1rem; color: var(--text-dim); max-width: 480px;
-            margin-bottom: 36px; line-height: 1.75;
-        }
+/* MOBILE */
+@media(max-width:768px){
+.nav-links{display:none}
+.stats{gap:32px}
+.industry-grid{grid-template-columns:repeat(2,1fr)}
+.cta-box{padding:40px 24px}
+footer{flex-direction:column;text-align:center}
+}
 
-        .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--green); color: #fff;
-            padding: 16px 32px; border-radius: 10px;
-            font-weight: 700; font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 24px rgba(10,75,51,0.2);
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(10,75,51,0.35);
-        }
-        .btn-secondary {
-            display: inline-flex; align-items: center; gap: 8px;
-            border: 1px solid var(--border-strong); color: var(--text);
-            padding: 16px 32px; border-radius: 10px;
-            font-weight: 600; font-size: 0.95rem;
-            transition: all 0.2s; background: transparent;
-        }
-        .btn-secondary:hover {
-            border-color: var(--green); background: var(--green-light);
-        }
-
-        .hero-proof {
-            margin-top: 48px; padding-top: 28px;
-            border-top: 1px solid var(--border);
-            display: flex; gap: 40px;
-        }
-        .proof-item h3 {
-            font-size: 1.6rem; font-weight: 800; margin-bottom: 2px;
-            color: var(--green);
-        }
-        .proof-item p {
-            font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--text-dim); font-weight: 600;
-        }
-
-        /* ─── HERO RIGHT: LIVE SIMULATION ─── */
-        .hero-visual {
-            background: var(--bg-panel);
-            display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
-            border-left: 1px solid var(--border);
-        }
-
-        /* Subtle animated gradient background */
-        .hero-visual::before {
-            content: '';
-            position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse at 30% 20%, rgba(10,75,51,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(20,160,101,0.04) 0%, transparent 50%);
-            animation: bgShift 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes bgShift {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .ai-transcript-box {
-            position: relative; z-index: 5;
-            background: rgba(255,255,255,0.75);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(10,75,51,0.12);
-            padding: 36px; border-radius: 18px;
-            width: 82%; max-width: 440px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04);
-        }
-
-        .transcript-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--green); font-weight: 700;
-        }
-
-        .waveform {
-            display: flex; align-items: center; gap: 2px; height: 16px;
-        }
-        .waveform span {
-            display: block; width: 3px; background: var(--green-accent);
-            border-radius: 2px; animation: wave 1.2s ease-in-out infinite;
-        }
-        .waveform span:nth-child(1) { height: 6px; animation-delay: 0s; }
-        .waveform span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
-        .waveform span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
-        .waveform span:nth-child(4) { height: 14px; animation-delay: 0.45s; }
-        .waveform span:nth-child(5) { height: 6px; animation-delay: 0.6s; }
-
-        @keyframes wave {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.4); }
-        }
-
-        .transcript-label {
-            font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--text-dim); font-weight: 700; margin-bottom: 8px;
-        }
-
-        #dynamic-text {
-            font-size: 1.05rem; line-height: 1.65; color: var(--text);
-            min-height: 5.5em; font-weight: 400;
-        }
-
-        .transcript-meta {
-            margin-top: 20px; padding-top: 16px;
-            border-top: 1px solid var(--border);
-            display: flex; gap: 24px;
-        }
-        .meta-item {
-            font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--text-dim); font-weight: 600;
-        }
-        .meta-item span { color: var(--green); font-weight: 800; }
-
-        /* ─── SECTIONS ─── */
-        .section { padding: 110px 0; border-top: 1px solid var(--border); }
-
-        .section-label {
-            font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--green); font-weight: 700;
-            margin-bottom: 14px;
-        }
-        .section h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            letter-spacing: -1px; margin-bottom: 18px;
-            font-weight: 400; line-height: 1.15; color: var(--text);
-        }
-        .section-intro {
-            color: var(--text-dim); font-size: 1.05rem;
-            max-width: 560px; margin-bottom: 48px; line-height: 1.75;
-        }
-
-        /* PAIN CARDS */
-        .pain-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-        }
-        .pain-card {
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 32px 26px; background: var(--bg-card);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .pain-card:hover {
-            border-color: var(--border-strong);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-        }
-        .pain-number {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.6rem; color: var(--green);
-            line-height: 1; margin-bottom: 10px;
-        }
-        .pain-card h3 {
-            font-size: 0.95rem; font-weight: 700;
-            margin-bottom: 8px; color: var(--text);
-        }
-        .pain-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
-
-        /* STEPS */
-        .steps-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-        }
-        .step-card {
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 32px 26px; background: var(--bg-card);
-            position: relative; overflow: hidden;
-        }
-        .step-card::before {
-            content: attr(data-step);
-            position: absolute; top: -14px; right: 14px;
-            font-family: 'DM Serif Display', serif;
-            font-size: 7rem; color: rgba(10,75,51,0.04);
-            line-height: 1; pointer-events: none;
-        }
-        .step-icon {
-            font-size: 1.4rem; margin-bottom: 18px;
-            width: 44px; height: 44px; display: flex;
-            align-items: center; justify-content: center;
-            background: var(--green-light); border-radius: 10px;
-        }
-        .step-card h3 {
-            font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;
-        }
-        .step-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
-
-        /* DEMO SECTION */
-        .demo-section {
-            border-top: 1px solid var(--border); padding: 110px 0;
-            background: var(--green-light);
-        }
-        .demo-box {
-            border: 1px solid var(--border-strong); border-radius: 20px;
-            padding: 52px; text-align: center;
-            background: var(--bg-card);
-            max-width: 640px; margin: 0 auto;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.04);
-        }
-        .demo-box h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2rem; margin-bottom: 14px; font-weight: 400;
-        }
-        .demo-box p {
-            color: var(--text-dim); margin-bottom: 32px; font-size: 1rem;
-        }
-        .demo-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: var(--green); color: #fff;
-            padding: 18px 40px; border-radius: 12px;
-            font-size: 1.1rem; font-weight: 700;
-            box-shadow: 0 8px 28px rgba(10,75,51,0.25);
-            transition: all 0.3s;
-        }
-        .demo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 40px rgba(10,75,51,0.35);
-        }
-        .demo-note {
-            margin-top: 16px; font-size: 0.75rem;
-            color: var(--text-dim); text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* PRICING */
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 16px; max-width: 760px;
-        }
-        .price-card {
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 36px 28px; background: var(--bg-card);
-        }
-        .price-card.featured {
-            border-color: var(--green);
-            box-shadow: 0 0 0 1px var(--green), 0 8px 24px rgba(10,75,51,0.08);
-        }
-        .price-label {
-            font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 1.5px; color: var(--text-dim);
-            font-weight: 700; margin-bottom: 10px;
-        }
-        .price-amount {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.6rem; color: var(--text); margin-bottom: 2px;
-        }
-        .price-period { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 22px; }
-        .price-features {
-            list-style: none; padding: 0;
-            border-top: 1px solid var(--border); padding-top: 18px;
-        }
-        .price-features li {
-            font-size: 0.88rem; color: var(--text-dim);
-            padding: 7px 0; display: flex; align-items: center; gap: 10px;
-        }
-        .price-features li::before {
-            content: '→'; color: var(--green); font-weight: 700;
-        }
-
-        /* FINAL CTA */
-        .final-cta {
-            padding: 110px 0; border-top: 1px solid var(--border);
-            text-align: center;
-        }
-        .final-cta h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(1.8rem, 3.5vw, 3rem);
-            margin-bottom: 16px; font-weight: 400;
-        }
-        .final-cta p {
-            color: var(--text-dim); max-width: 460px;
-            margin: 0 auto 36px auto; font-size: 1rem;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 0 28px 0; background: var(--bg);
-        }
-        .footer-inner {
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .footer-brand {
-            font-weight: 800; letter-spacing: -1px; font-size: 1.1rem;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .footer-brand .mark {
-            width: 4px; height: 18px; background: var(--green);
-            border-radius: 3px 0 0 3px;
-        }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a { font-size: 0.85rem; color: var(--text-dim); }
-        .footer-links a:hover { color: var(--text); }
-        .footer-copy {
-            margin-top: 28px; padding-top: 18px;
-            border-top: 1px solid var(--border);
-            text-align: center; font-size: 0.78rem; color: var(--text-dim);
-        }
-
-        /* ─── ANIMATIONS ─── */
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-        .fade-in {
-            opacity: 0; transform: translateY(20px);
-            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
-        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; }
-            .hero-content { padding: 120px 6vw 60px 6vw; }
-            .hero-visual { min-height: 50vh; border-left: none; border-top: 1px solid var(--border); }
-            .pain-grid, .steps-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .hero-proof { flex-direction: column; gap: 20px; }
-            .hero-ctas { flex-direction: column; }
-            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-            .demo-box { padding: 36px 24px; }
-            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; }
-        }
-    </style>
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero,.industries,.how,.pricing,.cta{animation:fadeUp .8s ease both}
+</style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="nav-inner">
-            <div class="nav-logo">
-                <span class="mark"></span> seltr
-            </div>
-            <div class="nav-links">
-                <a href="#problem">Why Seltr</a>
-                <a href="#how">How It Works</a>
-                <a href="#pricing">Pricing</a>
-                <a href="https://zcal.co/mario/30min" target="_blank" class="nav-cta">Book a Demo</a>
-            </div>
-        </div>
-    </nav>
+<nav>
+<div class="nav-inner">
+<div class="logo">seltr<span>.</span></div>
+<div class="nav-links">
+<a href="#industries">Industries</a>
+<a href="#how">How It Works</a>
+<a href="#pricing">Pricing</a>
+</div>
+<a href="https://zcal.co/mario/30min" class="nav-cta">Book Free Demo</a>
+</div>
+</nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-tag fade-in">
-                <span class="pulse"></span>
-                Built for Home Service Businesses
-            </div>
+<section class="hero">
+<div class="hero-badge"><span class="dot"></span> AI-Powered • 24/7 • Every Call Answered</div>
+<h1>Your business<br>never misses a <span class="gradient">call again.</span></h1>
+<p>An AI voice receptionist that answers your phone 24/7 — books appointments, captures leads, and sounds completely natural. For any business that depends on phone calls.</p>
+<div class="hero-buttons">
+<a href="https://zcal.co/mario/30min" class="btn-primary">Book Free Demo →</a>
+<a href="#how" class="btn-secondary">See How It Works</a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num">&lt;1s</div><div class="stat-label">Answer Time</div></div>
+<div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Availability</div></div>
+<div class="stat"><div class="stat-num">90%</div><div class="stat-label">Cheaper Than a Receptionist</div></div>
+</div>
+</section>
 
-            <h1 class="fade-in d1">
-                Stop losing jobs to <span class="accent">missed calls.</span>
-            </h1>
+<section class="industries" id="industries">
+<div class="section-label">Industries We Serve</div>
+<div class="section-title">Built for businesses that<br>live and die by the phone.</div>
+<div class="section-sub">Every missed call is a customer going to your competitor. We serve any industry where phone calls mean revenue.</div>
+<div class="industry-grid">
+<div class="industry-card"><div class="industry-icon">🦷</div><div class="industry-name">Dental Clinics</div><div class="industry-value">$850 per missed patient</div></div>
+<div class="industry-card"><div class="industry-icon">💆</div><div class="industry-name">Med Spas & Aesthetics</div><div class="industry-value">$504 per missed treatment</div></div>
+<div class="industry-card"><div class="industry-icon">⚖️</div><div class="industry-name">Law Firms</div><div class="industry-value">$10K+ per missed case</div></div>
+<div class="industry-card"><div class="industry-icon">🏠</div><div class="industry-name">Real Estate</div><div class="industry-value">$500K+ per missed deal</div></div>
+<div class="industry-card"><div class="industry-icon">🐾</div><div class="industry-name">Veterinary Clinics</div><div class="industry-value">$300 per missed patient</div></div>
+<div class="industry-card"><div class="industry-icon">🔧</div><div class="industry-name">HVAC & Plumbing</div><div class="industry-value">$2,500 per missed job</div></div>
+<div class="industry-card"><div class="industry-icon">🚗</div><div class="industry-name">Auto Dealerships</div><div class="industry-value">$35K per missed buyer</div></div>
+<div class="industry-card"><div class="industry-icon">💪</div><div class="industry-name">Gyms & Fitness</div><div class="industry-value">$600/yr per missed member</div></div>
+<div class="industry-card"><div class="industry-icon">💇</div><div class="industry-name">Salons & Beauty</div><div class="industry-value">$200 per missed client</div></div>
+<div class="industry-card"><div class="industry-icon">🧠</div><div class="industry-name">Therapists & Psych</div><div class="industry-value">$150 per missed session</div></div>
+<div class="industry-card"><div class="industry-icon">👁️</div><div class="industry-name">Optometry</div><div class="industry-value">$400 per missed exam</div></div>
+<div class="industry-card"><div class="industry-icon">🏫</div><div class="industry-name">Academies & Schools</div><div class="industry-value">$2K per missed enrollment</div></div>
+</div>
+</section>
 
-            <p class="hero-sub fade-in d2">
-                Your AI receptionist answers every call in under 1 second — booking appointments, capturing customer info, and qualifying leads 24/7. Even when you're on a job.
-            </p>
+<section class="how" id="how">
+<div class="section-label">How It Works</div>
+<div class="section-title">Live in 48 hours.<br>No hardware. No hassle.</div>
+<div class="section-sub">We configure your AI receptionist to sound and act like your best employee — then connect it to your existing phone line.</div>
+<div class="steps">
+<div class="step">
+<div class="step-num">01</div>
+<div class="step-icon">🎯</div>
+<h3>We learn your business</h3>
+<p>15-minute call to understand your services, pricing, hours, and how you want calls handled. We build a custom AI agent trained on YOUR business.</p>
+</div>
+<div class="step">
+<div class="step-num">02</div>
+<div class="step-icon">📞</div>
+<h3>We connect your phone</h3>
+<p>Simple call forwarding from your existing number. When you can't answer, calls go to your AI. No new number, no app to install, no tech to learn.</p>
+</div>
+<div class="step">
+<div class="step-num">03</div>
+<div class="step-icon">🚀</div>
+<h3>You never miss again</h3>
+<p>Every call answered. Every lead captured. Every appointment booked. You get a WhatsApp summary after each call with the customer's details.</p>
+</div>
+</div>
+</section>
 
-            <div class="hero-ctas fade-in d3">
-                <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
-                    Book Free Demo →
-                </a>
-                <a href="#how" class="btn-secondary">
-                    See How It Works ↓
-                </a>
-            </div>
+<section class="pricing" id="pricing">
+<div class="section-label">Pricing</div>
+<div class="section-title">Less than a part-time receptionist.<br>Better than a full-time one.</div>
+<div class="section-sub">No contracts. Cancel anytime. Your AI receptionist pays for itself with the first appointment it books.</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price-label">Setup</div>
+<div class="price-amount">$997 <span>one-time</span></div>
+<div class="price-desc">Custom AI agent built and trained specifically for your business.</div>
+<ul class="price-features">
+<li>Custom AI voice agent trained on your business</li>
+<li>Dedicated phone number</li>
+<li>Calendar & CRM integration</li>
+<li>Conversation flow design</li>
+<li>Live in 48 hours</li>
+</ul>
+<a href="https://zcal.co/mario/30min" class="price-btn price-btn-outline">Get Started</a>
+</div>
+<div class="price-card featured">
+<div class="price-label">Monthly</div>
+<div class="price-amount">$497 <span>/month</span></div>
+<div class="price-desc">Everything handled for you. Focus on your work — we handle the phone.</div>
+<ul class="price-features">
+<li>Every inbound call answered 24/7</li>
+<li>Appointment booking & lead capture</li>
+<li>WhatsApp/SMS summaries after each call</li>
+<li>Monthly optimization & reporting</li>
+<li>Priority support</li>
+</ul>
+<a href="https://zcal.co/mario/30min" class="price-btn price-btn-dark">Book Free Demo →</a>
+</div>
+</div>
+</section>
 
-            <div class="hero-proof fade-in d4">
-                <div class="proof-item">
-                    <h3>&lt; 1s</h3>
-                    <p>Answer Time</p>
-                </div>
-                <div class="proof-item">
-                    <h3>24/7</h3>
-                    <p>Availability</p>
-                </div>
-                <div class="proof-item">
-                    <h3>96%</h3>
-                    <p>Cheaper Than a Receptionist</p>
-                </div>
-            </div>
-        </div>
+<section class="cta">
+<div class="cta-box">
+<h2>Ready to answer<br>every call?</h2>
+<p>Book a free 15-minute demo. Hear your AI receptionist live — customized for your business.</p>
+<a href="https://zcal.co/mario/30min" class="cta-btn">Book Free Demo →</a>
+<div class="cta-sub">15 MINUTES · NO COMMITMENT · HEAR IT LIVE</div>
+</div>
+</section>
 
-        <!-- RIGHT PANEL: LIVE SIMULATION -->
-        <div class="hero-visual">
-            <div class="ai-transcript-box fade-in d2">
-                <div class="transcript-header">
-                    <div class="waveform">
-                        <span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                    AI Agent — Live Call
-                </div>
-
-                <div class="transcript-label">Caller → FastFlow Plumbing</div>
-                <div id="dynamic-text"></div>
-
-                <div class="transcript-meta">
-                    <div class="meta-item"><span>●</span> Connected</div>
-                    <div class="meta-item">Latency: <span>340ms</span></div>
-                    <div class="meta-item">Lead: <span>Captured</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROBLEM -->
-    <section class="section" id="problem">
-        <div class="container">
-            <div class="section-label">The Problem</div>
-            <h2>Every missed call is a job that went<br>to your competitor.</h2>
-            <p class="section-intro">
-                You can't answer the phone when you're under a sink or on a roof. But your customers won't wait — they call the next company on the list.
-            </p>
-
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <div class="pain-number">62%</div>
-                    <h3>Calls Go Unanswered</h3>
-                    <p>The majority of calls to small service businesses are never picked up. Each one is a potential $500–$5,000 job lost.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-number">78%</div>
-                    <h3>Call Your Competitor</h3>
-                    <p>Customers who can't reach you don't leave a voicemail — they immediately call someone else.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-number">$126K</div>
-                    <h3>Lost Per Year</h3>
-                    <p>The average small business loses over $126,000 annually in revenue from missed calls alone.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how">
-        <div class="container">
-            <div class="section-label">How It Works</div>
-            <h2>Live in 48 hours. No hardware. No hassle.</h2>
-            <p class="section-intro">
-                We configure your AI receptionist to sound and act like your best employee — then connect it to your existing phone line.
-            </p>
-
-            <div class="steps-grid">
-                <div class="step-card" data-step="1">
-                    <div class="step-icon">🎯</div>
-                    <h3>We Learn Your Business</h3>
-                    <p>15-minute call to understand your services, pricing, service area, and how you want calls handled. That's all we need.</p>
-                </div>
-                <div class="step-card" data-step="2">
-                    <div class="step-icon">🤖</div>
-                    <h3>We Build Your Agent</h3>
-                    <p>Within 24 hours, your custom AI receptionist is ready — trained on your business, your tone, your booking process.</p>
-                </div>
-                <div class="step-card" data-step="3">
-                    <div class="step-icon">📞</div>
-                    <h3>You Never Miss Again</h3>
-                    <p>Every call answered. Every lead captured. Every appointment booked. You focus on the work — your AI handles the phone.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEMO -->
-    <section class="demo-section" id="demo">
-        <div class="container">
-            <div class="demo-box">
-                <div class="section-label" style="text-align:center;">See It In Action</div>
-                <h2>Book a free demo call.<br>Hear your AI receptionist live.</h2>
-                <p>We'll set up a custom AI agent for your business in 15 minutes — then you call it yourself and hear exactly how it handles your customers.</p>
-
-                <a href="https://zcal.co/mario/30min" target="_blank" class="demo-btn">
-                    Book Your Free Demo →
-                </a>
-
-                <div class="demo-note">
-                    15 minutes · No commitment · See real results
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-        <div class="container">
-            <div class="section-label">Pricing</div>
-            <h2>Less than a part-time receptionist.<br>Better than a full-time one.</h2>
-            <p class="section-intro">
-                No contracts. Cancel anytime. Your AI receptionist pays for itself with the first job it books.
-            </p>
-
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div class="price-label">Setup</div>
-                    <div class="price-amount">$1,500</div>
-                    <div class="price-period">One-time configuration</div>
-                    <ul class="price-features">
-                        <li>Custom AI agent trained on your business</li>
-                        <li>Dedicated phone number</li>
-                        <li>CRM & calendar integration</li>
-                        <li>Live in 48 hours</li>
-                    </ul>
-                </div>
-                <div class="price-card featured">
-                    <div class="price-label" style="color: var(--green);">Monthly</div>
-                    <div class="price-amount">$497<span style="font-size:1rem;color:var(--text-dim);">/mo</span></div>
-                    <div class="price-period">Everything handled for you</div>
-                    <ul class="price-features">
-                        <li>Unlimited inbound calls answered</li>
-                        <li>Monthly optimization & reporting</li>
-                        <li>Script updates as needed</li>
-                        <li>Priority support</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="final-cta">
-        <div class="container">
-            <h2>Ready to answer every call?</h2>
-            <p>Book a free 15-minute consultation. We'll show you exactly how many calls you're missing — and how to capture every one.</p>
-            <a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">
-                Book Free Demo →
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">
-                    <span class="mark"></span> seltr
-                </div>
-                <div class="footer-links">
-                    <a href="mailto:mario@seltr.es">mario@seltr.es</a>
-                    <a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
-                </div>
-            </div>
-            <div class="footer-copy">
-                © 2026 Seltr. AI-powered receptionist for home service businesses.
-            </div>
-        </div>
-    </footer>
-
-    <!-- TYPEWRITER SIMULATION -->
-    <script>
-        const el = document.getElementById('dynamic-text');
-        const conversation = [
-            { speaker: 'AI', text: '"Thanks for calling FastFlow Plumbing! How can I help you today?"' },
-            { speaker: 'Caller', text: '"Hi, I\'ve got a leak under my kitchen sink — it\'s been dripping all morning."' },
-            { speaker: 'AI', text: '"I\'m sorry to hear that. I\'d be happy to get a technician out to you. Is this an emergency, or can it wait for a scheduled appointment?"' },
-            { speaker: 'Caller', text: '"It\'s getting worse, I think I need someone today if possible."' },
-            { speaker: 'AI', text: '"Understood — I\'ll mark this as urgent. Can I get your name, please?"' },
-            { speaker: 'Caller', text: '"Sarah Mitchell."' },
-            { speaker: 'AI', text: '"And the best number to reach you, Sarah?"' },
-            { speaker: 'Caller', text: '"555-0142."' },
-            { speaker: 'AI', text: '"Perfect. What\'s the address where you need service?"' },
-            { speaker: 'Caller', text: '"4821 Maple Drive."' },
-            { speaker: 'AI', text: '"Got it — Sarah Mitchell, 555-0142, 4821 Maple Drive, urgent kitchen sink leak. A technician will call you within 30 minutes to confirm timing. Is there anything else I can help with?"' },
-            { speaker: 'Caller', text: '"No, that\'s great. Thanks!"' },
-            { speaker: 'AI', text: '"Thanks for calling FastFlow Plumbing, Sarah. We\'ll get this sorted for you. Have a great day!"' }
-        ];
-
-        let lineIdx = 0;
-        let charIdx = 0;
-        let isDeleting = false;
-        let pauseAfterLine = false;
-
-        function getDisplayText() {
-            const item = conversation[lineIdx];
-            const label = item.speaker === 'AI' ? '🤖 AI: ' : '👤 Caller: ';
-            return label + item.text;
-        }
-
-        function type() {
-            const fullText = getDisplayText();
-
-            if (!isDeleting && !pauseAfterLine) {
-                charIdx++;
-                el.innerHTML = fullText.substring(0, charIdx);
-
-                if (charIdx >= fullText.length) {
-                    pauseAfterLine = true;
-                    setTimeout(() => {
-                        pauseAfterLine = false;
-                        isDeleting = true;
-                        type();
-                    }, 2200);
-                    return;
-                }
-                setTimeout(type, 18 + Math.random() * 25);
-            } else if (isDeleting) {
-                charIdx -= 3;
-                if (charIdx <= 0) {
-                    charIdx = 0;
-                    isDeleting = false;
-                    lineIdx = (lineIdx + 1) % conversation.length;
-                    setTimeout(type, 400);
-                    return;
-                }
-                el.innerHTML = fullText.substring(0, charIdx);
-                setTimeout(type, 8);
-            }
-        }
-
-        setTimeout(type, 1200);
-    </script>
+<footer>
+<div class="footer-left">© 2026 Seltr. AI-powered phone receptionist.</div>
+<div class="footer-links">
+<a href="mailto:mario@seltr.es">mario@seltr.es</a>
+<a href="https://linkedin.com/company/seltr" target="_blank">LinkedIn</a>
+</div>
+</footer>
 
 </body>
 </html>
