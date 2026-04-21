@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seltr — AI Phone Receptionist for Every Business</title>
-<meta name="description" content="Your AI receptionist answers every call 24/7. Books appointments, captures leads, and never misses a customer.">
+<title>Seltr — AI Receptionist for Clinics</title>
+<meta name="description" content="Stop losing patients from missed calls. AI receptionist for dental, optometry and aesthetic clinics.">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg:#050505;--bg-card:#0c0c0c;--text:#f0efe9;--text-dim:#6b6b6b;--accent:#c8ff3e;--accent-dim:rgba(200,255,62,0.08);--brand:#0a4b33;--border:#1a1a1a;--radius:14px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -23,259 +24,177 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rg
 .nav-links a:hover{color:var(--text)}
 .nav-cta{background:var(--accent)!important;color:var(--bg)!important;padding:10px 22px!important;border-radius:8px;font-weight:600!important;font-size:.85rem!important;transition:transform .2s,box-shadow .2s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,255,62,.25)}
-.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 100px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(200,255,62,.04) 0%,transparent 70%);pointer-events:none}
-.hero-content{max-width:720px;position:relative;z-index:2}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);padding:8px 18px;border-radius:100px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:32px;background:var(--accent-dim)}
-.hero-tag .pulse{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px rgba(200,255,62,.6);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5.5rem);line-height:1;letter-spacing:-2px;margin-bottom:28px;font-weight:400}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 100px}
+.hero-content{max-width:720px}
+.hero-tag{display:inline-flex;gap:8px;border:1px solid var(--border);padding:8px 18px;border-radius:100px;font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:32px;background:var(--accent-dim)}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5rem);margin-bottom:24px}
 h1 .accent{color:var(--accent)}
-.hero-sub{font-size:1.15rem;color:var(--text-dim);max-width:520px;margin-bottom:44px;line-height:1.75}
-.hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--bg);padding:18px 36px;border-radius:10px;font-weight:700;font-size:.95rem;transition:all .3s;box-shadow:0 8px 30px rgba(200,255,62,.2)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(200,255,62,.35)}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--text);padding:18px 36px;border-radius:10px;font-weight:600;font-size:.95rem;transition:all .3s;background:transparent}
-.btn-secondary:hover{border-color:var(--text-dim);background:rgba(255,255,255,.03)}
-.hero-proof{margin-top:64px;padding-top:32px;border-top:1px solid var(--border);display:flex;gap:48px}
-.proof-item h3{font-size:1.8rem;font-weight:700;margin-bottom:4px;font-family:'DM Serif Display',serif}
-.proof-item p{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);font-weight:600}
-.section{padding:120px 0;border-top:1px solid var(--border)}
-.section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:700;margin-bottom:16px}
-.section h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-1px;margin-bottom:20px;font-weight:400;line-height:1.15}
-.section-intro{color:var(--text-dim);font-size:1.05rem;max-width:600px;margin-bottom:56px;line-height:1.75}
-.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.industry-card{border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;background:var(--bg-card);transition:all .3s;text-align:center;cursor:default}
-.industry-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 32px rgba(200,255,62,.06)}
-.industry-icon{font-size:2rem;margin-bottom:12px}
-.industry-name{font-weight:700;font-size:.9rem;margin-bottom:4px}
-.industry-value{font-size:.75rem;color:var(--accent);font-weight:600}
-.demo-section{border-top:1px solid var(--border);padding:120px 0;background:radial-gradient(ellipse at 30% 50%,rgba(200,255,62,.03) 0%,transparent 60%)}
-.demo-container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.demo-text h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:16px;font-weight:400;line-height:1.15}
-.demo-text p{color:var(--text-dim);font-size:1rem;line-height:1.7;margin-bottom:28px}
-.demo-phone{border:1px solid var(--border);border-radius:20px;background:var(--bg-card);overflow:hidden}
-.demo-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(200,255,62,.03)}
-.demo-header-left{display:flex;align-items:center;gap:10px}
-.demo-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
-.demo-caller{font-weight:700;font-size:.85rem}
-.demo-caller-sub{font-size:.7rem;color:var(--text-dim)}
-.demo-status{display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;color:var(--accent)}
-.demo-status .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite}
-.demo-messages{padding:20px;display:flex;flex-direction:column;gap:12px;min-height:340px}
-.msg{max-width:85%;padding:12px 16px;border-radius:14px;font-size:.82rem;line-height:1.5;opacity:0;animation:msgIn .4s ease forwards}
-.msg-ai{background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);align-self:flex-start;border-bottom-left-radius:4px}
-.msg-caller{background:rgba(255,255,255,.06);border:1px solid var(--border);align-self:flex-end;border-bottom-right-radius:4px}
-.msg-label{font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;font-weight:700}
-.msg:nth-child(1){animation-delay:.3s}.msg:nth-child(2){animation-delay:1.2s}.msg:nth-child(3){animation-delay:2.4s}.msg:nth-child(4){animation-delay:3.6s}.msg:nth-child(5){animation-delay:4.8s}.msg:nth-child(6){animation-delay:6s}.msg:nth-child(7){animation-delay:7.2s}.msg:nth-child(8){animation-delay:8.4s}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.demo-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.demo-meta{font-size:.7rem;color:var(--text-dim)}
-.demo-meta span{color:var(--accent);font-weight:700}
-.demo-badge{font-size:.65rem;background:rgba(200,255,62,.1);color:var(--accent);padding:4px 10px;border-radius:100px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.hero-sub{color:var(--text-dim);margin-bottom:40px}
+.btn-primary{background:var(--accent);color:var(--bg);padding:16px 28px;border-radius:8px;font-weight:700}
+.btn-secondary{border:1px solid var(--border);padding:16px 28px;border-radius:8px}
+.hero-proof{display:flex;gap:40px;margin-top:40px}
+
+.section{padding:100px 0;border-top:1px solid var(--border)}
+.section h2{font-family:'DM Serif Display',serif;font-size:2.5rem;margin-bottom:20px}
+.section-intro{color:var(--text-dim);margin-bottom:40px}
+
+.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.industry-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius);text-align:center}
+
+.demo-section{padding:100px 0;border-top:1px solid var(--border)}
+
 .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pain-card{border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;background:var(--bg-card);transition:border-color .3s}
-.pain-card:hover{border-color:#333}
-.pain-number{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--accent);line-height:1;margin-bottom:12px}
-.pain-card h3{font-size:1rem;font-weight:700;margin-bottom:10px}
-.pain-card p{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.pain-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.step-card{border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;background:var(--bg-card);position:relative;overflow:hidden}
-.step-card::before{content:attr(data-step);position:absolute;top:-10px;right:16px;font-family:'DM Serif Display',serif;font-size:7rem;color:rgba(200,255,62,.04);line-height:1;pointer-events:none}
-.step-icon{font-size:1.6rem;margin-bottom:20px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--accent-dim);border-radius:12px}
-.step-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px}
-.step-card p{font-size:.9rem;color:var(--text-dim);line-height:1.6}
-.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:800px}
-.price-card{border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;background:var(--bg-card)}
-.price-card.featured{border-color:var(--accent);background:linear-gradient(135deg,rgba(200,255,62,.04),transparent)}
-.price-label{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);font-weight:700;margin-bottom:12px}
-.price-amount{font-family:'DM Serif Display',serif;font-size:2.8rem;margin-bottom:4px}
-.price-period{font-size:.85rem;color:var(--text-dim);margin-bottom:24px}
-.price-features{list-style:none;padding:0;border-top:1px solid var(--border);padding-top:20px}
-.price-features li{font-size:.9rem;color:var(--text-dim);padding:8px 0;display:flex;align-items:center;gap:10px}
-.price-features li::before{content:'→';color:var(--accent);font-weight:700}
-.price-note{font-size:.78rem;color:var(--text-dim);margin-top:16px;font-style:italic}
-.final-cta{padding:120px 0;border-top:1px solid var(--border);text-align:center}
-.final-cta h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.5rem);margin-bottom:20px;font-weight:400}
-.final-cta p{color:var(--text-dim);max-width:500px;margin:0 auto 40px;font-size:1.05rem}
-footer{border-top:1px solid var(--border);padding:48px 0 32px}
-.footer-inner{display:flex;justify-content:space-between;align-items:center}
-.footer-brand{font-weight:700;letter-spacing:-1px;display:flex;align-items:center;gap:8px}
-.footer-brand .mark{width:3px;height:16px;background:var(--brand);border-radius:2px 0 0 2px}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:.85rem;color:var(--text-dim)}
-.footer-links a:hover{color:var(--text)}
-.footer-copy{margin-top:32px;padding-top:20px;border-top:1px solid var(--border);text-align:center;font-size:.8rem;color:var(--text-dim)}
-.fade-in{opacity:0;transform:translateY(24px);animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards}
-.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-@media(max-width:768px){
-.nav-links a:not(.nav-cta){display:none}
-.industry-grid{grid-template-columns:repeat(2,1fr)}
-.pain-grid,.steps-grid{grid-template-columns:1fr}
-.pricing-grid{grid-template-columns:1fr}
-.hero-proof{flex-direction:column;gap:24px}
-.hero-ctas{flex-direction:column}
-.btn-primary,.btn-secondary{width:100%;justify-content:center}
-.demo-container{grid-template-columns:1fr}
-.footer-inner{flex-direction:column;gap:20px;text-align:center}
-.footer-links{flex-wrap:wrap;justify-content:center}
-}
+.step-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.price-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+
+.final-cta{text-align:center;padding:100px 0;border-top:1px solid var(--border)}
+
+footer{padding:40px 0;border-top:1px solid var(--border)}
 </style>
 </head>
+
 <body>
 
-<nav><div class="nav-inner">
+<nav>
+<div class="nav-inner">
 <div class="nav-logo"><span class="mark"></span> seltr</div>
 <div class="nav-links">
-<a href="#industries">Industries</a>
-<a href="#demo">Live Demo</a>
-<a href="#how">How It Works</a>
+<a href="#industries">Clinics</a>
+<a href="#demo">Demo</a>
+<a href="#how">How</a>
 <a href="#pricing">Pricing</a>
-<a href="https://zcal.co/mario/30min" target="_blank" class="nav-cta">Book a Demo</a>
+<a href="https://zcal.co/mario/30min" class="nav-cta">Book Demo</a>
 </div>
-</div></nav>
+</div>
+</nav>
 
-<section class="hero"><div class="container"><div class="hero-content">
-<div class="hero-tag fade-in"><span class="pulse"></span> AI-Powered · 24/7 · Every Industry</div>
-<h1 class="fade-in d1">Your business never misses a <span class="accent">call again.</span></h1>
-<p class="hero-sub fade-in d2">An AI voice receptionist that answers your phone 24/7 — booking appointments, capturing leads, and sounding completely natural. For any business that depends on phone calls.</p>
-<div class="hero-ctas fade-in d3">
-<a href="#demo" class="btn-primary"><span>📞</span> See It In Action</a>
-<a href="https://zcal.co/mario/30min" target="_blank" class="btn-secondary">Book Free Demo →</a>
-</div>
-<div class="hero-proof fade-in d4">
-<div class="proof-item"><h3>&lt; 1s</h3><p>Answer Time</p></div>
-<div class="proof-item"><h3>24/7</h3><p>Availability</p></div>
-<div class="proof-item"><h3>90%</h3><p>Cheaper Than a Receptionist</p></div>
-</div>
-</div></div></section>
+<section class="hero">
+<div class="container">
+<div class="hero-content">
 
-<section class="section" id="industries"><div class="container">
-<div class="section-label">Industries We Serve</div>
-<h2>Built for businesses that live and die<br>by the phone.</h2>
-<p class="section-intro">Every missed call is a customer going to your competitor. We serve any industry where phone calls mean revenue.</p>
+<div class="hero-tag">AI Receptionist for Clinics · 24/7</div>
+
+<h1>Stop losing patients from missed <span class="accent">calls.</span></h1>
+
+<p class="hero-sub">
+Dental, optometry and aesthetic clinics lose thousands every month from missed calls. 
+Seltr answers instantly and books appointments automatically.
+</p>
+
+<div>
+<a href="#demo" class="btn-primary">See Demo</a>
+<a href="https://zcal.co/mario/30min" class="btn-secondary">Book Demo</a>
+</div>
+
+<div class="hero-proof">
+<div><strong>&lt;1s</strong><br>Answer</div>
+<div><strong>24/7</strong><br>Coverage</div>
+<div><strong>2-3</strong><br>Patients = ROI</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="industries">
+<div class="container">
+
+<h2>Built for clinics</h2>
+<p class="section-intro">Every missed call is a lost patient.</p>
+
 <div class="industry-grid">
-<div class="industry-card"><div class="industry-icon">🦷</div><div class="industry-name">Dental Clinics</div><div class="industry-value">$850 per missed patient</div></div>
-<div class="industry-card"><div class="industry-icon">💆</div><div class="industry-name">Med Spas</div><div class="industry-value">$504 per missed treatment</div></div>
-<div class="industry-card"><div class="industry-icon">⚖️</div><div class="industry-name">Law Firms</div><div class="industry-value">$10K+ per missed case</div></div>
-<div class="industry-card"><div class="industry-icon">🏠</div><div class="industry-name">Real Estate</div><div class="industry-value">$500K+ per missed deal</div></div>
-<div class="industry-card"><div class="industry-icon">🐾</div><div class="industry-name">Veterinary</div><div class="industry-value">$300 per missed patient</div></div>
-<div class="industry-card"><div class="industry-icon">🔧</div><div class="industry-name">HVAC & Plumbing</div><div class="industry-value">$2,500 per missed job</div></div>
-<div class="industry-card"><div class="industry-icon">🚗</div><div class="industry-name">Auto Dealers</div><div class="industry-value">$35K per missed buyer</div></div>
-<div class="industry-card"><div class="industry-icon">💇</div><div class="industry-name">Salons & Beauty</div><div class="industry-value">$200 per missed client</div></div>
-<div class="industry-card"><div class="industry-icon">💪</div><div class="industry-name">Gyms & Fitness</div><div class="industry-value">$600/yr per member</div></div>
-<div class="industry-card"><div class="industry-icon">🧠</div><div class="industry-name">Therapists</div><div class="industry-value">$150 per missed session</div></div>
-<div class="industry-card"><div class="industry-icon">👁️</div><div class="industry-name">Optometry</div><div class="industry-value">$400 per missed exam</div></div>
-<div class="industry-card"><div class="industry-icon">🏫</div><div class="industry-name">Academies</div><div class="industry-value">$2K per enrollment</div></div>
+<div class="industry-card">🦷 Dental Clinics<br>$500+ per patient</div>
+<div class="industry-card">👁️ Optometry<br>$400 per exam</div>
+<div class="industry-card">💆 Med Spas<br>$500+ per treatment</div>
 </div>
-</div></section>
 
-<section class="demo-section" id="demo"><div class="container"><div class="demo-container">
-<div class="demo-text">
-<div class="section-label">Live Demo</div>
-<h2>This is what your customers hear when you can't pick up.</h2>
-<p>A real AI agent built for a dental clinic. It answers in under 1 second, talks naturally, captures the patient's info, and books the appointment — all without a human.</p>
-<a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary" style="margin-top:8px">Book Your Custom Demo →</a>
-<p style="font-size:.78rem;color:var(--text-dim);margin-top:16px;text-transform:uppercase;letter-spacing:1px">15 min · no commitment · hear it live</p>
 </div>
-<div class="demo-phone">
-<div class="demo-header">
-<div class="demo-header-left">
-<div class="demo-avatar">🤖</div>
-<div><div class="demo-caller">Seltr AI Receptionist</div><div class="demo-caller-sub">Smile Dental Clinic</div></div>
-</div>
-<div class="demo-status"><span class="dot"></span> LIVE</div>
-</div>
-<div class="demo-messages">
-<div class="msg msg-ai"><div class="msg-label">AI Agent</div>Thanks for calling Smile Dental Clinic! How can I help you today?</div>
-<div class="msg msg-caller"><div class="msg-label">Caller</div>Hi, I'd like to book an appointment. I have a toothache that's been bothering me for a few days.</div>
-<div class="msg msg-ai"><div class="msg-label">AI Agent</div>I'm sorry to hear that. Let me get you in as soon as possible. Is this your first visit with us?</div>
-<div class="msg msg-caller"><div class="msg-label">Caller</div>First time. My name is Laura García.</div>
-<div class="msg msg-ai"><div class="msg-label">AI Agent</div>Welcome, Laura. Can I get a phone number to reach you at?</div>
-<div class="msg msg-caller"><div class="msg-label">Caller</div>Sure, 612 45 67 89.</div>
-<div class="msg msg-ai"><div class="msg-label">AI Agent</div>Perfect. I have you down for an urgent appointment. Our first available slot is tomorrow at 10 AM. Does that work?</div>
-<div class="msg msg-caller"><div class="msg-label">Caller</div>That's perfect, thank you!</div>
-</div>
-<div class="demo-footer">
-<div class="demo-meta">Duration: <span>43s</span> · Latency: <span>340ms</span> · Sentiment: <span>Positive</span></div>
-<div class="demo-badge">✓ Lead Captured</div>
-</div>
-</div>
-</div></div></section>
+</section>
 
-<section class="section"><div class="container">
-<div class="section-label">The Problem</div>
-<h2>Every missed call is money that went<br>to your competitor.</h2>
-<p class="section-intro">When you're with a patient, showing a house, or under a sink — your phone rings and nobody picks up. Your customer won't wait.</p>
+<section class="demo-section" id="demo">
+<div class="container">
+
+<h2>This is what your patients hear when you don’t pick up</h2>
+<p class="section-intro">AI answers, captures and books automatically.</p>
+
+<a href="https://zcal.co/mario/30min" class="btn-primary">Book Demo</a>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2>Every missed call is a lost patient</h2>
+
 <div class="pain-grid">
-<div class="pain-card"><div class="pain-number">62%</div><h3>Calls Go Unanswered</h3><p>The majority of calls to small businesses are never picked up. Each one is a potential $500–$50,000 deal lost.</p></div>
-<div class="pain-card"><div class="pain-number">78%</div><h3>Call Your Competitor</h3><p>Customers who can't reach you don't leave a voicemail — they immediately call someone else.</p></div>
-<div class="pain-card"><div class="pain-number">$126K</div><h3>Lost Per Year</h3><p>The average small business loses over $126,000 annually in revenue from missed calls alone.</p></div>
+<div class="pain-card">60% calls missed</div>
+<div class="pain-card">78% go to competitor</div>
+<div class="pain-card">$50K+ lost yearly</div>
 </div>
-</div></section>
 
-<section class="section" id="how"><div class="container">
-<div class="section-label">How It Works</div>
-<h2>Live in 48 hours. No hardware. No hassle.</h2>
-<p class="section-intro">We configure your AI receptionist to sound and act like your best employee — then connect it to your existing phone line.</p>
+</div>
+</section>
+
+<section class="section" id="how">
+<div class="container">
+
+<h2>Live in 48 hours</h2>
+
 <div class="steps-grid">
-<div class="step-card" data-step="1"><div class="step-icon">🎯</div><h3>We Learn Your Business</h3><p>15-minute call to understand your services, pricing, hours, and how you want calls handled. We build a custom agent trained on YOUR business.</p></div>
-<div class="step-card" data-step="2"><div class="step-icon">📞</div><h3>We Connect Your Phone</h3><p>Simple call forwarding from your existing number. When you can't answer, calls go to your AI. No new number, no app to install.</p></div>
-<div class="step-card" data-step="3"><div class="step-icon">🚀</div><h3>You Never Miss Again</h3><p>Every call answered. Every lead captured. Every appointment booked. You get a WhatsApp summary after each call with the customer's details.</p></div>
+<div class="step-card">We learn your clinic</div>
+<div class="step-card">We connect your phone</div>
+<div class="step-card">You get more patients</div>
 </div>
-</div></section>
 
-<section class="section" id="pricing"><div class="container">
-<div class="section-label">Pricing</div>
-<h2>Less than a part-time receptionist.<br>Better than a full-time one.</h2>
-<p class="section-intro">No contracts. Cancel anytime. Your AI receptionist pays for itself with the first appointment it books.</p>
+</div>
+</section>
+
+<section class="section" id="pricing">
+<div class="container">
+
+<h2>Pays for itself with a few patients</h2>
+
 <div class="pricing-grid">
+
 <div class="price-card">
-<div class="price-label">Setup</div>
-<div class="price-amount">$997</div>
-<div class="price-period">One-time configuration</div>
-<ul class="price-features">
-<li>Custom AI agent trained on your business</li>
-<li>Dedicated phone number</li>
-<li>Calendar & CRM integration</li>
-<li>Conversation flow design</li>
-<li>Live in 48 hours</li>
-</ul>
+<h3>Setup</h3>
+<p>$997</p>
 </div>
-<div class="price-card featured">
-<div class="price-label" style="color:var(--accent)">Monthly</div>
-<div class="price-amount">$497<span style="font-size:1rem;color:var(--text-dim)">/mo</span></div>
-<div class="price-period">Everything handled for you</div>
-<ul class="price-features">
-<li>Every inbound call answered 24/7</li>
-<li>Appointment booking & lead capture</li>
-<li>WhatsApp/SMS summaries after each call</li>
-<li>Monthly optimization & reporting</li>
-<li>Priority support</li>
-</ul>
-<p class="price-note">Pricing varies by industry and volume. Book a demo for a custom quote.</p>
-</div>
-</div>
-</div></section>
 
-<section class="final-cta"><div class="container">
-<h2>Ready to answer every call?</h2>
-<p>Book a free 15-minute demo. We'll build a custom AI receptionist for your business — and you can hear it live.</p>
-<a href="https://zcal.co/mario/30min" target="_blank" class="btn-primary">Book Free Demo →</a>
-</div></section>
+<div class="price-card">
+<h3>Monthly</h3>
+<p>Less than 1 patient/week</p>
+<p>2–3 patients/month covers cost</p>
+</div>
 
-<footer><div class="container">
-<div class="footer-inner">
-<div class="footer-brand"><span class="mark"></span> seltr</div>
-<div class="footer-links">
-<a href="mailto:mario@seltr.es">mario@seltr.es</a>
-<a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
-<a href="https://linkedin.com/company/seltr" target="_blank">Company</a>
 </div>
+
 </div>
-<div class="footer-copy">© 2026 Seltr. AI-powered phone receptionist for every business.</div>
-</div></footer>
+</section>
+
+<section class="final-cta">
+<div class="container">
+
+<h2>How many patients are you losing every week?</h2>
+<p>Book a demo and see it live</p>
+
+<a href="https://zcal.co/mario/30min" class="btn-primary">Book Demo</a>
+
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>© 2026 Seltr</p>
+</div>
+</footer>
 
 </body>
 </html>
