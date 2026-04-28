@@ -3,198 +3,679 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seltr — AI Receptionist for Clinics</title>
-<meta name="description" content="Stop losing patients from missed calls. AI receptionist for dental, optometry and aesthetic clinics.">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-
+<title>Seltr — Fill Your Calendar. Automatically.</title>
+<meta name="description" content="AI-powered patient reactivation, automated follow-ups, and 24/7 booking for clinics. More appointments. More revenue. Zero extra staff.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050505;--bg-card:#0c0c0c;--text:#f0efe9;--text-dim:#6b6b6b;--accent:#c8ff3e;--accent-dim:rgba(200,255,62,0.08);--brand:#0a4b33;--border:#1a1a1a;--radius:14px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
-::selection{background:var(--accent);color:var(--bg)}
-a{color:inherit;text-decoration:none}
-.container{width:min(1140px,90vw);margin:0 auto}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rgba(5,5,5,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;width:min(1140px,90vw);margin:0 auto}
-.nav-logo{font-weight:700;font-size:1.4rem;letter-spacing:-1px;display:flex;align-items:center;gap:8px}
-.nav-logo .mark{width:4px;height:20px;background:var(--brand);border-radius:3px 0 0 3px}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{font-size:.85rem;color:var(--text-dim);font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--text)}
-.nav-cta{background:var(--accent)!important;color:var(--bg)!important;padding:10px 22px!important;border-radius:8px;font-weight:600!important;font-size:.85rem!important;transition:transform .2s,box-shadow .2s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,255,62,.25)}
+:root {
+  --white: #ffffff;
+  --off-white: #f8f7f4;
+  --black: #0a0a0a;
+  --gray-100: #f3f2ef;
+  --gray-200: #e5e3de;
+  --gray-300: #d1cfc9;
+  --gray-400: #9e9b93;
+  --gray-500: #6b6960;
+  --gray-600: #4a4840;
+  --green: #0a4b33;
+  --green-light: #e8f0ec;
+  --green-mid: #1a6b4a;
+  --green-bright: #2d8f64;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
 
-.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 100px}
-.hero-content{max-width:720px}
-.hero-tag{display:inline-flex;gap:8px;border:1px solid var(--border);padding:8px 18px;border-radius:100px;font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:32px;background:var(--accent-dim)}
-h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5rem);margin-bottom:24px}
-h1 .accent{color:var(--accent)}
-.hero-sub{color:var(--text-dim);margin-bottom:40px}
-.btn-primary{background:var(--accent);color:var(--bg);padding:16px 28px;border-radius:8px;font-weight:700}
-.btn-secondary{border:1px solid var(--border);padding:16px 28px;border-radius:8px}
-.hero-proof{display:flex;gap:40px;margin-top:40px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--black); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: var(--green); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-.section{padding:100px 0;border-top:1px solid var(--border)}
-.section h2{font-family:'DM Serif Display',serif;font-size:2.5rem;margin-bottom:20px}
-.section-intro{color:var(--text-dim);margin-bottom:40px}
+/* UTILITY */
+.container { width: min(1200px, 88vw); margin: 0 auto; }
 
-.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.industry-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius);text-align:center}
+/* ============================================ */
+/* NAV */
+/* ============================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 0;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom: 1px solid var(--gray-200);
+  transition: padding .3s, box-shadow .3s;
+}
+nav.scrolled { padding: 12px 0; box-shadow: 0 4px 24px rgba(0,0,0,.04); }
+.nav-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  width: min(1200px, 88vw); margin: 0 auto;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 800; font-size: 1.35rem; letter-spacing: -1px; color: var(--black);
+}
+.nav-logo .mark {
+  width: 5px; height: 22px; background: var(--green);
+  border-radius: 3px 0 0 3px;
+}
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+  font-size: .85rem; font-weight: 500; color: var(--gray-500);
+  transition: color .25s; position: relative;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-cta {
+  background: var(--green) !important; color: var(--white) !important;
+  padding: 11px 26px !important; border-radius: 10px;
+  font-weight: 700 !important; font-size: .85rem !important;
+  transition: all .3s !important;
+  box-shadow: 0 2px 8px rgba(10,75,51,.15);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,75,51,.25); background: var(--green-mid) !important; }
 
-.demo-section{padding:100px 0;border-top:1px solid var(--border)}
+/* ============================================ */
+/* HERO */
+/* ============================================ */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 140px 0 100px;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(10,75,51,.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(10,75,51,.02) 0%, transparent 50%),
+    var(--white);
+  position: relative;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2.5px; color: var(--green);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .7s .2s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-eyebrow .line { width: 32px; height: 2px; background: var(--green); border-radius: 2px; }
+h1 {
+  font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.08; letter-spacing: -1.5px; font-weight: 400;
+  margin-bottom: 24px; color: var(--black);
+  opacity: 0; animation: fadeUp .7s .35s cubic-bezier(.16,1,.3,1) forwards;
+}
+h1 em { font-style: italic; color: var(--green); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--gray-500); line-height: 1.7;
+  max-width: 480px; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp .7s .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-ctas {
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .7s .65s cubic-bezier(.16,1,.3,1) forwards;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px; border-radius: 12px;
+  font-weight: 700; font-size: .95rem; font-family: var(--sans);
+  transition: all .3s; cursor: pointer; border: none;
+}
+.btn-fill {
+  background: var(--green); color: var(--white);
+  box-shadow: 0 4px 16px rgba(10,75,51,.2);
+}
+.btn-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(10,75,51,.3); background: var(--green-mid); }
+.btn-outline {
+  background: transparent; color: var(--black);
+  border: 1.5px solid var(--gray-200);
+}
+.btn-outline:hover { border-color: var(--green); color: var(--green); }
 
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.pain-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+/* HERO STATS */
+.hero-stats {
+  display: flex; gap: 40px; margin-top: 56px; padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+  opacity: 0; animation: fadeUp .7s .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-stat h3 {
+  font-family: var(--serif); font-size: 2rem; color: var(--green);
+  letter-spacing: -1px; margin-bottom: 4px;
+}
+.hero-stat p { font-size: .72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-400); font-weight: 600; }
 
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.step-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+/* HERO VISUAL */
+.hero-visual {
+  position: relative;
+  opacity: 0; animation: fadeUp .8s .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 20px; padding: 32px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.06);
+  position: relative;
+}
+.hero-card::before {
+  content: ''; position: absolute; top: -1px; left: 40px; right: 40px; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--green-bright));
+  border-radius: 0 0 4px 4px;
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--gray-100);
+}
+.card-header h4 { font-size: .85rem; font-weight: 700; color: var(--black); }
+.card-badge {
+  font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  background: var(--green-light); color: var(--green); padding: 5px 12px; border-radius: 100px;
+}
+.metric-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; border-bottom: 1px solid var(--gray-100);
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-label { font-size: .85rem; color: var(--gray-500); }
+.metric-value { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--green); }
+.metric-bar {
+  width: 100%; height: 6px; background: var(--gray-100); border-radius: 100px;
+  margin-top: 20px; overflow: hidden;
+}
+.metric-bar-fill {
+  height: 100%; background: linear-gradient(90deg, var(--green), var(--green-bright));
+  border-radius: 100px; width: 0%;
+  animation: fillBar 2s 1.2s ease forwards;
+}
+@keyframes fillBar { to { width: 78%; } }
 
-.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.price-card{border:1px solid var(--border);padding:24px;border-radius:var(--radius)}
+/* ============================================ */
+/* SECTION BASE */
+/* ============================================ */
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+.section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+}
+.section-eyebrow {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2.5px; color: var(--green); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow .line { width: 24px; height: 2px; background: var(--green); }
+.section h2 {
+  font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
+  letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; font-weight: 400;
+}
+.section-intro { color: var(--gray-500); font-size: 1.05rem; max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
 
-.final-cta{text-align:center;padding:100px 0;border-top:1px solid var(--border)}
+/* REVEAL ANIMATION */
+.reveal { opacity: 0; transform: translateY(32px); transition: all .7s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
 
-footer{padding:40px 0;border-top:1px solid var(--border)}
+/* ============================================ */
+/* PROBLEM SECTION */
+/* ============================================ */
+.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.problem-card {
+  background: var(--off-white); border-radius: 16px; padding: 36px 28px;
+  border: 1px solid transparent; transition: all .4s;
+  position: relative; overflow: hidden;
+}
+.problem-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+  background: var(--green); transition: height .6s cubic-bezier(.16,1,.3,1);
+}
+.problem-card:hover::before { height: 100%; }
+.problem-card:hover { border-color: var(--gray-200); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.04); }
+.problem-number {
+  font-family: var(--serif); font-size: 3.5rem; color: var(--green);
+  line-height: 1; margin-bottom: 16px; opacity: .15;
+  font-weight: 700;
+}
+.problem-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+.problem-card p { font-size: .9rem; color: var(--gray-500); line-height: 1.65; }
+
+/* ============================================ */
+/* SERVICES */
+/* ============================================ */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 16px; padding: 36px 28px;
+  transition: all .4s; position: relative;
+}
+.service-card:hover { border-color: var(--green); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,75,51,.08); }
+.service-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--green-light); display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 20px;
+}
+.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: .88rem; color: var(--gray-500); line-height: 1.65; margin-bottom: 20px; }
+.service-tag {
+  display: inline-block; font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--green); background: var(--green-light);
+  padding: 5px 12px; border-radius: 100px;
+}
+
+/* ============================================ */
+/* HOW IT WORKS */
+/* ============================================ */
+.how-section { background: var(--off-white); }
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.step-item { position: relative; padding: 32px 24px; }
+.step-number {
+  font-family: var(--serif); font-size: 4rem; font-weight: 700;
+  color: var(--green); opacity: .08; line-height: 1; margin-bottom: 16px;
+}
+.step-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.step-item p { font-size: .85rem; color: var(--gray-500); line-height: 1.6; }
+.step-connector {
+  position: absolute; top: 56px; right: -12px;
+  width: 24px; height: 2px; background: var(--gray-300);
+}
+.step-item:last-child .step-connector { display: none; }
+
+/* ============================================ */
+/* INDUSTRIES */
+/* ============================================ */
+.industry-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.industry-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border: 1px solid var(--gray-200); border-radius: 100px;
+  font-size: .88rem; font-weight: 500; color: var(--gray-600);
+  transition: all .3s; cursor: default;
+}
+.industry-pill:hover {
+  border-color: var(--green); color: var(--green); background: var(--green-light);
+  transform: translateY(-2px);
+}
+.industry-pill .emoji { font-size: 1.1rem; }
+
+/* ============================================ */
+/* PRICING */
+/* ============================================ */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; }
+.price-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 16px; padding: 36px 28px;
+  transition: all .3s; position: relative;
+}
+.price-card.featured {
+  border-color: var(--green);
+  box-shadow: 0 8px 32px rgba(10,75,51,.08);
+}
+.price-card.featured::before {
+  content: 'POPULAR'; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: var(--green); color: var(--white);
+  font-size: .6rem; font-weight: 800; letter-spacing: 1.5px;
+  padding: 4px 16px; border-radius: 100px;
+}
+.price-label {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--gray-400); margin-bottom: 12px;
+}
+.price-amount { font-family: var(--serif); font-size: 2.4rem; color: var(--black); margin-bottom: 4px; }
+.price-amount span { font-family: var(--sans); font-size: .85rem; color: var(--gray-400); font-weight: 500; }
+.price-desc { font-size: .85rem; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
+.price-features { list-style: none; border-top: 1px solid var(--gray-100); padding-top: 20px; margin-bottom: 28px; }
+.price-features li {
+  font-size: .85rem; color: var(--gray-600); padding: 8px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.price-features li::before { content: '→'; color: var(--green); font-weight: 700; }
+.price-btn {
+  display: block; width: 100%; text-align: center; padding: 14px;
+  border-radius: 10px; font-size: .88rem; font-weight: 700;
+  transition: all .3s; cursor: pointer; border: none; font-family: var(--sans);
+}
+.price-btn-fill { background: var(--green); color: var(--white); }
+.price-btn-fill:hover { background: var(--green-mid); box-shadow: 0 4px 16px rgba(10,75,51,.2); }
+.price-btn-outline { background: transparent; border: 1.5px solid var(--gray-200); color: var(--black); }
+.price-btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+/* ============================================ */
+/* CTA */
+/* ============================================ */
+.final-cta {
+  padding: 120px 0; text-align: center;
+  background: var(--green); color: var(--white);
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.final-cta::after {
+  content: ''; position: absolute; bottom: -30%; left: -10%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem);
+  margin-bottom: 20px; color: var(--white); position: relative;
+}
+.final-cta p { color: rgba(255,255,255,.7); max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem; position: relative; }
+.btn-white {
+  background: var(--white); color: var(--green); padding: 18px 40px;
+  border-radius: 12px; font-weight: 800; font-size: 1rem;
+  transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1); position: relative;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.15); }
+.cta-sub { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: 16px; text-transform: uppercase; letter-spacing: 1.5px; position: relative; }
+
+/* ============================================ */
+/* FOOTER */
+/* ============================================ */
+footer {
+  padding: 48px 0 32px; border-top: 1px solid var(--gray-200);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: -1px; }
+.footer-brand .mark { width: 4px; height: 18px; background: var(--green); border-radius: 3px 0 0 3px; }
+.footer-links { display: flex; gap: 28px; }
+.footer-links a { font-size: .85rem; color: var(--gray-400); transition: color .2s; }
+.footer-links a:hover { color: var(--green); }
+.footer-copy { text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--gray-100); font-size: .78rem; color: var(--gray-400); }
+
+/* ============================================ */
+/* ANIMATIONS */
+/* ============================================ */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .problem-grid, .services-grid { grid-template-columns: 1fr; }
+  .steps-row { grid-template-columns: repeat(2, 1fr); }
+  .step-connector { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+  .industry-row { justify-content: flex-start; }
+}
 </style>
 </head>
-
 <body>
 
-<nav>
+<!-- NAV -->
+<nav id="nav">
 <div class="nav-inner">
-<div class="nav-logo"><span class="mark"></span> seltr</div>
-<div class="nav-links">
-<a href="#industries">Clinics</a>
-<a href="#demo">Demo</a>
-<a href="#how">How</a>
-<a href="#pricing">Pricing</a>
-<a href="https://zcal.co/mario/30min" class="nav-cta">Book Demo</a>
-</div>
+  <div class="nav-logo"><span class="mark"></span> seltr</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://zcal.co/mario/30min" target="_blank" class="nav-cta">Book a Call</a>
+  </div>
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
 <div class="container">
-<div class="hero-content">
+<div class="hero-grid">
 
-<div class="hero-tag">AI Receptionist for Clinics · 24/7</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="line"></span> For Clinics That Want to Grow</div>
+    <h1>Fill your calendar.<br><em>Automatically.</em></h1>
+    <p class="hero-sub">Reactivate old patients, follow up with leads who don't book, and never miss a message again. More appointments, more revenue — without hiring anyone.</p>
+    <div class="hero-ctas">
+      <a href="https://zcal.co/mario/30min" target="_blank" class="btn btn-fill">Book Free Strategy Call →</a>
+      <a href="#services" class="btn btn-outline">See How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><h3>38%</h3><p>Patients Reactivated</p></div>
+      <div class="hero-stat"><h3>24/7</h3><p>Lead Follow-Up</p></div>
+      <div class="hero-stat"><h3>2.1s</h3><p>Response Time</p></div>
+    </div>
+  </div>
 
-<h1>Stop losing patients from missed <span class="accent">calls.</span></h1>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-header">
+        <h4>Weekly Performance</h4>
+        <span class="card-badge">Live</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Patients Reactivated</span>
+        <span class="metric-value">23</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Appointments Booked</span>
+        <span class="metric-value">47</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Follow-ups Converted</span>
+        <span class="metric-value">14</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Revenue Generated</span>
+        <span class="metric-value">€8,400</span>
+      </div>
+      <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+      <p style="font-size:.72rem;color:var(--gray-400);margin-top:8px;text-align:right">78% of monthly goal reached</p>
+    </div>
+  </div>
 
-<p class="hero-sub">
-Dental, optometry and aesthetic clinics lose thousands every month from missed calls. 
-Seltr answers instantly and books appointments automatically.
-</p>
-
-<div>
-<a href="#demo" class="btn-primary">See Demo</a>
-<a href="https://zcal.co/mario/30min" class="btn-secondary">Book Demo</a>
 </div>
-
-<div class="hero-proof">
-<div><strong>&lt;1s</strong><br>Answer</div>
-<div><strong>24/7</strong><br>Coverage</div>
-<div><strong>2-3</strong><br>Patients = ROI</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="section" id="industries">
-<div class="container">
-
-<h2>Built for clinics</h2>
-<p class="section-intro">Every missed call is a lost patient.</p>
-
-<div class="industry-grid">
-<div class="industry-card">🦷 Dental Clinics<br>$500+ per patient</div>
-<div class="industry-card">👁️ Optometry<br>$400 per exam</div>
-<div class="industry-card">💆 Med Spas<br>$500+ per treatment</div>
-</div>
-
-</div>
-</section>
-
-<section class="demo-section" id="demo">
-<div class="container">
-
-<h2>This is what your patients hear when you don’t pick up</h2>
-<p class="section-intro">AI answers, captures and books automatically.</p>
-
-<a href="https://zcal.co/mario/30min" class="btn-primary">Book Demo</a>
-
 </div>
 </section>
 
+<!-- PROBLEM -->
 <section class="section">
 <div class="container">
+  <div class="section-eyebrow reveal"><span class="line"></span> The Real Problem</div>
+  <h2 class="reveal">Your clinic doesn't need more ads.<br>It needs to <em>convert</em> the patients you already have.</h2>
+  <p class="section-intro reveal">Most clinics spend thousands on marketing to get new patients. But the real money is in the ones who already know you — and the ones who almost booked but didn't.</p>
 
-<h2>Every missed call is a lost patient</h2>
-
-<div class="pain-grid">
-<div class="pain-card">60% calls missed</div>
-<div class="pain-card">78% go to competitor</div>
-<div class="pain-card">$50K+ lost yearly</div>
-</div>
-
+  <div class="problem-grid">
+    <div class="problem-card reveal">
+      <div class="problem-number">40%</div>
+      <h3>Ghost Patients</h3>
+      <p>Patients who visited once or twice and never came back. They're sitting in your database right now — doing nothing.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-number">67%</div>
+      <h3>Leads Who Don't Book</h3>
+      <p>Two thirds of people who ask about treatments never schedule an appointment. Without follow-up, they're gone forever.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-number">€52K</div>
+      <h3>Lost Revenue Per Year</h3>
+      <p>The average clinic loses over €52,000 annually from inactive patients and unconverted leads. That's money already in your pipeline.</p>
+    </div>
+  </div>
 </div>
 </section>
 
-<section class="section" id="how">
+<!-- SERVICES -->
+<section class="section" id="services">
 <div class="container">
+  <div class="section-eyebrow reveal"><span class="line"></span> What Seltr Does</div>
+  <h2 class="reveal">Three systems that fill<br>your calendar <em>on autopilot.</em></h2>
+  <p class="section-intro reveal">Each one generates revenue independently. Together, they transform your practice.</p>
 
-<h2>Live in 48 hours</h2>
-
-<div class="steps-grid">
-<div class="step-card">We learn your clinic</div>
-<div class="step-card">We connect your phone</div>
-<div class="step-card">You get more patients</div>
-</div>
-
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🔄</div>
+      <h3>Patient Reactivation</h3>
+      <p>We contact patients who haven't visited in 3+ months with personalized messages. They already trust you — they just need a nudge to come back.</p>
+      <span class="service-tag">Immediate Revenue</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📲</div>
+      <h3>Smart Follow-Up</h3>
+      <p>When someone asks about a treatment but doesn't book, our AI follows up automatically until they schedule. No more leads falling through the cracks.</p>
+      <span class="service-tag">Converts Leads to Appointments</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">⚡</div>
+      <h3>24/7 AI Assistant</h3>
+      <p>Answers WhatsApp messages and calls instantly — anytime, day or night. Captures patient info, answers questions, and books appointments while you sleep.</p>
+      <span class="service-tag">Never Miss a Patient</span>
+    </div>
+  </div>
 </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section class="section how-section" id="how">
+<div class="container">
+  <div class="section-eyebrow reveal"><span class="line"></span> How It Works</div>
+  <h2 class="reveal">Live in one week.<br>Results from <em>day one.</em></h2>
+  <p class="section-intro reveal">No tech skills needed. No disruption to your team. We handle everything.</p>
+
+  <div class="steps-row">
+    <div class="step-item reveal">
+      <div class="step-number">01</div>
+      <h3>Strategy Call</h3>
+      <p>We learn your services, prices, and patient flow. 30 minutes is all we need.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-number">02</div>
+      <h3>Custom Setup</h3>
+      <p>We build your AI assistant, configure the reactivation campaign, and set up follow-up sequences.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-number">03</div>
+      <h3>7-Day Test</h3>
+      <p>You review every interaction. We adjust until it's perfect. No commitment during testing.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-number">04</div>
+      <h3>Watch It Work</h3>
+      <p>Weekly reports with appointments booked, patients reactivated, and revenue generated. Pure results.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section">
+<div class="container" style="text-align:center">
+  <div class="section-eyebrow reveal" style="justify-content:center"><span class="line"></span> Who It's For</div>
+  <h2 class="reveal">Built for clinics that want<br><em>a full calendar.</em></h2>
+  <p class="section-intro reveal" style="margin-left:auto;margin-right:auto">Any clinic that has a patient database and gets inquiries via WhatsApp, phone, or web.</p>
+
+  <div class="industry-row reveal">
+    <div class="industry-pill"><span class="emoji">💆</span> Med Spas</div>
+    <div class="industry-pill"><span class="emoji">🦷</span> Dental Clinics</div>
+    <div class="industry-pill"><span class="emoji">👁️</span> Optometry</div>
+    <div class="industry-pill"><span class="emoji">🧴</span> Dermatology</div>
+    <div class="industry-pill"><span class="emoji">💉</span> Aesthetic Clinics</div>
+    <div class="industry-pill"><span class="emoji">🏥</span> Physiotherapy</div>
+    <div class="industry-pill"><span class="emoji">🧠</span> Psychology</div>
+    <div class="industry-pill"><span class="emoji">🐾</span> Veterinary</div>
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
 <section class="section" id="pricing">
 <div class="container">
+  <div class="section-eyebrow reveal"><span class="line"></span> Pricing</div>
+  <h2 class="reveal">Pays for itself with<br><em>one or two patients.</em></h2>
+  <p class="section-intro reveal">No contracts. Cancel anytime. Revenue generated from week one.</p>
 
-<h2>Pays for itself with a few patients</h2>
-
-<div class="pricing-grid">
-
-<div class="price-card">
-<h3>Setup</h3>
-<p>$997</p>
-</div>
-
-<div class="price-card">
-<h3>Monthly</h3>
-<p>Less than 1 patient/week</p>
-<p>2–3 patients/month covers cost</p>
-</div>
-
-</div>
-
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-label">Reactivation Only</div>
+      <div class="price-amount">$397 <span>/mo</span></div>
+      <div class="price-desc">Bring back patients who stopped coming.</div>
+      <ul class="price-features">
+        <li>Automated patient outreach</li>
+        <li>Personalized messages</li>
+        <li>Weekly report</li>
+        <li>CRM integration</li>
+      </ul>
+      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-outline">Get Started</a>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="price-label" style="color:var(--green)">Reactivation + Follow-Up</div>
+      <div class="price-amount">$597 <span>/mo</span></div>
+      <div class="price-desc">Reactivate old patients + convert new leads.</div>
+      <ul class="price-features">
+        <li>Everything in Reactivation</li>
+        <li>Automated lead follow-up</li>
+        <li>Smart scheduling</li>
+        <li>Conversion tracking</li>
+      </ul>
+      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-fill">Book Strategy Call →</a>
+    </div>
+    <div class="price-card reveal">
+      <div class="price-label">Full System</div>
+      <div class="price-amount">$997 <span>/mo</span></div>
+      <div class="price-desc">Complete growth engine for your clinic.</div>
+      <ul class="price-features">
+        <li>Everything in Follow-Up</li>
+        <li>24/7 AI Assistant</li>
+        <li>WhatsApp + Voice</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-outline">Book Strategy Call →</a>
+    </div>
+  </div>
 </div>
 </section>
 
+<!-- CTA -->
 <section class="final-cta">
 <div class="container">
-
-<h2>How many patients are you losing every week?</h2>
-<p>Book a demo and see it live</p>
-
-<a href="https://zcal.co/mario/30min" class="btn-primary">Book Demo</a>
-
+  <h2>How many patients are sitting<br>in your database right now?</h2>
+  <p>Let's reactivate them and fill your calendar. Book a free 15-minute strategy call — we'll show you exactly how many appointments you're leaving on the table.</p>
+  <a href="https://zcal.co/mario/30min" target="_blank" class="btn-white">Book Free Strategy Call →</a>
+  <div class="cta-sub">15 minutes · No commitment · See your numbers</div>
 </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
 <div class="container">
-<p>© 2026 Seltr</p>
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark"></span> seltr</div>
+    <div class="footer-links">
+      <a href="mailto:mario@seltr.es">mario@seltr.es</a>
+      <a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
+      <a href="https://linkedin.com/company/seltr" target="_blank">Company</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Seltr. More appointments. Automatically.</div>
 </div>
 </footer>
+
+<!-- SCRIPTS -->
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
