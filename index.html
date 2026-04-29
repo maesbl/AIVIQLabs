@@ -3,679 +3,600 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seltr — Fill Your Calendar. Automatically.</title>
-<meta name="description" content="AI-powered patient reactivation, automated follow-ups, and 24/7 booking for clinics. More appointments. More revenue. Zero extra staff.">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Seltr — Fill your calendar. Automatically.</title>
+<!-- Professional AI Agency Typography: Outfit for headings, Inter for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Vanilla Tilt for flawless 60fps 3D effects -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
 <style>
+/* 
+  ULTRA-PREMIUM SAAS THEME 
+  Deep 3D Parallax & Extreme Professionalism
+*/
 :root {
+  --bg-color: #f6f7f9;
+  --text-main: #09090b;
+  --text-muted: #52525b;
+  --brand-green: #064e3b; 
+  --brand-light: #10b981;
+  --brand-bg: #ecfdf5;
+  --wa-bg: #dcf8c6;
   --white: #ffffff;
-  --off-white: #f8f7f4;
-  --black: #0a0a0a;
-  --gray-100: #f3f2ef;
-  --gray-200: #e5e3de;
-  --gray-300: #d1cfc9;
-  --gray-400: #9e9b93;
-  --gray-500: #6b6960;
-  --gray-600: #4a4840;
-  --green: #0a4b33;
-  --green-light: #e8f0ec;
-  --green-mid: #1a6b4a;
-  --green-bright: #2d8f64;
-  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --serif: 'Playfair Display', Georgia, serif;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  background: var(--bg-color); 
+  color: var(--text-main); 
+  font-family: var(--font-sans); 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; 
+}
+::selection { background: var(--brand-green); color: var(--white); }
+a { text-decoration: none; color: inherit; }
 html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--black); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-::selection { background: var(--green); color: var(--white); }
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
 
-/* UTILITY */
-.container { width: min(1200px, 88vw); margin: 0 auto; }
-
-/* ============================================ */
-/* NAV */
-/* ============================================ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 18px 0;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: blur(24px) saturate(1.2);
-  border-bottom: 1px solid var(--gray-200);
-  transition: padding .3s, box-shadow .3s;
-}
-nav.scrolled { padding: 12px 0; box-shadow: 0 4px 24px rgba(0,0,0,.04); }
-.nav-inner {
-  display: flex; justify-content: space-between; align-items: center;
-  width: min(1200px, 88vw); margin: 0 auto;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 8px;
-  font-weight: 800; font-size: 1.35rem; letter-spacing: -1px; color: var(--black);
-}
-.nav-logo .mark {
-  width: 5px; height: 22px; background: var(--green);
-  border-radius: 3px 0 0 3px;
-}
-.nav-links { display: flex; gap: 36px; align-items: center; }
-.nav-links a {
-  font-size: .85rem; font-weight: 500; color: var(--gray-500);
-  transition: color .25s; position: relative;
-}
-.nav-links a:hover { color: var(--black); }
-.nav-cta {
-  background: var(--green) !important; color: var(--white) !important;
-  padding: 11px 26px !important; border-radius: 10px;
-  font-weight: 700 !important; font-size: .85rem !important;
-  transition: all .3s !important;
-  box-shadow: 0 2px 8px rgba(10,75,51,.15);
-}
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,75,51,.25); background: var(--green-mid) !important; }
-
-/* ============================================ */
-/* HERO */
-/* ============================================ */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  padding: 140px 0 100px;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(10,75,51,.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(10,75,51,.02) 0%, transparent 50%),
-    var(--white);
-  position: relative;
-}
-.hero::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
-}
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.hero-content { position: relative; z-index: 2; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: .72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2.5px; color: var(--green);
-  margin-bottom: 28px;
-  opacity: 0; animation: fadeUp .7s .2s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-eyebrow .line { width: 32px; height: 2px; background: var(--green); border-radius: 2px; }
-h1 {
-  font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem);
-  line-height: 1.08; letter-spacing: -1.5px; font-weight: 400;
-  margin-bottom: 24px; color: var(--black);
-  opacity: 0; animation: fadeUp .7s .35s cubic-bezier(.16,1,.3,1) forwards;
-}
-h1 em { font-style: italic; color: var(--green); }
-.hero-sub {
-  font-size: 1.1rem; color: var(--gray-500); line-height: 1.7;
-  max-width: 480px; margin-bottom: 40px;
-  opacity: 0; animation: fadeUp .7s .5s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-ctas {
-  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp .7s .65s cubic-bezier(.16,1,.3,1) forwards;
-}
-.btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: 12px;
-  font-weight: 700; font-size: .95rem; font-family: var(--sans);
-  transition: all .3s; cursor: pointer; border: none;
-}
-.btn-fill {
-  background: var(--green); color: var(--white);
-  box-shadow: 0 4px 16px rgba(10,75,51,.2);
-}
-.btn-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(10,75,51,.3); background: var(--green-mid); }
-.btn-outline {
-  background: transparent; color: var(--black);
-  border: 1.5px solid var(--gray-200);
-}
-.btn-outline:hover { border-color: var(--green); color: var(--green); }
-
-/* HERO STATS */
-.hero-stats {
-  display: flex; gap: 40px; margin-top: 56px; padding-top: 32px;
-  border-top: 1px solid var(--gray-200);
-  opacity: 0; animation: fadeUp .7s .8s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-stat h3 {
-  font-family: var(--serif); font-size: 2rem; color: var(--green);
-  letter-spacing: -1px; margin-bottom: 4px;
-}
-.hero-stat p { font-size: .72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-400); font-weight: 600; }
-
-/* HERO VISUAL */
-.hero-visual {
-  position: relative;
-  opacity: 0; animation: fadeUp .8s .5s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 20px; padding: 32px;
-  box-shadow: 0 24px 64px rgba(0,0,0,.06);
-  position: relative;
-}
-.hero-card::before {
-  content: ''; position: absolute; top: -1px; left: 40px; right: 40px; height: 3px;
-  background: linear-gradient(90deg, var(--green), var(--green-bright));
-  border-radius: 0 0 4px 4px;
-}
-.card-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--gray-100);
-}
-.card-header h4 { font-size: .85rem; font-weight: 700; color: var(--black); }
-.card-badge {
-  font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-  background: var(--green-light); color: var(--green); padding: 5px 12px; border-radius: 100px;
-}
-.metric-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 0; border-bottom: 1px solid var(--gray-100);
-}
-.metric-row:last-child { border-bottom: none; }
-.metric-label { font-size: .85rem; color: var(--gray-500); }
-.metric-value { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: var(--green); }
-.metric-bar {
-  width: 100%; height: 6px; background: var(--gray-100); border-radius: 100px;
-  margin-top: 20px; overflow: hidden;
-}
-.metric-bar-fill {
-  height: 100%; background: linear-gradient(90deg, var(--green), var(--green-bright));
-  border-radius: 100px; width: 0%;
-  animation: fillBar 2s 1.2s ease forwards;
-}
-@keyframes fillBar { to { width: 78%; } }
-
-/* ============================================ */
-/* SECTION BASE */
-/* ============================================ */
-.section {
-  padding: 120px 0;
-  position: relative;
-}
-.section::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
-}
-.section-eyebrow {
-  font-size: .72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2.5px; color: var(--green); margin-bottom: 16px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-eyebrow .line { width: 24px; height: 2px; background: var(--green); }
-.section h2 {
-  font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
-  letter-spacing: -1px; margin-bottom: 20px; line-height: 1.1; font-weight: 400;
-}
-.section-intro { color: var(--gray-500); font-size: 1.05rem; max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
-
-/* REVEAL ANIMATION */
-.reveal { opacity: 0; transform: translateY(32px); transition: all .7s cubic-bezier(.16,1,.3,1); }
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ============================================ */
-/* PROBLEM SECTION */
-/* ============================================ */
-.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.problem-card {
-  background: var(--off-white); border-radius: 16px; padding: 36px 28px;
-  border: 1px solid transparent; transition: all .4s;
-  position: relative; overflow: hidden;
-}
-.problem-card::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
-  background: var(--green); transition: height .6s cubic-bezier(.16,1,.3,1);
-}
-.problem-card:hover::before { height: 100%; }
-.problem-card:hover { border-color: var(--gray-200); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.04); }
-.problem-number {
-  font-family: var(--serif); font-size: 3.5rem; color: var(--green);
-  line-height: 1; margin-bottom: 16px; opacity: .15;
-  font-weight: 700;
-}
-.problem-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--black); }
-.problem-card p { font-size: .9rem; color: var(--gray-500); line-height: 1.65; }
-
-/* ============================================ */
-/* SERVICES */
-/* ============================================ */
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.service-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 16px; padding: 36px 28px;
-  transition: all .4s; position: relative;
-}
-.service-card:hover { border-color: var(--green); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,75,51,.08); }
-.service-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  background: var(--green-light); display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; margin-bottom: 20px;
-}
-.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-.service-card p { font-size: .88rem; color: var(--gray-500); line-height: 1.65; margin-bottom: 20px; }
-.service-tag {
-  display: inline-block; font-size: .7rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px;
-  color: var(--green); background: var(--green-light);
-  padding: 5px 12px; border-radius: 100px;
-}
-
-/* ============================================ */
-/* HOW IT WORKS */
-/* ============================================ */
-.how-section { background: var(--off-white); }
-.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.step-item { position: relative; padding: 32px 24px; }
-.step-number {
-  font-family: var(--serif); font-size: 4rem; font-weight: 700;
-  color: var(--green); opacity: .08; line-height: 1; margin-bottom: 16px;
-}
-.step-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-.step-item p { font-size: .85rem; color: var(--gray-500); line-height: 1.6; }
-.step-connector {
-  position: absolute; top: 56px; right: -12px;
-  width: 24px; height: 2px; background: var(--gray-300);
-}
-.step-item:last-child .step-connector { display: none; }
-
-/* ============================================ */
-/* INDUSTRIES */
-/* ============================================ */
-.industry-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-.industry-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 22px; border: 1px solid var(--gray-200); border-radius: 100px;
-  font-size: .88rem; font-weight: 500; color: var(--gray-600);
-  transition: all .3s; cursor: default;
-}
-.industry-pill:hover {
-  border-color: var(--green); color: var(--green); background: var(--green-light);
-  transform: translateY(-2px);
-}
-.industry-pill .emoji { font-size: 1.1rem; }
-
-/* ============================================ */
-/* PRICING */
-/* ============================================ */
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; }
-.price-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 16px; padding: 36px 28px;
-  transition: all .3s; position: relative;
-}
-.price-card.featured {
-  border-color: var(--green);
-  box-shadow: 0 8px 32px rgba(10,75,51,.08);
-}
-.price-card.featured::before {
-  content: 'POPULAR'; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-  background: var(--green); color: var(--white);
-  font-size: .6rem; font-weight: 800; letter-spacing: 1.5px;
-  padding: 4px 16px; border-radius: 100px;
-}
-.price-label {
-  font-size: .7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1.5px; color: var(--gray-400); margin-bottom: 12px;
-}
-.price-amount { font-family: var(--serif); font-size: 2.4rem; color: var(--black); margin-bottom: 4px; }
-.price-amount span { font-family: var(--sans); font-size: .85rem; color: var(--gray-400); font-weight: 500; }
-.price-desc { font-size: .85rem; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
-.price-features { list-style: none; border-top: 1px solid var(--gray-100); padding-top: 20px; margin-bottom: 28px; }
-.price-features li {
-  font-size: .85rem; color: var(--gray-600); padding: 8px 0;
-  display: flex; align-items: center; gap: 10px;
-}
-.price-features li::before { content: '→'; color: var(--green); font-weight: 700; }
-.price-btn {
-  display: block; width: 100%; text-align: center; padding: 14px;
-  border-radius: 10px; font-size: .88rem; font-weight: 700;
-  transition: all .3s; cursor: pointer; border: none; font-family: var(--sans);
-}
-.price-btn-fill { background: var(--green); color: var(--white); }
-.price-btn-fill:hover { background: var(--green-mid); box-shadow: 0 4px 16px rgba(10,75,51,.2); }
-.price-btn-outline { background: transparent; border: 1.5px solid var(--gray-200); color: var(--black); }
-.price-btn-outline:hover { border-color: var(--green); color: var(--green); }
-
-/* ============================================ */
-/* CTA */
-/* ============================================ */
-.final-cta {
-  padding: 120px 0; text-align: center;
-  background: var(--green); color: var(--white);
-  position: relative; overflow: hidden;
-}
-.final-cta::before {
-  content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 60%);
+/* Subtle Premium Background */
+.bg-mesh {
+  position: fixed; inset: 0; z-index: -2;
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(6, 78, 59, 0.05) 0px, transparent 50%);
   pointer-events: none;
 }
-.final-cta::after {
-  content: ''; position: absolute; bottom: -30%; left: -10%; width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-.final-cta h2 {
-  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem);
-  margin-bottom: 20px; color: var(--white); position: relative;
-}
-.final-cta p { color: rgba(255,255,255,.7); max-width: 480px; margin: 0 auto 36px; font-size: 1.05rem; position: relative; }
-.btn-white {
-  background: var(--white); color: var(--green); padding: 18px 40px;
-  border-radius: 12px; font-weight: 800; font-size: 1rem;
-  transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.1); position: relative;
-}
-.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.15); }
-.cta-sub { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: 16px; text-transform: uppercase; letter-spacing: 1.5px; position: relative; }
 
-/* ============================================ */
-/* FOOTER */
-/* ============================================ */
-footer {
-  padding: 48px 0 32px; border-top: 1px solid var(--gray-200);
+/* Floating 3D Geometric Background Elements */
+.bg-3d-shapes { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; perspective: 1000px; }
+.shape { position: absolute; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,78,59,0.2)); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.05); animation: float-shape 20s infinite alternate ease-in-out; }
+.shape-1 { width: 300px; height: 300px; border-radius: 40px; top: -50px; right: -100px; transform: rotate(45deg); animation-delay: 0s; }
+.shape-2 { width: 200px; height: 200px; border-radius: 50%; bottom: 100px; left: -50px; animation-delay: -5s; }
+.shape-3 { width: 150px; height: 150px; border-radius: 30px; top: 40%; left: 80%; transform: rotate(-25deg); animation-delay: -10s; }
+@keyframes float-shape { 0% { transform: translateY(0) rotate(0deg) translateZ(0); } 100% { transform: translateY(-100px) rotate(45deg) translateZ(-100px); } }
+
+.container { width: min(1200px, 90vw); margin: 0 auto; position: relative; z-index: 10; }
+
+/* Premium Nav */
+nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 100; transition: all 0.4s ease; border-bottom: 1px solid transparent; }
+nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
+.logo .mark { width: 14px; height: 44px; background: #1b3d2f; border-radius: 16px 2px 16px 2px; }
+.nav-links { display: flex; gap: 35px; align-items: center; font-weight: 500; font-size: 0.95rem; }
+.btn-nav { font-family: var(--font-heading); background: var(--text-main); color: var(--white); padding: 12px 28px; border-radius: 100px; transition: all 0.3s; font-weight: 600; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.btn-nav:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); background: #000; }
+
+/* Buttons */
+.btn { font-family: var(--font-heading); display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; cursor: pointer; border: none; letter-spacing: 0.5px; }
+.btn-primary { background: var(--text-main); color: var(--white); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+.btn-primary:hover { transform: translateY(-4px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); background: #000; }
+.btn-secondary { background: var(--white); color: var(--text-main); box-shadow: 0 10px 20px rgba(0,0,0,0.03), inset 0 0 0 1px rgba(0,0,0,0.08); }
+.btn-secondary:hover { color: var(--brand-green); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08), inset 0 0 0 1px var(--brand-green); }
+
+/* Glass Cards & 3D Environment */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 
+    0 40px 80px rgba(0,0,0,0.04),
+    0 2px 6px rgba(0,0,0,0.02),
+    inset 0 1px 0 rgba(255,255,255,1);
+  border-radius: 32px;
 }
+
+/* Deep 3D Pop Effects */
+.tilt-card { transform-style: preserve-3d; }
+.pop-out { transform: translateZ(60px); transform-style: preserve-3d; }
+.pop-out-extreme { transform: translateZ(120px); transform-style: preserve-3d; }
+
+/* Hero Section */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 0 100px; }
+.hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
+.hero-eyebrow { font-family: var(--font-heading); display: inline-block; padding: 10px 20px; background: var(--white); color: var(--brand-green); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
+.hero h1 { font-family: var(--font-heading); font-size: clamp(3.5rem, 6.5vw, 6.5rem); line-height: 1.05; font-weight: 700; color: var(--text-main); margin-bottom: 30px; letter-spacing: -2px; }
+.hero h1 em { font-style: normal; color: var(--brand-green); }
+.hero p { font-size: 1.35rem; color: var(--text-muted); line-height: 1.6; max-width: 650px; margin: 0 auto 50px; }
+.hero-actions { display: flex; justify-content: center; gap: 20px; }
+
+/* Dashboard UI Mockup - Extreme 3D */
+.hero-ui { margin-top: 100px; max-width: 1000px; margin-inline: auto; perspective: 1500px; }
+.dashboard-card { padding: 40px; display: flex; flex-direction: column; gap: 20px; border-radius: 32px; }
+.db-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 20px; }
+.db-title { font-family: var(--font-heading); font-weight: 600; font-size: 1.2rem; }
+.db-status { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--brand-green); background: var(--brand-bg); padding: 6px 14px; border-radius: 100px; font-weight: 600; }
+.db-status .dot { width: 8px; height: 8px; background: var(--brand-green); border-radius: 50%; animation: pulse 2s infinite; }
+.db-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.metric-box { background: rgba(255,255,255,0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,1); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+.metric-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }
+.metric-value { font-family: var(--font-heading); font-weight: 700; font-size: 3rem; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
+
+@keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+
+/* Section Base */
+.section { padding: 150px 0; }
+.section-header { text-align: center; margin-bottom: 100px; max-width: 800px; margin-inline: auto; }
+.section-eyebrow { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--brand-green); margin-bottom: 20px; }
+.section-title { font-family: var(--font-heading); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 25px; font-weight: 700; color: var(--text-main); letter-spacing: -1px; }
+.section-title em { font-style: normal; color: var(--brand-green); }
+.section-subtitle { font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; }
+
+/* Bento Layout */
+.bento-grid { display: flex; flex-direction: column; gap: 40px; max-width: 1100px; margin: 0 auto; perspective: 1500px; }
+.bento-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 60px; }
+.bento-text-side { padding: 20px; }
+.bento-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--white), var(--brand-bg)); border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-bottom: 35px; box-shadow: 0 20px 40px rgba(6,78,59,0.08); border: 1px solid var(--white); }
+.bento-icon svg { width: 40px; height: 40px; color: var(--brand-green); }
+.bento-text-side h3 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 20px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
+.bento-text-side p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
+
+/* Ultra 3D Voice AI Live Mockup */
+.voice-mock-container {
+  border-radius: 24px; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 20px;
+}
+.v-dark-glass {
+  background: rgba(15, 20, 25, 0.95); width: 100%; height: 100%; border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.1);
+  display: flex; flex-direction: column; padding: 20px; position: relative; overflow: hidden;
+}
+.v-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 15px; }
+.v-status { color: #fff; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 8px; letter-spacing: 1px; text-transform: uppercase; }
+.pulse-dot { width: 8px; height: 8px; background: var(--brand-light); border-radius: 50%; box-shadow: 0 0 10px var(--brand-light); animation: pulse-dot 2s infinite; }
+.v-time { color: rgba(255,255,255,0.5); font-size: 0.85rem; font-family: monospace; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+
+.v-center-orb { display: flex; justify-content: center; margin-bottom: 15px; }
+.v-waves { display: flex; gap: 4px; align-items: center; height: 30px; }
+.v-bar { width: 4px; background: var(--brand-light); border-radius: 4px; animation: eq 1s infinite ease-in-out alternate; }
+.v-bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+.v-bar:nth-child(2) { height: 25px; animation-delay: 0.3s; }
+.v-bar:nth-child(3) { height: 35px; animation-delay: 0.5s; }
+.v-bar:nth-child(4) { height: 15px; animation-delay: 0.2s; }
+.v-bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+
+.v-transcript { 
+  flex-grow: 1; display: flex; flex-direction: column; gap: 10px; 
+  mask-image: linear-gradient(transparent, black 15%, black 80%, transparent);
+  -webkit-mask-image: -webkit-linear-gradient(transparent, black 15%, black 80%, transparent);
+  animation: transcript-scroll 18s infinite;
+}
+.v-msg { padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; line-height: 1.4; max-width: 85%; opacity: 0; animation: fade-in-out 18s infinite; }
+.v-msg.ai { background: rgba(255,255,255,0.1); color: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 4px; }
+.v-msg.user { background: var(--brand-green); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+
+.v-m1 { animation-delay: 0s; } .v-m2 { animation-delay: 3s; } .v-m3 { animation-delay: 6s; } .v-m4 { animation-delay: 9s; } .v-m5 { animation-delay: 12s; }
+@keyframes fade-in-out {
+  0%, 2% { opacity: 0; transform: translateY(10px); }
+  5%, 90% { opacity: 1; transform: translateY(0); }
+  95%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes transcript-scroll {
+  0%, 15% { transform: translateY(30px); }
+  25%, 35% { transform: translateY(0px); }
+  45%, 55% { transform: translateY(-30px); }
+  65%, 75% { transform: translateY(-70px); }
+  85%, 100% { transform: translateY(-120px); }
+}
+
+/* Ultra 3D Isometric WhatsApp Stack Mockup */
+.wa-mock-container { height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transform-style: preserve-3d; perspective: 1200px; margin-top: -20px; }
+.wa-iso-grid {
+  position: relative; width: 100%; height: 100%;
+  transform: rotateX(45deg) rotateZ(-30deg) scale(0.9);
+  transform-style: preserve-3d;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.wa-bubble { 
+  position: absolute; box-sizing: border-box; word-wrap: break-word;
+  padding: 12px 16px; border-radius: 16px; font-size: 0.85rem; font-weight: 500; line-height: 1.4;
+  box-shadow: -10px 15px 30px rgba(0,0,0,0.1), inset 1px 1px 0 rgba(255,255,255,1); 
+  width: 240px;
+  transform-style: preserve-3d;
+  opacity: 0; animation: iso-appear 20s infinite;
+}
+.wa-bubble::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; background: inherit;
+  transform: translateZ(-6px); filter: brightness(0.9); z-index: -1;
+  box-shadow: -10px 10px 15px rgba(0,0,0,0.08);
+}
+.wa-left { background: #fff; color: var(--text-main); border: 1px solid rgba(0,0,0,0.03); border-bottom-left-radius: 4px; }
+.wa-right { background: var(--wa-bg); color: var(--text-main); border: 1px solid rgba(0,0,0,0.02); border-bottom-right-radius: 4px; }
+.wa-time { display: block; font-size: 0.65rem; color: rgba(0,0,0,0.4); margin-top: 4px; text-align: right; font-weight: 600; }
+
+.wa-b1 { --z: 0px; --y: 60px; --tx: -20px; z-index: 1; animation-delay: 0s; }
+.wa-b2 { --z: 30px; --y: 30px; --tx: -10px; z-index: 2; animation-delay: 3s; }
+.wa-b3 { --z: 60px; --y: 0px; --tx: 0px; z-index: 3; animation-delay: 6s; }
+.wa-b4 { --z: 90px; --y: -30px; --tx: 10px; z-index: 4; animation-delay: 9s; }
+.wa-b5 { --z: 120px; --y: -60px; --tx: 20px; z-index: 5; animation-delay: 12s; }
+
+@keyframes iso-appear {
+  0%, 2% { opacity: 0; transform: translateZ(calc(var(--z) - 20px)) translateY(calc(var(--y) + 20px)) translateX(var(--tx)); }
+  5%, 90% { opacity: 1; transform: translateZ(var(--z)) translateY(var(--y)) translateX(var(--tx)); }
+  95%, 100% { opacity: 0; transform: translateZ(calc(var(--z) + 20px)) translateY(calc(var(--y) - 20px)) translateX(var(--tx)); }
+}
+
+/* Steps Cards */
+.stack-container { display: flex; flex-direction: column; align-items: center; gap: 40px; perspective: 1500px; }
+.step-card { width: 100%; max-width: 800px; padding: 50px; display: flex; gap: 40px; align-items: center; }
+.step-number { width: 80px; height: 80px; flex-shrink: 0; background: linear-gradient(135deg, var(--white), var(--brand-bg)); color: var(--brand-green); font-family: var(--font-heading); font-size: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 600; box-shadow: 0 20px 40px rgba(6,78,59,0.08); border: 1px solid var(--white); }
+.step-content h4 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; letter-spacing: -0.5px; }
+.step-content p { color: var(--text-muted); line-height: 1.6; font-size: 1.15rem; }
+
+/* Pricing */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; perspective: 1500px; }
+.price-card { padding: 50px 40px; display: flex; flex-direction: column; }
+.price-card.featured { background: var(--text-main); color: var(--white); box-shadow: 0 50px 100px rgba(0,0,0,0.2); border: none; }
+.price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%) translateZ(40px); background: var(--brand-green); color: var(--white); font-size: 0.85rem; font-weight: 700; padding: 10px 24px; border-radius: 100px; letter-spacing: 2px; z-index: 10; box-shadow: 0 15px 30px rgba(6,78,59,0.3); }
+.price-card.featured .price-name, .price-card.featured .price-amount, .price-card.featured .price-amount span, .price-card.featured p, .price-card.featured li { color: var(--white); }
+.price-card.featured li { border-bottom-color: rgba(255,255,255,0.1); }
+.price-card.featured .btn { background: var(--white); color: var(--text-main); }
+.price-name { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.price-amount { font-family: var(--font-heading); font-size: 4.5rem; color: var(--text-main); margin-bottom: 25px; line-height: 1; font-weight: 700; letter-spacing: -2px; }
+.price-amount span { font-family: var(--font-sans); font-size: 1.2rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
+.price-features { margin: 30px 0 40px; flex-grow: 1; list-style: none; }
+.price-features li { padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); display: flex; gap: 15px; align-items: center; font-size: 1.05rem; font-weight: 500; }
+.price-features li svg { color: var(--brand-light); width: 22px; height: 22px; flex-shrink: 0; }
+
+/* Final CTA */
+.cta-section { padding: 150px 0; margin-bottom: 60px; perspective: 1500px; }
+.cta-box { background: var(--text-main); border-radius: 40px; padding: 100px 40px; text-align: center; color: var(--white); position: relative; overflow: hidden; box-shadow: 0 60px 120px rgba(0,0,0,0.15); border: none; }
+.cta-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 60%); pointer-events: none; }
+.cta-box h2 { font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 25px; position: relative; z-index: 1; font-weight: 700; letter-spacing: -2px; }
+.cta-box p { font-size: 1.35rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 50px; position: relative; z-index: 1; }
+.btn-white { background: var(--white); color: var(--text-main); padding: 22px 50px; border-radius: 100px; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; transition: all 0.3s; display: inline-block; position: relative; z-index: 1; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.btn-white:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+
+/* Footer */
+footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: var(--bg-color); position: relative; z-index: 10; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; }
-.footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: -1px; }
-.footer-brand .mark { width: 4px; height: 18px; background: var(--green); border-radius: 3px 0 0 3px; }
-.footer-links { display: flex; gap: 28px; }
-.footer-links a { font-size: .85rem; color: var(--gray-400); transition: color .2s; }
-.footer-links a:hover { color: var(--green); }
-.footer-copy { text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--gray-100); font-size: .78rem; color: var(--gray-400); }
+.footer-links { display: flex; gap: 30px; font-size: 1rem; color: var(--text-muted); font-weight: 500; }
 
-/* ============================================ */
-/* ANIMATIONS */
-/* ============================================ */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-
-/* ============================================ */
-/* RESPONSIVE */
-/* ============================================ */
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
-  .problem-grid, .services-grid { grid-template-columns: 1fr; }
-  .steps-row { grid-template-columns: repeat(2, 1fr); }
-  .step-connector { display: none; }
+/* Responsive */
+@media (max-width: 1000px) {
+  .bento-row { grid-template-columns: 1fr; padding: 40px; text-align: center; }
+  .bento-row:nth-child(even) .bento-text-side { order: -1; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .nav-links a:not(.nav-cta) { display: none; }
-  .hero-stats { flex-wrap: wrap; gap: 24px; }
-  .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
-  .industry-row { justify-content: flex-start; }
+  .db-metrics { grid-template-columns: 1fr; }
+  .step-card { flex-direction: column; text-align: center; gap: 20px; }
+  .nav-links { display: none; }
+  .hero-actions { flex-direction: column; }
+  .btn { width: 100%; }
 }
+
+/* Flawless Scroll Reveal */
+.reveal { opacity: 0; transform: translateY(60px); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-<div class="nav-inner">
-  <div class="nav-logo"><span class="mark"></span> seltr</div>
-  <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#how">How It Works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="https://zcal.co/mario/30min" target="_blank" class="nav-cta">Book a Call</a>
-  </div>
+<div class="bg-mesh"></div>
+<div class="bg-3d-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
 </div>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo"><span class="mark"></span> seltr</a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://zcal.co/mario/15min" target="_blank" class="btn-nav">Book Demo</a>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-<div class="container">
-<div class="hero-grid">
-
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span class="line"></span> For Clinics That Want to Grow</div>
-    <h1>Fill your calendar.<br><em>Automatically.</em></h1>
-    <p class="hero-sub">Reactivate old patients, follow up with leads who don't book, and never miss a message again. More appointments, more revenue — without hiring anyone.</p>
-    <div class="hero-ctas">
-      <a href="https://zcal.co/mario/30min" target="_blank" class="btn btn-fill">Book Free Strategy Call →</a>
-      <a href="#services" class="btn btn-outline">See How It Works</a>
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">For Clinics Looking to Grow</div>
+      <h1>Fill your calendar.<br><em>Automatically.</em></h1>
+      <p>Reactivate old patients, follow up instantly on new leads, and operate 24/7. More revenue. Zero extra workload for your team.</p>
+      <div class="hero-actions">
+        <a href="https://zcal.co/mario/15min" target="_blank" class="btn btn-primary">Free Audit</a>
+        <a href="#services" class="btn btn-secondary">View System</a>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><h3>38%</h3><p>Patients Reactivated</p></div>
-      <div class="hero-stat"><h3>24/7</h3><p>Lead Follow-Up</p></div>
-      <div class="hero-stat"><h3>2.1s</h3><p>Response Time</p></div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="hero-card">
-      <div class="card-header">
-        <h4>Weekly Performance</h4>
-        <span class="card-badge">Live</span>
+    
+    <!-- Extreme 3D Dashboard Card -->
+    <div class="hero-ui reveal" style="transition-delay: 0.2s;">
+      <div class="dashboard-card glass-card tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5" data-tilt-perspective="1000">
+        <div class="db-header pop-out-extreme">
+          <div class="db-title">Monthly Performance</div>
+          <div class="db-status"><span class="dot"></span> Operational System</div>
+        </div>
+        <div class="db-metrics pop-out">
+          <div class="metric-box pop-out">
+            <div class="metric-label">Reactivated Patients</div>
+            <div class="metric-value counter" data-target="23">0</div>
+          </div>
+          <div class="metric-box pop-out">
+            <div class="metric-label">Booked Appointments</div>
+            <div class="metric-value counter" data-target="47">0</div>
+          </div>
+          <div class="metric-box pop-out">
+            <div class="metric-label">Revenue Generated</div>
+            <div class="metric-value">$<span class="counter" data-target="8400">0</span></div>
+          </div>
+        </div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Patients Reactivated</span>
-        <span class="metric-value">23</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Appointments Booked</span>
-        <span class="metric-value">47</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Follow-ups Converted</span>
-        <span class="metric-value">14</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Revenue Generated</span>
-        <span class="metric-value">€8,400</span>
-      </div>
-      <div class="metric-bar"><div class="metric-bar-fill"></div></div>
-      <p style="font-size:.72rem;color:var(--gray-400);margin-top:8px;text-align:right">78% of monthly goal reached</p>
     </div>
   </div>
-
-</div>
-</div>
 </section>
 
-<!-- PROBLEM -->
-<section class="section">
-<div class="container">
-  <div class="section-eyebrow reveal"><span class="line"></span> The Real Problem</div>
-  <h2 class="reveal">Your clinic doesn't need more ads.<br>It needs to <em>convert</em> the patients you already have.</h2>
-  <p class="section-intro reveal">Most clinics spend thousands on marketing to get new patients. But the real money is in the ones who already know you — and the ones who almost booked but didn't.</p>
-
-  <div class="problem-grid">
-    <div class="problem-card reveal">
-      <div class="problem-number">40%</div>
-      <h3>Ghost Patients</h3>
-      <p>Patients who visited once or twice and never came back. They're sitting in your database right now — doing nothing.</p>
-    </div>
-    <div class="problem-card reveal">
-      <div class="problem-number">67%</div>
-      <h3>Leads Who Don't Book</h3>
-      <p>Two thirds of people who ask about treatments never schedule an appointment. Without follow-up, they're gone forever.</p>
-    </div>
-    <div class="problem-card reveal">
-      <div class="problem-number">€52K</div>
-      <h3>Lost Revenue Per Year</h3>
-      <p>The average clinic loses over €52,000 annually from inactive patients and unconverted leads. That's money already in your pipeline.</p>
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">The Real Problem</div>
+      <h2 class="section-title">Your clinic doesn't need more ads.<br>It needs to <em>convert.</em></h2>
+      <p class="section-subtitle">Spending thousands of dollars on marketing to attract new patients while letting the ones who already know you (or those who ask and don't book) slip away is throwing money down the drain.</p>
     </div>
   </div>
-</div>
 </section>
 
-<!-- SERVICES -->
 <section class="section" id="services">
-<div class="container">
-  <div class="section-eyebrow reveal"><span class="line"></span> What Seltr Does</div>
-  <h2 class="reveal">Three systems that fill<br>your calendar <em>on autopilot.</em></h2>
-  <p class="section-intro reveal">Each one generates revenue independently. Together, they transform your practice.</p>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">The Solution</div>
+      <h2 class="section-title">Three automatic systems.<br><em>One full calendar.</em></h2>
+      <p class="section-subtitle">We implement AI technology that is invisible to your team but omnipresent for your patients.</p>
+    </div>
+    
+    <div class="bento-grid">
+      
+      <!-- Feature 1: Voice AI with Deep Tilt -->
+      <div class="glass-card bento-row reveal tilt-card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-perspective="1500">
+        <div class="bento-text-side pop-out">
+          <div class="bento-icon pop-out-extreme">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+          </div>
+          <h3 class="pop-out">24/7 Voice AI Receptionist</h3>
+          <p class="pop-out">Sleep peacefully while our ultra-realistic AI answers phone calls instantly, qualifies prospects, and books appointments directly into your calendar. Indistinguishable from a human, polite, and completely scalable.</p>
+        </div>
+        
+        <div class="voice-mock-container pop-out-extreme">
+          <div class="v-dark-glass">
+            <div class="v-header">
+              <div class="v-status"><span class="pulse-dot"></span> Live Call</div>
+              <div class="v-time">01:24</div>
+            </div>
+            <div class="v-center-orb">
+              <div class="v-waves">
+                <div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div><div class="v-bar"></div>
+              </div>
+            </div>
+            <div class="v-transcript">
+              <div class="v-msg ai v-m1">Hello! Thanks for calling Dr. Smith's Clinic. How can I help you today?</div>
+              <div class="v-msg user v-m2">Hi, I'd like to book a whitening session.</div>
+              <div class="v-msg ai v-m3">I can help with that! Do you prefer mornings or afternoons?</div>
+              <div class="v-msg user v-m4">Mornings, around 10 AM if possible.</div>
+              <div class="v-msg ai v-m5">Perfect. I've booked you for Thursday at 10 AM. See you then!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Feature 2: WhatsApp Isometric 3D -->
+      <div class="glass-card bento-row reveal tilt-card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-perspective="1500">
+        <div class="wa-mock-container pop-out">
+          <div class="wa-iso-grid">
+            <div class="wa-bubble wa-right wa-b1">
+              Hi Sarah! It's been 6 months since your last cleaning. We have a few slots open this week. Would you like to schedule?
+              <span class="wa-time">10:45 AM</span>
+            </div>
+            <div class="wa-bubble wa-left wa-b2">
+              Yes actually! Do you have anything on Thursday afternoon?
+              <span class="wa-time">11:02 AM</span>
+            </div>
+            <div class="wa-bubble wa-right wa-b3">
+              Let me check... Yes, I have an opening at 4:00 PM and another at 5:30 PM. Do either of those work?
+              <span class="wa-time">11:03 AM</span>
+            </div>
+            <div class="wa-bubble wa-left wa-b4">
+              4 PM is perfect, thanks!
+              <span class="wa-time">11:05 AM</span>
+            </div>
+            <div class="wa-bubble wa-right wa-b5">
+              Great! You're booked for Thursday at 4:00 PM. I'll send a reminder a day before.
+              <span class="wa-time">11:05 AM</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bento-text-side pop-out">
+          <div class="bento-icon pop-out-extreme">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </div>
+          <h3 class="pop-out">WhatsApp Reactivation</h3>
+          <p class="pop-out">We connect to your database and politely reach out to inactive patients through WhatsApp. Our AI engages in natural conversations, handles objections, and fills your empty slots automatically.</p>
+        </div>
+      </div>
 
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-icon">🔄</div>
-      <h3>Patient Reactivation</h3>
-      <p>We contact patients who haven't visited in 3+ months with personalized messages. They already trust you — they just need a nudge to come back.</p>
-      <span class="service-tag">Immediate Revenue</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-icon">📲</div>
-      <h3>Smart Follow-Up</h3>
-      <p>When someone asks about a treatment but doesn't book, our AI follows up automatically until they schedule. No more leads falling through the cracks.</p>
-      <span class="service-tag">Converts Leads to Appointments</span>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-icon">⚡</div>
-      <h3>24/7 AI Assistant</h3>
-      <p>Answers WhatsApp messages and calls instantly — anytime, day or night. Captures patient info, answers questions, and books appointments while you sleep.</p>
-      <span class="service-tag">Never Miss a Patient</span>
     </div>
   </div>
-</div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section how-section" id="how">
-<div class="container">
-  <div class="section-eyebrow reveal"><span class="line"></span> How It Works</div>
-  <h2 class="reveal">Live in one week.<br>Results from <em>day one.</em></h2>
-  <p class="section-intro reveal">No tech skills needed. No disruption to your team. We handle everything.</p>
-
-  <div class="steps-row">
-    <div class="step-item reveal">
-      <div class="step-number">01</div>
-      <h3>Strategy Call</h3>
-      <p>We learn your services, prices, and patient flow. 30 minutes is all we need.</p>
-      <div class="step-connector"></div>
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">The Process</div>
+      <h2 class="section-title">Ready in one week.<br><em>Results from day 1.</em></h2>
+      <p class="section-subtitle">No technical skills required. Without interrupting your clinic's workflow. We handle the entire deployment.</p>
     </div>
-    <div class="step-item reveal">
-      <div class="step-number">02</div>
-      <h3>Custom Setup</h3>
-      <p>We build your AI assistant, configure the reactivation campaign, and set up follow-up sequences.</p>
-      <div class="step-connector"></div>
-    </div>
-    <div class="step-item reveal">
-      <div class="step-number">03</div>
-      <h3>7-Day Test</h3>
-      <p>You review every interaction. We adjust until it's perfect. No commitment during testing.</p>
-      <div class="step-connector"></div>
-    </div>
-    <div class="step-item reveal">
-      <div class="step-number">04</div>
-      <h3>Watch It Work</h3>
-      <p>Weekly reports with appointments booked, patients reactivated, and revenue generated. Pure results.</p>
+    
+    <div class="stack-container">
+      <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
+        <div class="step-number pop-out">1</div>
+        <div class="step-content pop-out">
+          <h4>Strategic Audit</h4>
+          <p>We have a 30-minute call to deeply understand your services, pricing, and brand voice. We securely connect our system to your calendar and CRM.</p>
+        </div>
+      </div>
+      <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
+        <div class="step-number pop-out">2</div>
+        <div class="step-content pop-out">
+          <h4>Custom AI Training</h4>
+          <p>We build your private virtual assistant, configure reactivation parameters, and write highly converting follow-up sequences based on your clinic's data.</p>
+        </div>
+      </div>
+      <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
+        <div class="step-number pop-out">3</div>
+        <div class="step-content pop-out">
+          <h4>Shadow Testing (7 Days)</h4>
+          <p>You will review how the AI responds before it interacts with real patients. We perfect it and adjust the tone until it sounds exactly like your best receptionist.</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
-<!-- INDUSTRIES -->
-<section class="section">
-<div class="container" style="text-align:center">
-  <div class="section-eyebrow reveal" style="justify-content:center"><span class="line"></span> Who It's For</div>
-  <h2 class="reveal">Built for clinics that want<br><em>a full calendar.</em></h2>
-  <p class="section-intro reveal" style="margin-left:auto;margin-right:auto">Any clinic that has a patient database and gets inquiries via WhatsApp, phone, or web.</p>
-
-  <div class="industry-row reveal">
-    <div class="industry-pill"><span class="emoji">💆</span> Med Spas</div>
-    <div class="industry-pill"><span class="emoji">🦷</span> Dental Clinics</div>
-    <div class="industry-pill"><span class="emoji">👁️</span> Optometry</div>
-    <div class="industry-pill"><span class="emoji">🧴</span> Dermatology</div>
-    <div class="industry-pill"><span class="emoji">💉</span> Aesthetic Clinics</div>
-    <div class="industry-pill"><span class="emoji">🏥</span> Physiotherapy</div>
-    <div class="industry-pill"><span class="emoji">🧠</span> Psychology</div>
-    <div class="industry-pill"><span class="emoji">🐾</span> Veterinary</div>
-  </div>
-</div>
-</section>
-
-<!-- PRICING -->
 <section class="section" id="pricing">
-<div class="container">
-  <div class="section-eyebrow reveal"><span class="line"></span> Pricing</div>
-  <h2 class="reveal">Pays for itself with<br><em>one or two patients.</em></h2>
-  <p class="section-intro reveal">No contracts. Cancel anytime. Revenue generated from week one.</p>
-
-  <div class="pricing-grid">
-    <div class="price-card reveal">
-      <div class="price-label">Reactivation Only</div>
-      <div class="price-amount">$397 <span>/mo</span></div>
-      <div class="price-desc">Bring back patients who stopped coming.</div>
-      <ul class="price-features">
-        <li>Automated patient outreach</li>
-        <li>Personalized messages</li>
-        <li>Weekly report</li>
-        <li>CRM integration</li>
-      </ul>
-      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-outline">Get Started</a>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Investment Plans</div>
+      <h2 class="section-title">Guaranteed<br><em>Return on Investment.</em></h2>
+      <p class="section-subtitle">The system pays for itself with the first or second new patient of the month. No lock-in contracts. Total clarity.</p>
     </div>
-    <div class="price-card featured reveal">
-      <div class="price-label" style="color:var(--green)">Reactivation + Follow-Up</div>
-      <div class="price-amount">$597 <span>/mo</span></div>
-      <div class="price-desc">Reactivate old patients + convert new leads.</div>
-      <ul class="price-features">
-        <li>Everything in Reactivation</li>
-        <li>Automated lead follow-up</li>
-        <li>Smart scheduling</li>
-        <li>Conversion tracking</li>
-      </ul>
-      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-fill">Book Strategy Call →</a>
-    </div>
-    <div class="price-card reveal">
-      <div class="price-label">Full System</div>
-      <div class="price-amount">$997 <span>/mo</span></div>
-      <div class="price-desc">Complete growth engine for your clinic.</div>
-      <ul class="price-features">
-        <li>Everything in Follow-Up</li>
-        <li>24/7 AI Assistant</li>
-        <li>WhatsApp + Voice</li>
-        <li>Priority support</li>
-      </ul>
-      <a href="https://zcal.co/mario/30min" class="price-btn price-btn-outline">Book Strategy Call →</a>
+    
+    <div class="pricing-grid">
+      <div class="price-card glass-card reveal tilt-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.4">
+        <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
+          <div class="price-name">Reactivation Plan</div>
+          <div class="price-amount">$397<span>/mo</span></div>
+          <p style="color:var(--text-muted); font-size: 1rem;">Ideal for clinics with older, inactive databases.</p>
+          <ul class="price-features">
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Contact old patients</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom SMS campaigns</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Calendar integration</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Weekly reporting</li>
+          </ul>
+          <a href="https://zcal.co/mario/15min" class="btn btn-secondary" style="width:100%;">Select Plan</a>
+        </div>
+      </div>
+      
+      <div class="price-card glass-card featured reveal tilt-card" data-tilt data-tilt-max="12" data-tilt-glare data-tilt-max-glare="0.5">
+        <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
+          <div class="price-name" style="color:var(--brand-light)">Growth Engine</div>
+          <div class="price-amount">$597<span>/mo</span></div>
+          <p style="font-size: 1rem;">The sweet spot. Reactivate old ones and never miss a new lead.</p>
+          <ul class="price-features">
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b>Everything in Reactivation</b></li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> AI Auto Follow-up</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 24/7 Objection handling</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Smart booking</li>
+          </ul>
+          <a href="https://zcal.co/mario/15min" class="btn btn-primary" style="width:100%;">Select Plan</a>
+        </div>
+      </div>
+      
+      <div class="price-card glass-card reveal tilt-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.4">
+        <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
+          <div class="price-name">Total Autopilot</div>
+          <div class="price-amount">$997<span>/mo</span></div>
+          <p style="color:var(--text-muted); font-size: 1rem;">Completely replaces the work of a commercial receptionist.</p>
+          <ul class="price-features">
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b style="color: var(--text-main);">Everything in Growth</b></li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 24/7 Full AI Receptionist</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> SMS & Voice AI</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Priority 1-on-1 support</li>
+          </ul>
+          <a href="https://zcal.co/mario/15min" class="btn btn-secondary" style="width:100%;">Select Plan</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
-<!-- CTA -->
-<section class="final-cta">
-<div class="container">
-  <h2>How many patients are sitting<br>in your database right now?</h2>
-  <p>Let's reactivate them and fill your calendar. Book a free 15-minute strategy call — we'll show you exactly how many appointments you're leaving on the table.</p>
-  <a href="https://zcal.co/mario/30min" target="_blank" class="btn-white">Book Free Strategy Call →</a>
-  <div class="cta-sub">15 minutes · No commitment · See your numbers</div>
-</div>
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.3">
+      <div class="pop-out">
+        <h2>How many appointments are hiding<br>in your database?</h2>
+        <p>Let's reactivate your clinic and fill your calendar. Book a free 15-minute audit and we'll show you exactly how much revenue you're leaving on the table.</p>
+        <a href="https://zcal.co/mario/15min" target="_blank" class="btn-white">Book Free Audit</a>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 24px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">15 min · No commitment · We analyze your real ROI</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-<div class="container">
-  <div class="footer-inner">
-    <div class="footer-brand"><span class="mark"></span> seltr</div>
+  <div class="container footer-inner">
+    <div class="logo" style="font-size: 1.6rem;"><span class="mark" style="height: 32px; width: 10px; border-radius: 12px 2px 12px 2px;"></span> seltr</div>
     <div class="footer-links">
       <a href="mailto:mario@seltr.es">mario@seltr.es</a>
       <a href="https://linkedin.com/in/mescu" target="_blank">LinkedIn</a>
-      <a href="https://linkedin.com/company/seltr" target="_blank">Company</a>
     </div>
   </div>
-  <div class="footer-copy">© 2026 Seltr. More appointments. Automatically.</div>
-</div>
 </footer>
 
-<!-- SCRIPTS -->
 <script>
-// Nav scroll effect
+// Nav Blur Background on Scroll
+const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
 });
 
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
+// Robust Intersection Observer for Animations
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+  }, 100);
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+  document.querySelectorAll('.reveal:not(.hero .reveal)').forEach(el => {
+    revealObserver.observe(el);
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Animated Counters
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const speed = 2000; 
+        const inc = target / (speed / 16); 
+        
+        const updateCount = () => {
+          count += inc;
+          if (count < target) {
+            el.innerText = Math.ceil(count).toLocaleString('en-US');
+            requestAnimationFrame(updateCount);
+          } else {
+            el.innerText = target.toLocaleString('en-US');
+          }
+        };
+        updateCount();
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  counters.forEach(counter => counterObserver.observe(counter));
+});
 </script>
-
 </body>
 </html>
