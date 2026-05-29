@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seltr — Fill your calendar. Automatically.</title>
+<title>Seltr — Llena tu calendario. Automáticamente.</title>
 <!-- Professional AI Agency Typography: Outfit for headings, Inter for body -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,7 @@ html { scroll-behavior: smooth; }
 
 /* Floating 3D Geometric Background Elements */
 .bg-3d-shapes { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; perspective: 1000px; }
-.shape { position: absolute; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,78,59,0.2)); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.05); animation: float-shape 20s infinite alternate ease-in-out; }
+.shape { position: absolute; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,78,59,0.2)); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.05); animation: float-shape 20s infinite ease-in-out; }
 .shape-1 { width: 300px; height: 300px; border-radius: 40px; top: -50px; right: -100px; transform: rotate(45deg); animation-delay: 0s; }
 .shape-2 { width: 200px; height: 200px; border-radius: 50%; bottom: 100px; left: -50px; animation-delay: -5s; }
 .shape-3 { width: 150px; height: 150px; border-radius: 30px; top: 40%; left: 80%; transform: rotate(-25deg); animation-delay: -10s; }
@@ -64,16 +64,16 @@ html { scroll-behavior: smooth; }
 
 /* Premium Nav */
 nav { position: fixed; top: 0; width: 100%; padding: 25px 0; z-index: 100; transition: all 0.4s ease; border-bottom: 1px solid transparent; }
-nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
 .logo .mark { width: 14px; height: 44px; background: #1b3d2f; border-radius: 16px 2px 16px 2px; }
 .nav-links { display: flex; gap: 35px; align-items: center; font-weight: 500; font-size: 0.95rem; }
-.btn-nav { font-family: var(--font-heading); background: var(--text-main); color: var(--white); padding: 12px 28px; border-radius: 100px; transition: all 0.3s; font-weight: 600; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.btn-nav { font-family: var(--font-heading); background: var(--text-main); color: var(--white); padding: 12px 28px; border-radius: 100px; transition: all 0.3s; font-weight: 600; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); background: #000; }
 
 /* Buttons */
-.btn { font-family: var(--font-heading); display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; cursor: pointer; border: none; letter-spacing: 0.5px; }
+.btn { font-family: var(--font-heading); display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; border: none; cursor: pointer; }
 .btn-primary { background: var(--text-main); color: var(--white); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
 .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 25px 50px rgba(0,0,0,0.25); background: #000; }
 .btn-secondary { background: var(--white); color: var(--text-main); box-shadow: 0 10px 20px rgba(0,0,0,0.03), inset 0 0 0 1px rgba(0,0,0,0.08); }
@@ -100,7 +100,7 @@ nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-
 /* Hero Section */
 .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 0 100px; }
 .hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
-.hero-eyebrow { font-family: var(--font-heading); display: inline-block; padding: 10px 20px; background: var(--white); color: var(--brand-green); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
+.hero-eyebrow { font-family: var(--font-heading); display: inline-block; padding: 10px 20px; background: var(--white); color: var(--brand-green); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 100px; margin-bottom: 30px; }
 .hero h1 { font-family: var(--font-heading); font-size: clamp(3.5rem, 6.5vw, 6.5rem); line-height: 1.05; font-weight: 700; color: var(--text-main); margin-bottom: 30px; letter-spacing: -2px; }
 .hero h1 em { font-style: normal; color: var(--brand-green); }
 .hero p { font-size: 1.35rem; color: var(--text-muted); line-height: 1.6; max-width: 650px; margin: 0 auto 50px; }
@@ -132,7 +132,7 @@ nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-
 .bento-grid { display: flex; flex-direction: column; gap: 40px; max-width: 1100px; margin: 0 auto; perspective: 1500px; }
 .bento-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 60px; }
 .bento-text-side { padding: 20px; }
-.bento-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--white), var(--brand-bg)); border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-bottom: 35px; box-shadow: 0 20px 40px rgba(6,78,59,0.08); border: 1px solid var(--white); }
+.bento-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--white), var(--brand-bg)); border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 .bento-icon svg { width: 40px; height: 40px; color: var(--brand-green); }
 .bento-text-side h3 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 20px; font-weight: 600; line-height: 1.1; letter-spacing: -1px; }
 .bento-text-side p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
@@ -187,7 +187,7 @@ nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-
 }
 
 /* Ultra 3D Isometric WhatsApp Stack Mockup */
-.wa-mock-container { height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transform-style: preserve-3d; perspective: 1200px; margin-top: -20px; }
+.wa-mock-container { height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transform-style: preserve-3d; perspective: 1200px; margin-top: 0; }
 .wa-iso-grid {
   position: relative; width: 100%; height: 100%;
   transform: rotateX(45deg) rotateZ(-30deg) scale(0.9);
@@ -226,15 +226,15 @@ nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-
 /* Steps Cards */
 .stack-container { display: flex; flex-direction: column; align-items: center; gap: 40px; perspective: 1500px; }
 .step-card { width: 100%; max-width: 800px; padding: 50px; display: flex; gap: 40px; align-items: center; }
-.step-number { width: 80px; height: 80px; flex-shrink: 0; background: linear-gradient(135deg, var(--white), var(--brand-bg)); color: var(--brand-green); font-family: var(--font-heading); font-size: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 600; box-shadow: 0 20px 40px rgba(6,78,59,0.08); border: 1px solid var(--white); }
+.step-number { width: 80px; height: 80px; flex-shrink: 0; background: linear-gradient(135deg, var(--white), var(--brand-bg)); color: var(--brand-green); font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 24px; }
 .step-content h4 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; letter-spacing: -0.5px; }
 .step-content p { color: var(--text-muted); line-height: 1.6; font-size: 1.15rem; }
 
 /* Pricing */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; perspective: 1500px; }
 .price-card { padding: 50px 40px; display: flex; flex-direction: column; }
-.price-card.featured { background: var(--text-main); color: var(--white); box-shadow: 0 50px 100px rgba(0,0,0,0.2); border: none; }
-.price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%) translateZ(40px); background: var(--brand-green); color: var(--white); font-size: 0.85rem; font-weight: 700; padding: 10px 24px; border-radius: 100px; letter-spacing: 2px; z-index: 10; box-shadow: 0 15px 30px rgba(6,78,59,0.3); }
+.price-card.featured { background: var(--text-main); color: var(--white); box-shadow: 0 50px 100px rgba(0,0,0,0.2); border: none; position: relative; }
+.price-card.featured::before { content: 'MÁS POPULAR'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%) translateZ(40px); background: var(--brand-green); color: var(--white); font-size: 0.75rem; padding: 8px 16px; border-radius: 100px; font-weight: 700; letter-spacing: 1px; }
 .price-card.featured .price-name, .price-card.featured .price-amount, .price-card.featured .price-amount span, .price-card.featured p, .price-card.featured li { color: var(--white); }
 .price-card.featured li { border-bottom-color: rgba(255,255,255,0.1); }
 .price-card.featured .btn { background: var(--white); color: var(--text-main); }
@@ -247,11 +247,11 @@ nav.scrolled { padding: 15px 0; background: rgba(246, 247, 249, 0.85); backdrop-
 
 /* Final CTA */
 .cta-section { padding: 150px 0; margin-bottom: 60px; perspective: 1500px; }
-.cta-box { background: var(--text-main); border-radius: 40px; padding: 100px 40px; text-align: center; color: var(--white); position: relative; overflow: hidden; box-shadow: 0 60px 120px rgba(0,0,0,0.15); border: none; }
+.cta-box { background: var(--text-main); border-radius: 40px; padding: 100px 40px; text-align: center; color: var(--white); position: relative; overflow: hidden; box-shadow: 0 60px 120px rgba(0,0,0,0.2); }
 .cta-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 60%); pointer-events: none; }
 .cta-box h2 { font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 25px; position: relative; z-index: 1; font-weight: 700; letter-spacing: -2px; }
 .cta-box p { font-size: 1.35rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 50px; position: relative; z-index: 1; }
-.btn-white { background: var(--white); color: var(--text-main); padding: 22px 50px; border-radius: 100px; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; transition: all 0.3s; display: inline-block; position: relative; z-index: 1; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.btn-white { background: var(--white); color: var(--text-main); padding: 22px 50px; border-radius: 100px; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; transition: all 0.3s; display: inline-block; }
 .btn-white:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
 
 /* Footer */
@@ -289,11 +289,11 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
   <div class="container nav-inner">
     <a href="#" class="logo"><span class="mark"></span> seltr</a>
     <div class="nav-links">
-      <a href="#problem">Problem</a>
-      <a href="#services">Services</a>
-      <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="https://www.cal.eu/mescu/strategy" target="_blank" class="btn-nav">Book Demo</a>
+      <a href="#problem">Problema</a>
+      <a href="#services">Servicios</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#pricing">Precios</a>
+      <a href="https://www.cal.eu/mescu/strategy" target="_blank" class="btn-nav">Reservar Demo</a>
     </div>
   </div>
 </nav>
@@ -301,13 +301,12 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
 <section class="hero">
   <div class="container">
     <div class="hero-content reveal">
-      <div class="hero-eyebrow">For Clinics Looking to Grow</div>
-      <h1>Fill your calendar.<br><em>Automatically.</em></h1>
-      <p>Reactivate old patients, follow up instantly on new leads, and operate 24/7. More revenue. Zero extra workload for your team.</p>
+      <div class="hero-eyebrow">Para Clínicas que Quieren Crecer</div>
+      <h1>Llena tu calendario.<br><em>Automáticamente.</em></h1>
+      <p>Reactiva pacientes antiguos, da seguimiento instantáneo a nuevos clientes y opera 24/7. Más ingresos. Cero trabajo extra para tu equipo.</p>
       <div class="hero-actions">
-        <a href="https://www.cal.eu/mescu/strategy
-          " target="_blank" class="btn btn-primary">Free Audit</a>
-        <a href="#services" class="btn btn-secondary">View System</a>
+        <a href="https://www.cal.eu/mescu/strategy" target="_blank" class="btn btn-primary">Auditoría Gratuita</a>
+        <a href="#services" class="btn btn-secondary">Ver Sistema</a>
       </div>
     </div>
     
@@ -315,21 +314,21 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
     <div class="hero-ui reveal" style="transition-delay: 0.2s;">
       <div class="dashboard-card glass-card tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5" data-tilt-perspective="1000">
         <div class="db-header pop-out-extreme">
-          <div class="db-title">Monthly Performance</div>
-          <div class="db-status"><span class="dot"></span> Operational System</div>
+          <div class="db-title">Desempeño Mensual</div>
+          <div class="db-status"><span class="dot"></span> Sistema Operativo</div>
         </div>
         <div class="db-metrics pop-out">
           <div class="metric-box pop-out">
-            <div class="metric-label">Reactivated Patients</div>
+            <div class="metric-label">Pacientes Reactivados</div>
             <div class="metric-value counter" data-target="23">0</div>
           </div>
           <div class="metric-box pop-out">
-            <div class="metric-label">Booked Appointments</div>
+            <div class="metric-label">Citas Reservadas</div>
             <div class="metric-value counter" data-target="47">0</div>
           </div>
           <div class="metric-box pop-out">
-            <div class="metric-label">Revenue Generated</div>
-            <div class="metric-value">$<span class="counter" data-target="8400">0</span></div>
+            <div class="metric-label">Ingresos Generados</div>
+            <div class="metric-value">€<span class="counter" data-target="8400">0</span></div>
           </div>
         </div>
       </div>
@@ -340,9 +339,9 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
 <section class="section" id="problem">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">The Real Problem</div>
-      <h2 class="section-title">Your clinic doesn't need more ads.<br>It needs to <em>convert.</em></h2>
-      <p class="section-subtitle">Spending thousands of dollars on marketing to attract new patients while letting the ones who already know you (or those who ask and don't book) slip away is throwing money down the drain.</p>
+      <div class="section-eyebrow">El Verdadero Problema</div>
+      <h2 class="section-title">Tu clínica no necesita más publicidad.<br>Necesita <em>convertir.</em></h2>
+      <p class="section-subtitle">Gastar miles de euros en marketing para atraer nuevos pacientes mientras dejas escapar a los que ya te conocen (o que preguntan y no reservan) es tirar dinero a la basura. Es como tener un cubo lleno de agujeros.</p>
     </div>
   </div>
 </section>
@@ -350,9 +349,9 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
 <section class="section" id="services">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">The Solution</div>
-      <h2 class="section-title">Three automatic systems.<br><em>One full calendar.</em></h2>
-      <p class="section-subtitle">We implement AI technology that is invisible to your team but omnipresent for your patients.</p>
+      <div class="section-eyebrow">La Solución</div>
+      <h2 class="section-title">Tres sistemas automáticos.<br><em>Un calendario lleno.</em></h2>
+      <p class="section-subtitle">Implementamos tecnología IA que es invisible para tu equipo pero omnipresente para tus pacientes.</p>
     </div>
     
     <div class="bento-grid">
@@ -361,16 +360,16 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
       <div class="glass-card bento-row reveal tilt-card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-perspective="1500">
         <div class="bento-text-side pop-out">
           <div class="bento-icon pop-out-extreme">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-24a9 9 0 110 18 9 9 0 010-18z"></path></svg>
           </div>
-          <h3 class="pop-out">24/7 Voice AI Receptionist</h3>
-          <p class="pop-out">Sleep peacefully while our ultra-realistic AI answers phone calls instantly, qualifies prospects, and books appointments directly into your calendar. Indistinguishable from a human, polite, and completely scalable.</p>
+          <h3 class="pop-out">Recepcionista de IA 24/7</h3>
+          <p class="pop-out">Duerme tranquilo mientras nuestra IA ultra realista responde llamadas al instante, califica prospectos y reserva citas directamente en tu calendario. Indistinguible de un humano real.</p>
         </div>
         
         <div class="voice-mock-container pop-out-extreme">
           <div class="v-dark-glass">
             <div class="v-header">
-              <div class="v-status"><span class="pulse-dot"></span> Live Call</div>
+              <div class="v-status"><span class="pulse-dot"></span> Llamada En Vivo</div>
               <div class="v-time">01:24</div>
             </div>
             <div class="v-center-orb">
@@ -379,11 +378,11 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
               </div>
             </div>
             <div class="v-transcript">
-              <div class="v-msg ai v-m1">Hello! Thanks for calling Dr. Smith's Clinic. How can I help you today?</div>
-              <div class="v-msg user v-m2">Hi, I'd like to book a whitening session.</div>
-              <div class="v-msg ai v-m3">I can help with that! Do you prefer mornings or afternoons?</div>
-              <div class="v-msg user v-m4">Mornings, around 10 AM if possible.</div>
-              <div class="v-msg ai v-m5">Perfect. I've booked you for Thursday at 10 AM. See you then!</div>
+              <div class="v-msg ai v-m1">¡Hola! Gracias por llamar a la Clínica Dra. García. ¿Cómo puedo ayudarte?</div>
+              <div class="v-msg user v-m2">Hola, me gustaría reservar una sesión de blanqueamiento.</div>
+              <div class="v-msg ai v-m3">¡Perfecto! ¿Prefieres por la mañana o por la tarde?</div>
+              <div class="v-msg user v-m4">Por la mañana, alrededor de las 10 AM si es posible.</div>
+              <div class="v-msg ai v-m5">Excelente. Te he reservado para el jueves a las 10 AM. ¡Nos vemos!</div>
             </div>
           </div>
         </div>
@@ -394,23 +393,23 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
         <div class="wa-mock-container pop-out">
           <div class="wa-iso-grid">
             <div class="wa-bubble wa-right wa-b1">
-              Hi Sarah! It's been 6 months since your last cleaning. We have a few slots open this week. Would you like to schedule?
+              ¡Hola María! Hace 6 meses que no vienes para tu limpieza. Tenemos varios horarios disponibles esta semana. ¿Te gustaría reservar?
               <span class="wa-time">10:45 AM</span>
             </div>
             <div class="wa-bubble wa-left wa-b2">
-              Yes actually! Do you have anything on Thursday afternoon?
+              ¡Claro! ¿Tienes algo el jueves por la tarde?
               <span class="wa-time">11:02 AM</span>
             </div>
             <div class="wa-bubble wa-right wa-b3">
-              Let me check... Yes, I have an opening at 4:00 PM and another at 5:30 PM. Do either of those work?
+              Déjame revisar... Sí, tengo disponibilidad a las 4:00 PM y a las 5:30 PM. ¿Alguno te viene bien?
               <span class="wa-time">11:03 AM</span>
             </div>
             <div class="wa-bubble wa-left wa-b4">
-              4 PM is perfect, thanks!
+              Las 4 PM perfecto, ¡gracias!
               <span class="wa-time">11:05 AM</span>
             </div>
             <div class="wa-bubble wa-right wa-b5">
-              Great! You're booked for Thursday at 4:00 PM. I'll send a reminder a day before.
+              Genial, te reservé para el jueves a las 4:00 PM. Te enviaré un recordatorio un día antes.
               <span class="wa-time">11:05 AM</span>
             </div>
           </div>
@@ -418,10 +417,10 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
         
         <div class="bento-text-side pop-out">
           <div class="bento-icon pop-out-extreme">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.865 9.865 0 01-4.8-1.2l-5.4 1.8 1.8-5.4A9 9 0 003 12c0-4.97 4.03-9 9-9s9 4.03 9 9z"></path></svg>
           </div>
-          <h3 class="pop-out">WhatsApp Reactivation</h3>
-          <p class="pop-out">We connect to your database and politely reach out to inactive patients through WhatsApp. Our AI engages in natural conversations, handles objections, and fills your empty slots automatically.</p>
+          <h3 class="pop-out">Reactivación por WhatsApp</h3>
+          <p class="pop-out">Nos conectamos a tu base de datos y contactamos respetuosamente a pacientes inactivos por WhatsApp. Nuestra IA participa en conversaciones naturales, maneja objeciones y llena tus espacios vacíos.</p>
         </div>
       </div>
 
@@ -432,31 +431,31 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
 <section class="section" id="how">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">The Process</div>
-      <h2 class="section-title">Ready in one week.<br><em>Results from day 1.</em></h2>
-      <p class="section-subtitle">No technical skills required. Without interrupting your clinic's workflow. We handle the entire deployment.</p>
+      <div class="section-eyebrow">El Proceso</div>
+      <h2 class="section-title">Listo en una semana.<br><em>Resultados desde el día 1.</em></h2>
+      <p class="section-subtitle">Sin habilidades técnicas requeridas. Sin interrumpir el flujo de trabajo de tu clínica. Nosotros manejamos todo el despliegue.</p>
     </div>
     
     <div class="stack-container">
       <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
         <div class="step-number pop-out">1</div>
         <div class="step-content pop-out">
-          <h4>Strategic Audit</h4>
-          <p>We have a 30-minute call to deeply understand your services, pricing, and brand voice. We securely connect our system to your calendar and CRM.</p>
+          <h4>Auditoría Estratégica</h4>
+          <p>Tenemos una llamada de 30 minutos para entender profundamente tus servicios, precios y voz de marca. Conectamos de forma segura nuestro sistema a tu calendario y CRM.</p>
         </div>
       </div>
       <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
         <div class="step-number pop-out">2</div>
         <div class="step-content pop-out">
-          <h4>Custom AI Training</h4>
-          <p>We build your private virtual assistant, configure reactivation parameters, and write highly converting follow-up sequences based on your clinic's data.</p>
+          <h4>Entrenamiento de IA Personalizado</h4>
+          <p>Construimos tu asistente virtual privado, configuramos parámetros de reactivación y escribimos secuencias de seguimiento altamente convertidoras basadas en los datos de tu clínica.</p>
         </div>
       </div>
       <div class="step-card glass-card reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
         <div class="step-number pop-out">3</div>
         <div class="step-content pop-out">
-          <h4>Shadow Testing (7 Days)</h4>
-          <p>You will review how the AI responds before it interacts with real patients. We perfect it and adjust the tone until it sounds exactly like your best receptionist.</p>
+          <h4>Prueba Silenciosa (7 Días)</h4>
+          <p>Revisarás cómo responde la IA antes de que interactúe con pacientes reales. La perfeccionamos y ajustamos el tono hasta que suene exactamente como tu mejor recepcionista.</p>
         </div>
       </div>
     </div>
@@ -466,54 +465,54 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
 <section class="section" id="pricing">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">Investment Plans</div>
-      <h2 class="section-title">Guaranteed<br><em>Return on Investment.</em></h2>
-      <p class="section-subtitle">The system pays for itself with the first or second new patient of the month. No lock-in contracts. Total clarity.</p>
+      <div class="section-eyebrow">Planes de Inversión</div>
+      <h2 class="section-title">Retorno sobre la Inversión<br><em>Garantizado.</em></h2>
+      <p class="section-subtitle">El sistema se paga a sí mismo con el primer o segundo paciente nuevo del mes. Sin contratos de larga duración. Total claridad.</p>
     </div>
     
     <div class="pricing-grid">
       <div class="price-card glass-card reveal tilt-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.4">
         <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
-          <div class="price-name">Reactivation Plan</div>
-          <div class="price-amount">$397<span>/mo</span></div>
-          <p style="color:var(--text-muted); font-size: 1rem;">Ideal for clinics with older, inactive databases.</p>
+          <div class="price-name">Plan Reactivación</div>
+          <div class="price-amount">€297<span>/mes</span></div>
+          <p style="color:var(--text-muted); font-size: 1rem;">Ideal para clínicas con bases de datos antiguas e inactivas.</p>
           <ul class="price-features">
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Contact old patients</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom SMS campaigns</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Calendar integration</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Weekly reporting</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Contacto con pacientes antiguos</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Campañas SMS personalizadas</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Integración con calendario</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Reportes semanales</li>
           </ul>
-          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-secondary" style="width:100%;">Book Free Audit</a>
+          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-secondary" style="width:100%;">Reservar Auditoría Gratuita</a>
         </div>
       </div>
       
       <div class="price-card glass-card featured reveal tilt-card" data-tilt data-tilt-max="12" data-tilt-glare data-tilt-max-glare="0.5">
         <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
-          <div class="price-name" style="color:var(--brand-light)">Growth Engine</div>
-          <div class="price-amount">$597<span>/mo</span></div>
-          <p style="font-size: 1rem;">The sweet spot. Reactivate old ones and never miss a new lead.</p>
+          <div class="price-name" style="color:var(--brand-light)">Motor de Crecimiento</div>
+          <div class="price-amount">€497<span>/mes</span></div>
+          <p style="font-size: 1rem;">El mejor balance. Reactiva los antiguos y nunca pierdas un nuevo cliente.</p>
           <ul class="price-features">
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b>Everything in Reactivation</b></li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> AI Auto Follow-up</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 24/7 Objection handling</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Smart booking</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b>Todo del Plan Reactivación</b></li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Seguimiento Automático de IA</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Manejo de objeciones 24/7</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Reservas inteligentes</li>
           </ul>
-          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-primary" style="width:100%;">Book Free Audit</a>
+          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-primary" style="width:100%;">Reservar Auditoría Gratuita</a>
         </div>
       </div>
       
       <div class="price-card glass-card reveal tilt-card" data-tilt data-tilt-max="8" data-tilt-glare data-tilt-max-glare="0.4">
         <div class="pop-out" style="display: flex; flex-direction: column; height: 100%;">
-          <div class="price-name">Total Autopilot</div>
-          <div class="price-amount">$997<span>/mo</span></div>
-          <p style="color:var(--text-muted); font-size: 1rem;">Completely replaces the work of a commercial receptionist.</p>
+          <div class="price-name">Automatización Total</div>
+          <div class="price-amount">€797<span>/mes</span></div>
+          <p style="color:var(--text-muted); font-size: 1rem;">Reemplaza completamente el trabajo de una recepcionista comercial.</p>
           <ul class="price-features">
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b style="color: var(--text-main);">Everything in Growth</b></li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 24/7 Full AI Receptionist</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> SMS & Voice AI</li>
-            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Priority 1-on-1 support</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <b>Todo del Motor de Crecimiento</b></li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Recepción IA 24/7 Completa</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> IA de SMS y Voz</li>
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Soporte prioritario 1-a-1</li>
           </ul>
-          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-secondary" style="width:100%;">Book Free Audit</a>
+          <a href="https://www.cal.eu/mescu/strategy" class="btn btn-secondary" style="width:100%;">Reservar Auditoría Gratuita</a>
         </div>
       </div>
     </div>
@@ -524,10 +523,10 @@ footer { padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); background: va
   <div class="container">
     <div class="cta-box reveal tilt-card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.3">
       <div class="pop-out">
-        <h2>How many appointments are hiding<br>in your database?</h2>
-        <p>Let's reactivate your clinic and fill your calendar. Book a free 15-minute audit and we'll show you exactly how much revenue you're leaving on the table.</p>
-        <a href="https://www.cal.eu/mescu/strategy" target="_blank" class="btn-white">Book Free Audit</a>
-        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 24px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">15 min · No commitment · We analyze your real ROI</p>
+        <h2>¿Cuántas citas están escondidas<br>en tu base de datos?</h2>
+        <p>Vamos a reactivar tu clínica y llenar tu calendario. Reserva una auditoría gratuita de 15 minutos y te mostraremos exactamente cuántos ingresos te estás perdiendo.</p>
+        <a href="https://www.cal.eu/mescu/strategy" target="_blank" class="btn-white">Reservar Auditoría Gratuita</a>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 24px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">15 min · Sin compromiso · Análisis gratuito</p>
       </div>
     </div>
   </div>
